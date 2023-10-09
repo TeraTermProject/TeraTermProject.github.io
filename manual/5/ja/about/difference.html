@@ -1,0 +1,267 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Tera Term 2.3, 4, 5 の比較</title>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+</head>
+
+<body>
+
+<h1>Tera Term 2.3, 4, 5 の比較</h1>
+
+<p>
+Tera Term 原作者 寺西高氏による Tera Term Pro 2.3 (オリジナルバージョン) と、Tera Term 4 と、Tera Term 5 との差について概説します。
+</p>
+
+<h2>機能差分一覧</h2>
+
+<table align="center" bgcolor="#f0f0f0" border="1" cellpadding="1" cellspacing="1" width="100%">
+<tr>
+	<th>項目</th>
+	<th>Tera Term Pro 2.3</th>
+	<th>Tera Term 4</th>
+	<th>Tera Term 5</th>
+</tr>
+
+<tr>
+	<td>ソースコード</td>
+	<td>開示</td>
+	<td>開示</td>
+	<td>開示</td>
+</tr>
+
+<tr>
+	<td>ライセンス</td>
+	<td>プロプライエタリ<a id="fn_link_1" href="#fn_1">*1</a></td>
+	<td>修正BSDライセンス<a id="fn_link_2" href="#fn_2">*2</a></td>
+	<td>修正BSDライセンス</td>
+</tr>
+
+<tr>
+	<td>開発環境</td>
+	<td>Visual C++ 5.0 / Watcom C/C++ 11.0</td>
+	<td>Visual Studio 2005</td>
+	<td>Visual Studio 2022</td>
+</tr>
+
+<tr>
+	<td>アイコン</td>
+	<td><img src="../image/icon-teraterm_classic.png" alt="Tera Term" width="32" height="32"><a id="fn_link_3" href="#fn_3">*3</a></td>
+	<td><img src="../image/icon-teraterm_flat.png" alt="Tera Term" width="32" height="32"></td>
+	<td><img src="../image/icon-teraterm.png" alt="Tera Term" width="32" height="32"></td>
+</tr>
+
+<tr>
+	<td>最大COMポート</td>
+	<td>16</td>
+	<td>4096</td>
+	<td>4096</td>
+</tr>
+
+<tr>
+	<td>シリアルスピード</td>
+	<td>110〜115200</td>
+	<td>110〜921600 自由入力も可能</td>
+	<td>110〜921600 自由入力も可能</td>
+</tr>
+
+<tr>
+	<td>日本語文字コード</td>
+	<td>EUC-JP/Shift_JIS/JIS</td>
+	<td>EUC-JP/Shift_JIS/JIS/UTF-8/UTF-8 MAC</td>
+	<td>EUC-JP/Shift_JIS/JIS/UTF-8</td>
+</tr>
+
+<tr>
+	<td>Unicode 対応</td>
+	<td>未サポート</td>
+	<td>単一言語サポート<a id="fn_link_4" href="#fn_4">*4</a></td>
+	<td>多言語サポート</td>
+</tr>
+
+<tr>
+	<td>IPv6 対応</td>
+	<td>No</td>
+	<td>Yes</td>
+	<td>Yes</td>
+</tr>
+
+<tr>
+	<td>国際化対応</td>
+	<td>No</td>
+	<td>Yes<a id="fn_link_5" href="#fn_5">*5</a></td>
+	<td>Yes</td>
+</tr>
+
+<tr>
+	<td>リンクライブラリ<a id="fn_link_6" href="#fn_6">*6</a></td>
+	<td>
+	</td>
+	<td>
+		<ul>
+			<li>Oniguruma
+				<ul>
+					<li>正規表現ライブラリとして使用</li>
+				</ul>
+			</li>
+			<li>SFMT
+				<ul>
+					<li>乱数生成器として使用</li>
+				</ul>
+			</li>
+		</ul>
+	</td>
+	<td>
+		<ul>
+			<li>Oniguruma
+				<ul>
+					<li>正規表現ライブラリとして使用</li>
+				</ul>
+			</li>
+			<li>SFMT
+				<ul>
+					<li>乱数生成器として使用</li>
+				</ul>
+			</li>
+		</ul>
+	</td>
+</tr>
+
+<tr>
+	<td colspan="4">&nbsp;</td>
+</tr>
+
+<tr>
+	<td>TTSSHアイコン</td>
+	<td><img src="../image/icon-ttsecure_classic.png" alt="TTSSH" width="32" height="32"></td>
+	<td><img src="../image/icon-ttsecure_flat.png" alt="TTSSH" width="32" height="32"></td>
+	<td><img src="../image/icon-ttsecure.png" alt="TTSSH" width="32" height="32"></td>
+</tr>
+
+<tr>
+	<td>対応 SSH バージョン</td>
+	<td>SSH 1.5</td>
+	<td>SSH 1.5 and 2</td>
+	<td>SSH 1.5 and 2</td>
+</tr>
+
+<tr>
+	<td>対応 SSH 機能</td>
+	<td>シェル、ポート転送、X11転送</td>
+	<td>シェル、ポート転送、X11転送、SCP</td>
+	<td>シェル、ポート転送、X11転送、SCP</td>
+</tr>
+
+<tr>
+	<td>Pageant<a id="fn_link_7" href="#fn_7">*7</a> との連携</td>
+	<td>No</td>
+	<td>Yes</td>
+	<td>Yes</td>
+</tr>
+
+<tr>
+	<td>リンクライブラリ<a id="fn_link_6" href="#fn_6">*6</a></td>
+	<td>
+		<ul>
+			<li>SSLeay
+				<ul>
+					<li>暗号ライブラリとして使用 (libeay32.lib)</li>
+					<li>SSLのためには使用していない (not ssleay32.lib)</li>
+				</ul>
+			</li>
+			<li>zlib
+				<ul>
+					<li>圧縮ライブラリとして使用</li>
+				</ul>
+			</li>
+		<ul>
+	</td>
+	<td>
+		<ul>
+			<li>OpenSSL
+				<ul>
+					<li>暗号ライブラリとして使用 (libcrypto.lib)</li>
+					<li>TLSのためには使用していない (not libssl.lib)</li>
+				</ul>
+			</li>
+			<li>zlib
+				<ul>
+					<li>圧縮ライブラリとして使用</li>
+				</ul>
+			</li>
+			<li>argon2
+				<ul>
+					<li>PuTTY 秘密鍵ファイルの復号に使用</li>
+				</ul>
+			</li>
+			<li>PuTTY
+				<ul>
+			    	<li>ツールチップを表示するソースコードを流用</li>
+			    	<li>Pageantとの連携のためにソースコードを流用</li>
+			    	<li>通信や端末エミュレーションのためには使用していない</li>
+			    </ul>
+			</li>
+		</ul>
+	</td>
+	<td>
+		<ul>
+			<li>LibreSSL
+				<ul>
+					<li>暗号ライブラリとして使用 (crypto-xx.lib)</li>
+					<li>TLSのためには使用していない (not ssl-xx.lib)</li>
+				</ul>
+			<li>zlib
+				<ul>
+					<li>圧縮ライブラリとして使用</li>
+				</ul>
+			</li>
+			<li>argon2
+				<ul>
+					<li>PuTTY 秘密鍵ファイルの復号に使用</li>
+				</ul>
+			</li>
+			<li>PuTTY
+				<ul>
+			    	<li>ツールチップを表示するソースコードを流用</li>
+			    	<li>Pageantとの連携のためにソースコードを流用</li>
+			    	<li>通信や端末エミュレーションのためには使用していない</li>
+			    </ul>
+			</li>
+			<li>RLogin
+				<ul>
+					<li>Pageantとの連携のためにソースコードを参考にしている</li>
+				</ul>
+			</li>
+		</ul>
+	</td>
+</tr>
+
+<tr>
+	<td colspan="4">&nbsp;</td>
+</tr>
+
+<tr>
+	<td>プロキシ接続対応</td>
+	<td>No</td>
+	<td>Yes<a id="fn_link_8" href="#fn_8">*8</a> (HTTP, TELNET, SOCKS4, SOCKS5)</td>
+	<td>Yes (HTTP, TELNET, SOCKS4, SOCKS5)</td>
+</tr>
+
+</table>
+
+<ul>
+  <li id="fn_1">[<a href="#fn_link_1">*1</a>] 改造版 Tera Term を不特定多数の人に配布する場合には作者（寺西高氏）の許可が必要。ただし、プラグインは除く。いかなる場合においても金銭的利益を得るためにTera Termを配布するには作者（寺西高氏）の許可が必要。</li>
+  <li id="fn_2">[<a href="#fn_link_2">*2</a>] <a href="http://www.opensource.org/licenses/bsd-license.php" target="_blank">修正BSDライセンス</a>に準拠する。</li>
+  <li id="fn_3">[<a href="#fn_link_3">*3</a>] アイコンの制作は坂本龍彦氏による。</li>
+  <li id="fn_4">[<a href="#fn_link_4">*4</a>] 内部でUnicode(UCS-2)とMBCSとの相互変換を行っているため、多言語同時表示は不可。すなわち、日本語版Windows上で日本語以外の言語を表示することはできない。ロケール設定により、中国語版Windows上でUTF-8による中国語を扱うことは可能。</li>
+  <li id="fn_5">[<a href="#fn_link_5">*5</a>] 言語ファイル(lang\*.lng)によりメニューやメッセージの表示言語を切り替えることができる。</li>
+  <li id="fn_6">[<a href="#fn_link_6">*6</a>] <a href="../reference/develop.html#library">ライブラリの詳細</a></li>
+  <li id="fn_7">[<a href="#fn_link_7">*7</a>] PuTTYやWinSCPなどで使われる<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank">SSH認証エージェント</a></li>
+  <li id="fn_8">[<a href="#fn_link_8">*8</a>] <a href="http://yebisuya.dip.jp/Software/TTProxy/" target="_blank">TTProxy</a>を使用。</li>
+</ul>
+
+</body>
+</html>

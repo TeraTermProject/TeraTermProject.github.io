@@ -1,0 +1,254 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Theme setup file</TITLE>
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+</head>
+<body>
+
+  <h1>Theme setup file</h1>
+
+  <ul>
+    <li><a href="#themefile">About theme setup file</a></li>
+    <li><a href="#BGTheme">BG(Background) theme</a></li>
+    <li><a href="#ColorTheme">Color theme</a></li>
+  </ul>
+
+  <h2>TODO</h2>
+  <ul>
+    <li>Determine theme file specifications
+    <li>Modify <a href="https://ttssh2.osdn.jp/tmp/color/" target="_blank">color picker</a> to match theme file specifications
+  </ul>
+
+  <h2 id="themefile">About theme file</h2>
+
+  There are several types of theme file.
+
+  <dl>
+    <dt>BG(Backgroup) theme</dt>
+    <dd>
+      File containing [BG Theme] section<br>
+      This section is background image settings
+    </dd>
+    <dt>Color theme</dt>
+    <dd>
+      File containing [Color Theme] section<br>
+      This section is text color settings
+    <dd>
+    <dt>Old Color Theme (obsolete)</dt>
+    <dd>
+      The [BG] section contains the text color settings.<br>
+      Color themes supported in Tera Term 4<br>
+      Loading this file is supported. But this will be deprecated
+    </dd>
+  </dl>
+
+  BG (background) themes and color themes may be saved in separate files,
+  also save both in one file.
+
+  File format is Windows ini file.
+
+  <h2 id="BGTheme">BG(Background) theme</h2>
+
+  <h3>section</h3>
+
+  "BG theme"<br>
+
+  The "BG" section can also be read (but will be deprecated).
+  If both are present, "BG theme" has priority.
+
+  <dl>
+    <dt>BGDestColor</dt>
+    <dd>
+      If no background image is used, it will be filled with this color.<br>
+      Areas where the background image is not drawn are also filled with this color.
+    </dd>
+
+    <dt>BGDestFile</dt>
+    <dd>
+      background image<br>
+      If a wildcard is containd in the file name, one of the matching files will be selected at random.<br>
+      If it is a relative path, specify a path relative to the theme file.<br>
+      The type of files that can be read depends on plugin stored in the BGSPIPath.<br>
+      Bitmaps(bmp) can be loaded without plugins.
+    </dd>
+
+    <dt>BGDestPattern</dt>
+    <dd>Background pattern
+      <dl>
+          <dt>stretch</dt>
+          <dt>tile</dt>
+          <dt>center</dt>
+          <dt>fit_width</dt>
+          <dt>fit_height</dt>
+          <dt>autofit</dt>
+          <dt>autofill</dt>
+          <dd>
+            FitWidth, FitHeight resizes image with aspect ratio maintained.<br>
+            AutoFit switches between FitWidth and FitHeight to adjust window and image size
+            to avoid gaps.
+          </dd>
+      </dl>
+    </dd>
+
+    <dt>BGSrc1Alpha</dt>
+    <dd>
+      Alphablend the wallpaper image in Windows.<br>
+      This value to alpha blend value the desktop image (Src1) onto the background image (Dest).<br>
+      When value is 0, the wallpaper will not be blended.
+    </dd>
+
+
+    <dt>BGSrc2Color</dt>
+    <dd>
+      The color to alpha-blend entire background image.
+    </dd>
+
+    <dt>BGSrc2Alpha</dt>
+    <dd>
+      Alphablend value<br>
+      How much to blend a solid color (Src2) onto the image of Dest and Src1.
+    </dd>
+
+    <dt>BGTextBackAlpha</dt>
+    <dd>
+      0 - 255<br>
+      AlphaBlend value for the normal text background color. 255 is full opacity.
+    </dd>
+
+    <dt>BGReverseTextAlpha</dt>
+    <dd>
+      0 - 255<br>
+      AlphaBlend value for reverse text background color. 255 is full opacity.
+    </dd>
+
+    <dt>BGTextAlpha</dt>
+    <dd>
+      0 - 255<br>
+      AlphaBlend value for other text background colors. 255 is full opacity.
+    </dd>
+  </dl>
+
+  <h2 id="ColorTheme">color theme</h2>
+
+  <h3>section</h3>
+
+  "Color Theme"
+
+  <h3>name</h3>
+
+  <dl>
+    <dt>Theme</dt>
+    <dd>Theme name, value is a string.</dd>
+  </dl>
+
+  <h3>attribute color</h3>
+
+  <dl>
+    <dt>VTColor</dt>
+    <dd>normal text background color, SGR 0</dd>
+
+    <dt>BoldColor</dt>
+    <dd>SGR 1</dd>
+
+    <dt>VTUnderlineColor</dt>
+    <dd>SGR 4</dd>
+
+    <dt>BlinkColor</dt>
+    <dd>SGR 5</dd>
+
+    <dt>ReverseColor</dt>
+    <dd>SGR 7</dd>
+
+    <dt>URLColor</dt>
+    <dd>
+      URL text color<br>
+      Text color added when Tera Term detects a URL string
+    </dd>
+
+    <dt>values (0 or 1), (0 or 1), (fore red), (fore green), (fore blue), (back red), (back green), (back blue)</dt>
+    <dt>values (0 or 1), (0 or 1), (fore), (back)</dt>
+    <dd>
+      <dl>
+        <dt>(0 or 1)</dt>
+        <dd>
+          1=Changing from the default color.<br>
+          0=No change.<br>
+          (Not referenced in VTColor)
+        </dd>
+        <dt>(0 or 1)</dt>
+        <dd>
+          1=Enable custom colors for text attributes (such as Bold attribute).<br>
+          0=Disable.<br>
+          (Not referenced in VTColor)
+        </dd>
+
+        <dt>(fore red), (fore green), (fore blue)</dt>
+        <dd>Text color, each value from 0 to 255.</dd>
+
+        <dt>(back red), (back green), (back blue)</dt>
+        <dd>Background color, each from 0 to 255.</dd>
+
+        <dt>(fore), (back)</dt>
+        <dd>
+          #RRBBGG format, each value from 0 to ff
+        </dd>
+      </dl>
+    </dd>
+  </dl>
+
+  <h3>ANSI color</h3>
+
+  First 16 colors when 256 ANSI colors or 16 ANSI colors.<br>
+  Dark colors are not used when 8 colors.
+
+  <dl>
+    <dt>ANSIColor=(0 or 1)</dt>
+    <dd>
+      1=Changing from the default color.<br>
+      0=No change.
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>Fore</dt>
+    <dd>256 ANSI color 15<br>
+      Normal text color(VTColor is used)
+    </dd>
+
+    <dt>Back</dt>
+    <dd>256 ANSI color 0<br>
+      Normal background color(VTColor is used)
+    </dd>
+
+    <dt>Red</dt>
+    <dt>Green</dt>
+    <dt>Yellow</dt>
+    <dt>Blue</dt>
+    <dt>Magenta</dt>
+    <dt>Cyan</dt>
+    <dt>DarkFore</dt>
+    <dt>DarkBack</dt>
+    <dt>DarkRed</dt>
+    <dt>DarkGreen</dt>
+    <dt>DarkYellow</dt>
+    <dt>DarkBlue</dt>
+    <dt>DarkMagenta</dt>
+    <dt>DarkCyan</dt>
+    <dd>Each color</dd>
+
+    <dt>Values are (red), (green), (blue)</dt>
+    <dd>from 0 to 255</dd>
+
+    <dt>value (color)</dt>
+    <dd>
+      #RRBBGG format, from 00 to ff
+    </dd>
+
+  </dl>
+
+</body>
+</html>

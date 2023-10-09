@@ -1,0 +1,17 @@
+	KEYCODE.EXE for Tera Term
+	T. Teranishi
+
+	Copyright(C) 1994-1998 T. Teranishi
+	(C) 2004- TeraTerm Project
+	All Rights Reserved.
+
+KEYCODE.EXE は Tera Term のキーボード設定ファイルの中で用いられる PC key code
+を調べるためのユーティリティーです。この文書では、KEYCODE.EXE の使用法について
+説明します。
+
+使用法
+
+KEYCODE.EXE を起動すると、"Push any key." というメッセージが表示されます。
+そこで、あるキーまたはキーの組み合わせ (Ctrl+ キーなど)を押すと、
+"Key code is XXXX." (XXXX は最大4桁の10進数)と表示され、PC key code を知ること
+ができます。

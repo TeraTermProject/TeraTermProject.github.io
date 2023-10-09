@@ -1,0 +1,182 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "coding" tab ([Setup] menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  </head>
+
+  <body>
+    <h1>Additional settings / "coding" tab ([Setup] menu)</h1>
+
+    <h2 id="AmbiguousCharactersWidth">Ambiguous Characters width</h2>
+
+    Select 1 Cell or 2 Cell.
+
+    <h2>Override Emoji Characters width</h2>
+
+    When checked, Overrides characters width from East_Asian_Width.
+    <ul>
+      <li>Emoji with U+1F000 and above are 2Cell (full-width).
+      <li>Emoji less than U+1F000:
+        <dl>
+          <dt>selected 2call</dt>
+          <dd>2Cell(full-width)</dd>
+          <dt>selected 1call</dt>
+          <dd>1Cell(half-width)</dd>
+        </dl>
+    </ul>
+
+    <h2 id="DecSpecial">DEC Special Graphics</h2>
+
+    Select display method for <a href="../about/emulations_dec_special.html">DEC Special Graphics</a>
+
+    <dl>
+      <dt>Mapping Unicode to DEC Special Grahpics</dt>
+      <dd>
+        Unicode is converted to DEC Special Graphic, displays with "Tera Special" font.<br>
+        Character width of DEC Special Graphic is 1 cell (half-width).<br>
+        Select character type to be converted.
+        See <a href="../setup/teraterm-term.html#UnicodeDecSpMapping">Mapping of Unicode to DEC special character</a>
+        <dl>
+          <dt>Line drawing characters(U+2500-U+257F)</dt>
+          <dt>Punctuation, Block Elements, Shade</dt>
+          <dt>Middle dots(U+00B7,U+2024,U+2219)</dt>
+        </dl>
+      </dd>
+      <dt>Mapping DEC Special Grahpics to Unicode</dt>
+      <dd>
+        DEC Special Graphic is converted to Unicode, displays with VT Window font.
+        The character width displayed in Unicode differs for each character.
+        It changes depending on Ambiguous Characters width setting.
+      </dd>
+    </dl>
+
+
+    <hr>
+
+    <h2>Easy to setup</h2>
+    <dl>
+      <dt>Use with Chinese, Japanese, and Korean (CJK)</dt>
+      <dd>
+        Select coding with "Japanese/" etc. such as Japanese/UTF-8<br>
+        - Ambiguous Characters Width = 2Cell<br>
+        - Override Emoji Characters Width is checkd, width = 2Cell
+      </dd>
+    </dl>
+
+    <h2>About displayed characters</h2>
+    test text in Tera Term repository can be displayed and checked.
+    <ul>
+      <li>Kanji width<br>
+        "wget https://ja.osdn.net/projects/ttssh2/scm/svn/blobs/head/trunk/tests/unicodebuf-east_asian_width.txt?export=raw -O -"
+      <li>Emoji width<br>
+        "wget https://ja.osdn.net/projects/ttssh2/scm/svn/blobs/head/trunk/tests/unicodebuf-text-emoji.txt?export=raw -O -"
+    </ul>
+    Please note the following:
+    <ul>
+      <li>Font is displayed unchanged or resized.<br>
+        See <a href="setup-additional-font.html#ResizedFont">Font setting</a>.
+      </li>
+      <li>Character width handled by Tera Term and intended by host may differ.<br>
+        Programs, library examples
+        <ul>
+          <li>Text editor(vim,emacs,nano etc)
+          <li>viewer(more,less,lv etc)
+          <li>readline library linked to bash, etc.
+          <li>curses library linked to aptitude, etc.
+        </ul>
+      </li>
+      <li>Character to be displayed may not be stored in font file.
+        <ul>
+          <li>If the character to be displayed (glyph) does not exist,<br>
+            a black dot will be drawn by OS.
+            Depending on the version of OS, other character may be used.
+          <li>Some OS versions automatically draw using other fonts.<br>
+            This feature is called font linking.
+        </ul>
+      </li>
+    </ul>
+
+    <h2>East_Asian_Width and width (cells)</h2>
+
+    <p>
+      Each characters are assigned East_Asian_Width property.
+    </p>
+
+    <p>
+      5 types exsit, each types are defined character width.
+    </p>
+
+    <p>
+      In addition, there are two types of interpretation of character width
+      <ol>
+        <li>In an East Asian context</li>
+        <li>in a non-East Asian context</li>
+      </ol>
+    </p>
+
+    <p>
+      The following table
+    </p>
+
+<pre>
+cells(2=full/1=half)
+|              | East Asian | non-East Asian |
+| property     | context    | context        |
+| F(Fullwidth) | 2          | 2              |
+| H(Halfwidth) | 1          | 1              |
+| W(Wide)      | 2          | 2              |
+| Na(Narrow)   | 1          | 1              |
+| A(Ambiguous) | 2          | 1              |
+| N(Neutral)   | 1          | 1              |
+</pre>
+
+    <p>
+      In a CJK environment, it is more natural to set the Ambiguous character width to 2Cell.<br>
+      In addition, most Japanese fonts are designed in 2Cell.
+    </p>
+
+    <p>
+      Neutral contains Emoji, that Emoji is unnatural in Japan when rendered in 1cell.
+      Emoji's width can be changed to make them appear more natural.
+
+      <dl>
+        <dt>Example</dt>
+        <dd>U+263A WHITE SMILING FACE</dd>
+        <dd>U+2764 HEAVY BLACK HEART</dd>
+        <dd><a href="https://ja.wikipedia.org/wiki/%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E8%A8%98%E5%8F%B7" target="_blank">Unicode Miscellaneous Symbols (Wikipedia JA)</a></dd>
+      </dl>
+    </p>
+
+    <p>
+      Attributes are determined based on the following data<br>
+      http://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt
+    </p>
+
+    <h2>About Emoji</h2>
+
+    <p>
+      Emoji property is other propery from East Asian Width property.
+    </p>
+
+    <p>
+      In the CJK environment, as with the East_Asian_Width property,
+      Characters that are not 1-byte in non-Unicode character codes, 2-cell is more natural.
+    </p>
+
+    <p>
+      In non-CJK environments, many characters handling 1cell is natural, because 2cell characters did not exist in traditional character codes.
+      Emoji with code points U+1F000 or higher that did not exist before Unicode, so they may be handled as 2-cell characters.
+    </p>
+
+    <p>
+      The following information is used to determine Emoji.<br>
+      https://www.unicode.org/Public/emoji/12.1/emoji-data.txt<br>
+      However, code points less than U+0080 are not treated as Emoji
+    </p>
+
+  </body>
+</html>

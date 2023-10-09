@@ -1,0 +1,94 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Win32API</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../../style.css" type="text/css">
+</HEAD>
+<BODY>
+
+<h1>Win32 API</h1>
+
+Notes on Win32 API
+
+<h2 id="ini_file">ini file</h2>
+
+<p>
+ini file has two type that is classified by character code, ACP (Shift_JIS in Japanese) and Unicode (UTF-16 with LE BOM).<br>
+And there are two version Win32 APIs for read/write ini file. ANSI version (GetPrivateProfileStringA, WritePrivateProfileStringA etc) with char * arguments, and wide character version (GetPrivateProfileStringW, WritePrivateProfileStringW etc) with wchar_t * arguments.<br>
+Combination of ini file (ACP, Unicode) and API (ANSI version, wide character version) makes 4 patterns.
+</p>
+
+<ul>
+  <li>ACP ini file : Get/WritePrivateProfileStringA</li>
+  <li>ACP ini file : Get/WritePrivateProfileStringW</li>
+  <li>Unicode (UTF-16LE) ini file : Get/WritePrivateProfileStringA</li>
+  <li>Unicode (UTF-16LE) ini file : Get/WritePrivateProfileStringW</li>
+</ul>
+
+<p>
+If Windows 2000 or later, conversion is automatically performed inside API, fit to character code of ini file.
+</p>
+
+<ul>
+  <li>When ANSI API read/write a Unicode ini file, conversion is automatically performed.</li>
+  <li>When wide character API read/write a ACP ini file, conversion is automatically performed.</li>
+  <li>So possible to use the API transparently regardless of the character encoding of the ini file.</li>
+  <li>If Unicode characters that cannot be represented by ACP are written to a non-Unicode ini file, they are replaced by "?" and written to the file.</li>
+  <li>If the file has a UTF-16LE BOM (0xff 0xfe) at the beginning, the ini file is regarded as Unicode file.
+    <ul>
+      <li>When a file is not exist. When It is created with the WritePrivateProfileStringA/W, it will be written in ACP.</li>
+      <li>When a file is already exist that only included BOM (0xff 0xfe), write by WritePrivateProfileStringA/W, it will be written in Unicode.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>
+If Windows NT 4, "ANSI API and ACP ini file" and "wide character API and ACP ini file" combination will works fine.<br>
+When Wide character API read/write a ACP ini file, conversion is automatically performed.
+</p>
+
+<p>
+If Windows 95, 98, Me, only "ANSI API and ACP ini file" combination will works fine.<br>
+Automatically conversion does not seem to be work.
+</p>
+
+<table border="1">
+  <tr>
+    <th></th>
+    <th colspan="2">Windows 2000-</th>
+    <th colspan="2">Windows NT 4</th>
+    <th colspan="2">Windows 95, 98, Me</th>
+  </tr>
+  <tr>
+    <th></th>
+    <th>ANSI API</th>
+    <th>Wide API</th>
+    <th>ANSI API</th>
+    <th>Wide API</th>
+    <th>ANSI API</th>
+    <th>Wide API</th>
+  </tr>
+  <tr>
+    <th>ACP ini file</th>
+    <td>OK</td>
+    <td>OK</td>
+    <td>OK</td>
+    <td>OK</td>
+    <td>OK</td>
+    <td>NG</td>
+  </tr>
+  <tr>
+    <th>Unicode (UTF-16LE) ini file</th>
+    <td>OK</td>
+    <td>OK</td>
+    <td>NG</td>
+    <td>NG</td>
+    <td>NG</td>
+    <td>NG</td>
+  </tr>
+</table>
+
+</html>

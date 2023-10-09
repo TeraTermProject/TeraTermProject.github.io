@@ -1,0 +1,254 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>TTSSH (Tera Term setup file)</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+</HEAD>
+<BODY>
+
+<h1 id="AuthBanner">How to display authentication banner</h1>
+
+<p>
+When SSH authentication is used, the SSH_MSG_USERAUTH_BANNER message may be sent from server.<br />
+Basically, this message is shown on VT window. If display method is changed, please change AuthBanner entry of [TTSSH] section in the following:
+</p>
+
+<pre>
+AuthBanner=&lt;Display Method&gt;
+</pre>
+
+<p>
+The display method can be specified from 0 to 3. 
+Meaning of each value in the following:
+</p>
+
+<table>
+<thead>
+  <tr> <th>Value</th> <th>Action</th> </tr>
+</thead>
+<tbody>
+  <tr> <td>0</td>  <td>No display</td> </tr>
+  <tr> <td>1</td>  <td>Display in VT window</td> </tr>
+  <tr> <td>2</td>  <td>Display by pop-up</td> </tr>
+  <tr> <td>3</td>  <td>Display by balloon tip</td> </tr>
+</tbody>
+</table>
+
+<pre>
+Default:
+AuthBanner=1
+</pre>
+
+
+<h1 id="DisablePopupMessage">Suppressing message box</h1>
+
+<p>
+When Tera Term is automated by using macro or non-logon and the error and warning is occurred, 
+the message box will be shown. Next, Tera Term waits user operation and the procedure can not be continued.<br />
+To prevent this problem, the message box can be suppressed.
+</p>
+
+<pre>
+DisablePopupMessage=&lt;Suppress Message&gt;
+</pre>
+
+<p>
+The "Suppress Message" can be specified with the sum value of suppressing message type.
+Meaning of each value is as follows.
+</p>
+
+<table>
+<thead>
+  <tr> <th>Value</th> <th>Action</th> </tr>
+</thead>
+<tbody>
+  <tr> <td>0</td>  <td>Not suppress pop-up window</td> </tr>
+  <tr> <td>1</td>  <td>Suppress "sending forwarded data to a local port error" pop-up message</td> </tr>
+  <tr> <td>2</td>  <td>Suppress "SSH channel open error" pop-up window</td> </tr>
+</tbody>
+</table>
+
+<pre>
+Default:
+DisablePopupMessage=0
+</pre>
+
+
+<!--h1><a name="EnableRsaShortKeyServer">Enabling connection to server with RSA host key less than 768bit</a></h1>
+
+<p>
+The RSA host key of SSH server needs 768bit length at least, however some server having the host key less than 768bit exist.<br />
+Basically, when the host key of SSH server length is too small, Tera Term disconnects current session. 
+However, this configuration enables to permit exceptionally.
+</p>
+
+<pre>
+EnableRsaShortKeyServer=&lt;Value&gt;
+</pre>
+
+<p>
+The value can be specified with 0 or 1.
+Meaning of each value is as follows.
+</p>
+
+<table>
+<thead>
+  <tr> <th>Value</th> <th>Action</th> </tr>
+</thead>
+<tbody>
+  <tr> <td>0</td>  <td>Disable connection</td> </tr>
+  <tr> <td>1</td>  <td>Allow connection</td> </tr>
+</tbody>
+</table>
+
+<pre>
+Default:
+EnableRsaShortKeyServer=0
+</pre-->
+
+
+<h1 id="GexMinimalGroupSize">Minimum group size for Diffie-Hellman Group Exchange</h1>
+
+<p>
+When Diffie-Hellman Group Exchange(diffie-hellman-group-exchange-sha*) is used for key exchanging method, 
+SSH client some requests of 'Minimum size', 'Proposed size' and 'Maximum size' regarding group to server.<br />
+As described below, current TTSSH sends 2048 as minimum size to server. When the group size sent from server 
+is smaller than the minimu size, TTSSH shows the confirmation dialog whether the connection continues.
+</p>
+
+<p>
+When the GexMinimalGroupSize entry of [TTSSH] section is changed below, the minimum size of
+group requesting to server.
+</p>
+
+<pre>
+GexMinimalGroupSize=&lt;Minimum size of group&gt;
+</pre>
+
+<p>
+The minimum size of group can be specified with 0 and 1024 to 8192.<br />
+When the value is 0, TTSSH uses the optimal value. Current TTSSH sends 2048 
+in accordance with <a href="https://tools.ietf.org/html/rfc8270" target="_blank">RFC 8270</a>.
+The value will be changed in the future.<br />
+When the value is specified from 1024 to 8192, the value is used necessarily.
+</p>
+
+<pre>
+Default:
+GexMinimalGroupSize=0
+</pre>
+
+
+<h1 id="LogLevel">Log Level</h1>
+
+<p>
+The log level can be specified that TTSSH records to TTSSH.LOG file.
+</p>
+
+<pre>
+LogLevel=&lt;Value&gt;
+</pre>
+
+<table>
+<thead>
+  <tr> <th>Value</th> <th>Action</th> </tr>
+</thead>
+<tbody>
+  <tr> <td>0</td>  <td>Invalid</td> </tr>
+  <tr> <td>5</td>  <td>FATAL</td> </tr>
+  <tr> <td>10</td> <td>ERROR</td> </tr>
+  <tr> <td>30</td> <td>WARNING</td> </tr>
+  <tr> <td>50</td> <td>NOTICE</td> </tr>
+  <tr> <td>80</td> <td>INFO</td> </tr>
+  <tr> <td>100</td><td>VERBOSE</td> </tr>
+  <tr> <td>200</td><td>SSHDUMP</td> </tr>
+</tbody>
+</table>
+
+<pre>
+Default:
+LogLevel=0
+</pre>
+
+
+<h1 id="RSAPubkeySignAlgorithmOrder">Sign algorithm order of RSA publickey authentication</h1>
+
+<p>
+When publickey authentication with RSA key, some hash algorithms are available for generate sign.<br />
+You can configure the priority of sign algorithm.<br />
+Among the sign algorithms supported by server and client, highest priority algorithm in client is used.
+</p>
+
+<p>
+Below setting takes priority rsa-sha2-256 lather than rsa-sha2-512.
+</p>
+
+<pre>
+RSAPubkeySignAlgorithmOrder=2310
+</pre>
+
+<table>
+<thead>
+  <tr> <th>value</th> <th>sign algorithm</th> <th>hash algorithm for generate sign</th> </tr>
+</thead>
+<tbody>
+  <tr> <td>3</td> <td>rsa-sha2-512</td> <td>SHA-512</td> </tr>
+  <tr> <td>2</td> <td>rsa-sha2-256</td> <td>SHA-256</td> </tr>
+  <tr> <td>1</td> <td>ssh-rsa</td>      <td>SHA1</td>    </tr>
+  <tr> <td>0</td> <td colspan="2">below this line are disabled.</td> </tr>
+</tbody>
+</table>
+
+<p>
+Note:<br />
+This config is for the priority of publickey authentication sign algorithm. Not for the priority of <a href="../menu/setup-ssh.html#HostKeyOrder">server hostkey</a> sign algorithm.<br />
+Also this config is for publickey authentication sign algorithm with RSA key. Not for other type keys.
+</p>
+
+<pre>
+Default:
+RSAPubkeySignAlgorithmOrder=3210
+</pre>
+
+
+<h1 id="X11Display">Destination display for X11 transfer</h1>
+
+<p>
+When destination display for X11 transfer is specified, please change the X11Display entry
+of [TTSSH] section in the following.
+</p>
+
+<pre>
+X11Display=&lt;Display specification&gt;
+</pre>
+
+<p>
+The display specification can be used as X11 normal format([&lt;host&gt;]:[&lt;display number&gt;[.&lt;screen number&gt;]).
+When the X11Display is not any specified _empty string_, the DISPLAY environment variable is enabled and the value is used.
+The environment variable is disable and the  localhost:0.0 is used.
+</p>
+
+<p>
+This configuration is overwitten with <a href="../commandline/ttssh.html#ssh-x">/ssh-X command line option</a>.
+The configuration priority is as follows.
+</p>
+
+<ol>
+  <li><a href="../commandline/ttssh.html#ssh-x">/ssh-X command line option</a></li>
+  <li>X11Display entry of [TTSSH] section</li>
+  <li>DISPLAY environment variable</li>
+  <li>localhost:0.0</li>
+</ol>
+
+<pre>
+Default:
+X11Display=
+</pre>
+
+
+
+</BODY>
+</HTML>

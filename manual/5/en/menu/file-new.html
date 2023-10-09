@@ -1,0 +1,139 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>New connection ([File] menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  </head>
+
+  <body>
+    <h1>New connection ([File] menu)</h1>
+    <p>
+      Connects to a new host or a serial port or a named pipe. Also, Replays a log file.
+      If the connection is already open, opens a new Tera Term window.
+    </p>
+
+    <h2>"New connection" dialog box</h2>
+
+    <h3>TCP/IP</h3>
+    <dl>
+      <dt>Host</dt>
+      <dd>
+	Enter the host name or IP address(IPv4 and IPv6) or named pipe, or select one from the host list.
+	To edit the host list, use the
+	<a href="setup-tcpip.html">[Setup] TCP/IP</a> command.<br>
+	The IPv6 address is surround with the bracket. (Refer to <a href="http://tools.ietf.org/html/rfc3986" target="_blank">RFC3986</a> / <a href="http://tools.ietf.org/html/rfc5952#section-6" target="_blank">RFC5952</a>)<br>
+	You can enter not only the host name or address, but also the
+	<a href="../commandline/teraterm.html">command line parameters</a>
+	like the following:<br>
+
+    <pre>
+    myhost.example.com                  Host name only.
+    myhost.example.com:23               Host name with a port number.
+    foohost.example.org /F=FOOHOST.INI  Host name &amp; setup file name.
+    /C=1                                Specifies the serial port connection.
+    /R=LOG.DAT                          Replays the log file.
+    [2001:db8:1:2:8401:2ff:fe03:405]    IPv6 address
+    [fe80::8401:2ff:fe03:405%3]:8022    IPv6 address and Port number
+    user@myhost.example.com:10022 /ssh  SSH connection to a port number other than 22
+    ssh://user@myhost.example.com       SSH connection to the SSH protocol(ssh://)
+    \\.\pipe\vmware-serial-port         Named pipe connection
+    </pre>
+
+    This edit control can support the Ctrl+a(Home key), Ctrl+e(End key), Ctrl+b(left-arrow), Ctrl+f(right-arrow), Ctrl+n(down-arrow), Ctrl+p(up-arrow), Ctrl+d(delete the character at point), Ctrl+k(kill the text from point to the end of the line) and Ctrl+u(kill backward from point to the beginning of the line).
+      </dd>
+
+      <dt>History</dt>
+      <dd>
+        Displayed when TTSSH is enabled. <br>
+        This option is select, the entered hostname will be added to the top of the host list when connecting to the input host.
+        This checkbox uses function of <a href="setup-tcpip.html#HistoryList">History</a> in the <a href="setup-tcpip.html">[Setup] menu</a>.
+      </dd>
+
+      <dt>Telnet</dt>
+      <dd>
+        Enables the telnet protocol.
+      </dd>
+
+      <dt>SSH</dt>
+      <dd>
+        Default selected option. Displayed when TTSSH is enabled.<br>
+        Enables the SSH protocol.
+      </dd>
+
+      <dt>Other</dt>
+      <dd>
+        Displayed when TTSSH is enabled.<br>
+        Enables other protocol from except telnet and SSH.
+      </dd>
+
+      <dt>TCP port#</dt>
+      <dd>
+        Specify the port number according to the selected service.<br>
+        The default is as follows.<br>
+        <table border="1">
+          <tr>
+           <th>Service</th>
+           <th>TCP port#</th>
+           <th>etc.</th>
+          </tr>
+
+          <tr>
+           <td>Telnet</td>
+           <td>23</td>
+           <td>well-known ports</td>
+          </tr>
+
+          <tr>
+           <td>SSH</td>
+           <td>22</td>
+           <td>well-known ports<br>Displayed when TTSSH is enabled.</td>
+          </tr>
+
+          <tr>
+           <td>Other</td>
+           <td>(Optional)</td>
+           <td>Displayed when TTSSH is enabled.</td>
+          </tr>
+
+        </table>
+      </dd>
+
+      <dt>SSH version</dt>
+      <dd>
+        Displayed when TTSSH is enabled.<br>
+        Uses for connection by selected from version ssh1 or ssh2.
+      </dd>
+
+      <dt>IP version</dt>
+      <dd>
+        Selects as an IP version from AUTO or IPv6 or IPv4.<br>
+        The AUTO try to connect to the IP address associated with the hostname.<br>
+        Either IPv6 or IPv4 using depends on the OS setting(priority of IP version).
+      </dd>
+
+    </dl>
+    <p class="indent1">
+      Note:<br>
+      Only if &lt;telnet flag&gt; is on and &lt;TCP port#&gt; is 23,
+      Tera Term starts spontaneously sending telnet commands to the host
+      for the option negotiation when the TCP/IP connection is established.
+      In any cases, Tera Term can respond to telnet commands sent by the host.
+    </p>
+
+    <p class="indent1">
+      See also:<br>
+      <a href="../usage/tips/not_port23.html">Telnet port number / Terminal setup for non-telnet connection</a>
+    </p>
+
+    <h3>Serial</h3>
+    <dl>
+      <dt>Port</dt>
+      <dd>
+        Select a port from the list. By default, maximum serial port number in the list is 256. Also, the serial port does not show when there is no available port. It is configurable in <a href="../setup/teraterm-com.html#maxport">MaxComPort</a> setting.
+      </dd>
+    </dl>
+  </body>
+</html>

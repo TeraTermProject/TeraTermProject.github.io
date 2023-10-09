@@ -1,0 +1,956 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Tera Term Development</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+</HEAD>
+<BODY>
+
+<h1 class="center">Tera Term Development</h1>
+
+<ol>
+  <li><a href="#environment">Development Environment, Libraries</a>
+    <ol>
+      <li><a href="#compiler">Compiler, Tools</a></li>
+      <li><a href="#library">Libraries</a></li>
+    </ol>
+  </li>
+  <li><a href="#build">Build</a>
+    <ol>
+      <li><a href="#build-env">Build environment</a></li>
+      <li><a href="#build-detail">How to build</a>
+        <ol>
+          <li><a href="#build-checkout">Checkout source code</a></li>
+          <li><a href="#build-library">Build libaries</a></li>
+          <li><a href="#build-teraterm">Build Tera Term</a></li>
+          <li><a href="#build-ttssh">Build TTSSH</a></li>
+          <li><a href="#build-ttproxy">Build TTProxy</a></li>
+          <li><a href="#build-ttxkanjimenu">Build TTXKanjiMenu</a></li>
+          <li><a href="#build-ttxsamples">Build TTXSamples</a></li>
+          <li><a href="#build-teraterm-menu">Build TeraTerm Menu</a></li>
+          <li><a href="#build-cygterm">Build CygTerm</a></li>
+          <li><a href="#build-htmlhelp">Build HTML help file</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><a href="#develop">Note for development</a>
+    <ol>
+      <li><a href="#ini-entry">Add entry to TERATERM.INI</a></li>
+      <li><a href="#menu-id">Naming rule to add menu ID</a></li>
+      <li><a href="#add-macro-command">What to do when new macro command is added?</a></li>
+      <li><a href="#icon">Icon</a></li>
+      <li><a href="#editor">Edit language files</a></li>
+    </ol>
+  </li>
+  <li><a href="#release">How to release Tera Term installation package</a>
+    <ol>
+      <li><a href="#start-rc">From start release until create RC</a></li>
+      <li><a href="#rc-release">From create RC until release</a></li>
+      <li><a href="#release-operation">Release</a></li>
+      <li><a href="#code-freeze">About code freeze</a></li>
+    </ol>
+  </li>
+</ol>
+
+<hr>
+
+<h2 id="environment">Development Environment</h2>
+
+<h3 id="compiler">Compiler, Tools</h3>
+
+<p>
+Compiler and tools used for release in Tera Term Project:
+</p>
+
+<ul>
+  <li>Visual Studio 2005 SP1 (Standard Edition Èã)</li>
+  <li>Cygwin gcc (<a href="https://www.cygwin.com/" target="_blank">https://www.cygwin.com/</a>)<br />
+    For build CygTerm+.
+    <!--Cygwin ÌÅVÅÍ 32bit oCiª¶¬Å«Ü¹ñB32bit oCið¶¬Å«é cygwin32-gcc-g++ ð Cygwin Time Machine (<a href="http://www.crouchingtigerhiddenfruitbat.org/Cygwin/timemachine.html" target="_blank">http://www.crouchingtigerhiddenfruitbat.org/Cygwin/timemachine.html</a>) ©ç_E[hµÜ·B-->
+  </li>
+</ul>
+
+<p>
+Tera Term is able to build by following compilers:
+</p>
+
+<ul>
+  <li>Visual Studio Community 2019 (latest)<br />
+    Note: The executable program which was compiled by this version does not work on Windows XP, 2000, NT 4.0, 95, 98 and Me.
+  </li>
+  <li>Visual Studio Community 2022 (latest)<br />
+    Note: The executable program which was compiled by this version does not work on Windows Vista, XP, 2000, NT 4.0, 95, 98 and Me.
+  </li>
+</ul>
+
+<p>
+Following tools are needed to build Tera Term:
+</p>
+
+<ul>
+  <li>Perl<br />
+    Any of the following:
+    <ul>
+      <li>Strawberry Perl 5.30.1.1 or later (<a href="https://strawberryperl.com/" target="_blank">https://strawberryperl.com/</a>)</li>
+      <li>ActivePerl 5.10 or later (<a href="https://www.activestate.com/products/perl/" target="_blank">https://www.activestate.com/products/perl/</a>)</ li>
+    </ul>
+    For build.<br />
+    <ul>
+      <li>For compile OpenSSL./li>
+      <li>Converts character-code and return-code of documents.</li>
+      <li>For get the revision number.</li>
+    </ul>
+  </li>
+  <li>Subversion<br />
+    Any of the following:
+    <ul>
+      <li>VisualSVN (<a href="https://www.visualsvn.com/downloads/" target="_blank">https://www.visualsvn.com/downloads/</a>)</li>
+      <li>TortoiseSVN (<a href="https://tortoisesvn.net/downloads.html" target="_blank">https://tortoisesvn.net/downloads.html</a>)</li>
+      <li>Subversion for Windows (<a href="http://sourceforge.net/projects/win32svn/" target="_blank">http://sourceforge.net/projects/win32svn/</a>)</li>
+    </ul>
+    For checkout source code.<br />
+    The command line version of the same version that was used for checkout source code. For get the revision number.
+  </li>
+  <li>Patch<br />
+    For apply patches to OpenSSL source code.
+  </li>
+  <li>HTML Help Compiler<br />
+    For build HTML help file.
+  </li>
+  <li>Inno Setup<br />
+    <ul>
+      <li>Inno Setup 5.6.1 ANSI (http://www.jrsoftware.org/isinfo.php)</li>
+      <li>ISTool 5.3.0.1 (https://sourceforge.net/projects/istool/)</li>
+    </ul>
+    For build installer.
+  </li>
+</ul>
+
+<h3 id="library">Libraries</h3>
+
+<ul>
+  <li>Oniguruma 6.9.8 (<a href="https://github.com/kkos/oniguruma/" target="_blank">https://github.com/kkos/oniguruma/</a>)<br />
+    For regular expression. Used by Tera Term Macro.
+  </li>
+  <li>SFMT 1.5.1 (<a href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/SFMT/index-jp.html" target="_blank">http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/SFMT/index-jp.html</a>)<br />
+    For generate random number. Used by Tera Term Macro.
+  </li>
+  <li>OpenSSL 1.1.1w (<a href="https://www.openssl.org/" target="_blank">https://www.openssl.org/</a>)<br />
+    For encryption. Used by TTSSH.
+  </li>
+  <li>zlib 1.3 (<a href="https://www.zlib.net/" target="_blank">https://www.zlib.net/</a>)<br />
+    For compress. Used by TTSSH.
+  </li>
+  <li>PuTTY 0.70 (<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/" target="_blank">https://www.chiark.greenend.org.uk/~sgtatham/putty/</a>)<br />
+    For communicate to Pageant. Used by TTSSH.
+  </li>
+  <li>The reference C implementation of Argon2 20190702 (<a href="https://github.com/P-H-C/phc-winner-argon2/" target="_blank">https://github.com/P-H-C/phc-winner-argon2/</a>)<br />
+    For read PuTTY private key file format version 3 (PPK3). Used by TTSSH.
+  </li>
+</ul>
+
+
+<h2 id="build">Build</h2>
+
+<h3 id="build-env">Build environment</h3>
+
+<ul>
+  <li>Install Visual Studio 2005
+    <ul>
+      <li>Visual Studio 2005</li>
+      <li>Service Pack 1 (VS80sp1-KB926601-X86-ENU.exe)</li>
+      <li>Microsoft Visual Studio 2005 Service Pack 1 MFC Security Update (VS80sp1-KB2538218-v2-X86-INTL.exe)</li>
+      <li>When Windows Vista or higher, Visual Studio 2005 Service Pack 1 Update for Windows Vista (VS80sp1-KB932232-X86-ENU.exe)</li>
+    </ul>
+  </li>
+  <li>Install Windows SDK 7.0
+    <ul>
+      <li><a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=E15438AC-60BE-41BD-AA14-7F1E0F19CA0D&displaylang=en" target="_blank">Windows Server 2003 R2 Platform SDK (Microsoft Windows SDK for Windows 7 and .NET Framework 3.5 SP1)</a> ... 5.2.3790.2075.51.PlatformSDK_Svr2003R2_rtm.img<br />
+        Note: unavailable on Microsoft website (at Apr 07, 2019).
+      </li>
+      <li>Give higher priority to SDK's directories in INCLUDE and LIB.<br />
+        Run "Start" - "All Programs" - "Mirosoft Platform SDK for Windows Server 2003 R2" - "Visual Studio Registration" - "Register PSDK Directories with Visual Studio."<br />
+        To Confirm, open Visual Studio - "Tool" - "Option" - "Project and Solution" - "VC++ directory" - "Include file" and "Library file." Check whether the path of Platform SDK is appended.
+<pre>
+e.g.
+INCLUDE "C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Include"
+LIB     "C:\Program Files\Microsoft Platform SDK for Windows Server 2003 R2\Lib"
+</pre>
+      </li>
+    </ul>
+  </li>
+  <!--
+  <li>Install Windows SDK 7.1
+    <ul>
+      <li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=8442" target="_blank">Microsoft Windows SDK for Windows 7 and .NET Framework 4</a> ... GRMSDK_EN_DVD.iso</li>
+      <li>To use with Visual Studio 2005, KB949009(VS80sp1-KB949009-X86-INTL.exe) or KB980422(VS80sp1-KB980422-x86-INTL.exe) is necessary.<br />
+        Note: KB949009 and KB980422 are unavailable on Microsoft website.
+      </li>
+    </ul>
+  </li>
+  -->
+  <li>Install Cygwin<br />
+    About required packages, refer to <a href="../usage/cygwin.html#build">this page</a>.
+  </li>
+  <li>Install Perl</li>
+  <li>Install Subversion<br />
+    "svnversion" command is used, that is found in "libs\svn\bin\svnversion.exe", "svnversion in PATH."<br />
+    If "svnversion" is not present in PATH, put "svnversion.exe" to "libs\svn\bin" directory.
+  </li>
+  <li>Install Patch<br />
+    "patch" command is used, that is found in "libs\openssl_patch\patch.exe", "svnversion in PATH."<br />
+    If "patch" is not present in PATH, put "svnversion.exe" to "libs\openssl_patch" directory.<br />
+    https://gitforwindows.org/ (https://github.com/git-for-windows/git/releases/latest). Next ©çÅ êÎANext, extract the file and copy the patch.exe, msys-gcc_s-1.dll, msys-2.0.dll of usr\bin directory.</li>
+  </li>
+  <li>Install HTML Help Compiler<br />
+    Installing Visual Studio (2017 or later) with "C++ MFC" option, HTML Help Compiler (hhc.exe) is installed.
+  </li>
+  <li>Install Inno Setup</li>
+</ul>
+
+
+<h3 id="build-detail">How to build</h3>
+
+<h4 id="build-checkout">Checkout source code</h4>
+
+<p>
+Checkout source code from OSDN (http://svn.osdn.net/svnroot/ttssh2/branches/4-stable/).<br />
+Project member have to use svn+ssh://&lt;username&gt;@svn.osdn.net/svnroot/ttssh2/branches/4-stable/ or https://svn.osdn.net/svnroot/ttssh2/branches/4-stable/.
+</p>
+
+<h4 id="build-library">Build libraries</h4>
+
+<p>
+Launch 'Visual Studio 2005 Command Prompt' batch file from start menu, or set appropriate directory to PATH.<br />
+You can run libs\buildall.bat to build all libraries instead of run each batch files. *
+</p>
+
+<ul>
+  <li>Oniguruma
+    <ol>
+      <li>Extract oniguruma source into libs/oniguruma directory.</li>
+      <li>Run libs\buildoniguruma6.bat. *</li>
+    </ol>
+  </li>
+  <li>SFMT
+    <ol>
+      <li>Extract SFMT source into libs/SFMT directory.</li>
+      <li>Run libs\buildSFMT.bat. *</li>
+      <li>Modify version information in libs/SFMT/SFMT_version_for_teraterm.h if necessary.</li>
+    </ol>
+  </li>
+  <li>OpenSSL
+    <ol>
+      <li>Extract openssl source into libs/openssl directory.<br />
+        Note: When the libs/openssl/Makefile.bak file exists on the OpenSSL 1.0.0e or later, delete the file only once.</li>
+      <li>Run buildopenssl11.bat. *</li>
+    </ol>
+  </li>
+  <li>Zlib
+    <ol>
+      <li>Extract zlib source into libs/zlib directory.</li>
+      <li>Run buildzlib.bat. *</li>
+    </ol>
+  </li>
+  <li>PuTTY
+    <ol>
+      <li>Extract PuTTY source into libs/putty directory.</li>
+    </ol>
+  </li>
+  <li>The reference C implementation of Argon2
+    <ol>
+      <li>Extract argon2 source into libs/argon2 directory.</li>
+    </ol>
+  </li>
+</ul>
+
+<h4 id="build-teraterm">Build Tera Term</h4>
+
+<ol>
+  <li>Open teraterm\ttermpro.sln with Visual Studio.<br />
+      The linefeed code of .sln file must be "CR+LF".</li>
+  <li>Build Tera Term solution.</li>
+  <li>Tera Term execution program files will be generated in teraterm\Debug / teraterm\Release directory if the building is successful.</li>
+</ol>
+
+<h4 id="build-ttssh">Build TTSSH</h4>
+
+ttpcmn.dll (ttpcmn.lib) must be built beforehand by teraterm\ttermpro.sln.
+
+<ol>
+  <li>Open ttssh2\ttssh.sln with Visual Studio.</li>
+  <li>Build TTSSH solution.</li>
+  <li>TTSSH DLL module will be generated in ttssh2\ttxssh\Debug / ttssh2\ttxssh\Release directory if the building is successful.</li>
+</ol>
+
+<h4 id="build-ttproxy">Build TTProxy</h4>
+
+ttpcmn.dll (ttpcmn.lib) must be built beforehand by teraterm\ttermpro.sln.
+
+<ol>
+  <li>Open TTProxy\TTProxy.sln with Visual Studio.</li>
+  <li>Build TTProxy solution.</li>
+  <li>TTProxy DLL module will be generated in TTProxy\Debug / TTProxy\Release directory if the building is successful.</li>
+</ol>
+
+<h4 id="build-ttxkanjimenu">Build TTXKanjiMenu</h4>
+
+ttpcmn.dll (ttpcmn.lib) must be built beforehand by teraterm\ttermpro.sln.
+
+<ol>
+  <li>Open TTXKanjiMenu\ttxkanjimenu.sln with Visual Studio.</li>
+  <li>Build TTXKanjiMenu solution.</li>
+  <li>Ttxkanjimenu DLL module will be generated in TTXKanjiMenu\Debug / TTXKanjiMenu\Release directory if the building is successful.</li>
+</ol>
+
+<h4 id="build-ttxsamples">Build TTXSamples</h4>
+
+<!--
+<p>
+|WgÌTTXSamplesÉ Tera Term Extension (TTX)ÌTvª èÜ·BTTXðìéÛÌQlÉµÄ­¾³¢B
+</p>
+-->
+
+ttpcmn.dll (ttpcmn.lib) must be built beforehand by teraterm\ttermpro.sln.
+
+<ol>
+  <li>Open TTXSamples\TTXSamples.sln with Visual Studio.</li>
+  <li>Build TTXSamples solution.</li>
+  <li>DLL modules will be generated in TTXSamples\Debug / TTXSamples\Release directory if the building is successful.</li>
+</ol>
+
+<!--
+<p>
+eTTXÌÚ×ÉÂ¢ÄÍAvWFNgàÌReadMe-ja.txtðQÆµÄ­¾³¢B
+</p>
+-->
+
+<h4 id="build-teraterm-menu">Build TeraTerm Menu</h4>
+
+<ol>
+  <li>Open ttpmenu\ttpmenu.sln with Visual Studio.</li>
+  <li>Build ttpmenu solution.</li>
+  <li>ttpmenu.exe will be generated in ttpmenu\Debug / ttpmenu\Release directory if the building is successful.</li>
+</ol>
+
+<h4 id="build-cygterm">Build CygTerm+</h4>
+
+<ol>
+  <li>Launch Cygwin shell and go to cygterm directory.
+<pre>
+# cd cygterm
+</pre>
+  </li>
+  <li>Compile CygTerm+.
+<pre>
+# make
+</pre>
+  </li>
+  <li>cygterm.exe and cyglaunch.exe will be generated.</li>
+</ol>
+
+<h4 id="build-htmlhelp">Build HTML help file</h4>
+
+<ol>
+  <li>Run doc\makechm.bat.</li>
+</ol>
+
+
+<h2 id="develop">Note for development</h2>
+
+
+<h3 id="ini-entry">Add entry to TERATERM.INI</h3>
+
+<p>
+Entry name<br />
+Unfortunately, the confusing entries such as EnableFoo... and DisableBar... are included.<br />
+It recommends that the new name like as Baz....
+</p>
+
+
+<h3 id="menu-id">Naming rule to add menu ID</h3>
+
+<pre>
+The first digit is 5.
+</pre>
+<pre>
+The second digit is:
+  Tera Term VT window          0
+  Tera Term TEK window         1
+  TTSSH                        2
+  TTProxy                      3
+  TTXKanjiMenu                 4
+</pre>
+<pre>
+The third digit is:
+  [File] menu                  1
+  [Edit] menu                  2
+  [Setup] menu                 3
+  [Control] menu               4
+  [Window] menu                8
+  [Help] menu                  9
+</pre>
+
+<p>
+Example: adding a TTSSH menu under File menu
+</p>
+<pre>
+#define ID_SSHSCPMENU       52110
+</pre>
+
+
+<h3 id="add-macro-command">What to do when new macro command is added?</h3>
+
+<ul>
+  <li>Coding
+    <ul>
+      <li>get a new number of command internal ID.<br />
+          ... teraterm/ttmacro/ttmparse.h</li>
+      <li>add a if statement to below function.<br />
+          ... CheckReservedWord@teraterm/ttmacro/ttmparse.c</li>
+      <li>add a caller doing the macro command.<br />
+          ... ExecCmnd@teraterm/ttmacro/ttl.c</li>
+      <li>make a function code for the macro command.</li>
+    </ul>
+  </li>
+  <li>Help topic
+    <ul>
+      <li>make the command help file.<br />
+          ... doc/LANG/html/macro/command/hogefunc.html</li>
+      <li>add to command index page.<br />
+          ... doc/LANG/html/macro/command/index.html</li>
+      <li>add the file to help topic.<br />
+          ... doc/LANG/teraterm.hhc</li>
+      <li>get a new number of context ID in help page.<br />
+          The value is internal ID + 92000.<br />
+          ... teraterm/common/helpid.h</li>
+      <li>make the alias between context ID and calling file.<br />
+          Open the .hhp file by using Text Editor, added a html line in [ALIAS] tag.<br />
+          ... doc/LANG/teraterm.hhp</li>
+    </ul>
+  </li>
+</ul>
+
+
+<h3 id="icon">Icon</h3>
+
+<p>
+Icon file includes 4bit 32px and 16px images, 32bit 256px, 48px, 32px and 16px images.<br />
+Each icon files include following kind images.<br />
+Visual Studio 2005 does not support an icon that is include PNG image.
+</p>
+
+<strong>T (Tera Term)</strong>
+<table border="1">
+  <tr>
+    <th>icon file                           </th><th>icon name      </th><th>4bit 32px</th><th>4bit 16px</th><th>32bit 256px</th><th>32bit 48px</th><th>32bit 32px</th><th>32bit 16px</th>
+  </tr>
+  <tr>
+    <td>teraterm\common\teraterm.ico        </td><td>TTERM (Default)</td><td>BMP      </td><td>BMP      </td><td>BMP        </td><td>BMP       </td><td>BMP       </td><td>BMP       </td>
+  </tr>
+  <tr>
+    <td>teraterm\common\teraterm_classic.ico</td><td>TTERM_CLASSIC  </td><td>BMP      </td><td>BMP      </td><td>-          </td><td>-         </td><td>-         </td><td>-         </td>
+  </tr>
+  <tr>
+    <td>teraterm\common\teraterm_3d.ico     </td><td>TTERM_3D       </td><td>BMP      </td><td>BMP      </td><td>BMP        </td><td>BMP       </td><td>BMP       </td><td>BMP       </td>
+  </tr>
+</table>
+
+<strong>VT (VT Window)</strong>
+<table border="1">
+  <tr>
+    <th>icon file                     </th><th>icon name   </th><th>4bit 32px</th><th>4bit 16px</th><th>32bit 256px</th><th>32bit 48px</th><th>32bit 32px</th><th>32bit 16px</th>
+  </tr>
+  <tr>
+    <td>teraterm\common\vt.ico        </td><td>VT (Default)</td><td>BMP      </td><td>BMP      </td><td>BMP        </td><td>BMP       </td><td>BMP       </td><td>BMP       </td>
+  </tr>
+  <tr>
+    <td>teraterm\common\vt_classic.ico</td><td>VT_CLASSIC  </td><td>BMP      </td><td>BMP      </td><td>-          </td><td>-         </td><td>-         </td><td>-         </td>
+  </tr>
+  <tr>
+    <td>teraterm\common\vt_3d.ico     </td><td>VT_3D       </td><td>BMP      </td><td>BMP      </td><td>BMP        </td><td>BMP       </td><td>BMP       </td><td>BMP       </td>
+  </tr>
+</table>
+
+<strong>TEK (TEK Windows)</strong>
+<table border="1">
+  <tr>
+    <th>icon file              </th><th>icon name</th><th>4bit 32px</th><th>4bit 16px</th><th>32bit 256px</th><th>32bit 48px</th><th>32bit 32px</th><th>32bit 16px</th>
+  </tr>
+  <tr>
+    <td>teraterm\common\tek.ico</td><td>TEK      </td><td>BMP      </td><td>BMP      </td><td>-          </td><td>-         </td><td>-         </td><td>-         </td>
+  </tr>
+</table>
+
+<strong>M (Macro)</strong>
+<table border="1">
+  <tr>
+    <th>icon file                         </th><th>icon name</th><th>4bit 32px</th><th>4bit 16px</th><th>32bit 256px</th><th>32bit 48px</th><th>32bit 32px</th><th>32bit 16px</th>
+  </tr>
+  <tr>
+    <td>teraterm\ttpmacro\ttmacro.ico     </td><td>-        </td><td>BMP      </td><td>BMP      </td><td>BMP        </td><td>BMP       </td><td>BMP       </td><td>BMP       </td>
+  </tr>
+  <tr>
+    <td>teraterm\ttpmacro\ttmacro_3d.ico  </td><td>-        </td><td>BMP      </td><td>BMP      </td><td>BMP        </td><td>BMP       </td><td>BMP       </td><td>BMP       </td>
+  </tr>
+</table>
+
+<strong>keycode</strong>
+<table border="1">
+  <tr>
+    <th>icon file                   </th><th>icon name</th><th>4bit 32px</th><th>4bit 16px</th><th>32bit 256px</th><th>32bit 48px</th><th>32bit 32px</th><th>32bit 16px</th>
+  </tr>
+  <tr>
+    <td>teraterm\keycode\keycode.ico</td><td>-        </td><td>BMP      </td><td>BMP      </td><td>-          </td><td>BMP       </td><td>-         </td><td>-         </td>
+  </tr>
+</table>
+
+<strong>TTSSH</strong>
+<table border="1">
+  <tr>
+    <th>icon file                             </th><th>icon name      </th><th>4bit 32px</th><th>4bit 16px</th><th>32bit 256px</th><th>32bit 48px</th><th>32bit 32px</th><th>32bit 16px</th>
+  </tr>
+  <tr>
+    <td>teraterm\ttpmacro\ttsecure.ico        </td><td>flat (Default) </td><td>BMP      </td><td>BMP      </td><td>BMP        </td><td>BMP       </td><td>BMP       </td><td>BMP       </td>
+  </tr>
+  <tr>
+    <td>teraterm\ttpmacro\ttsecure_classic.ico</td><td>classic        </td><td>BMP      </td><td>BMP      </td><td>-          </td><td>-         </td><td>-         </td><td>-         </td>
+  </tr>
+  <tr>
+    <td>teraterm\ttpmacro\ttsecure_yellow.ico </td><td>yellow         </td><td>BMP      </td><td>BMP      </td><td>BMP        </td><td>BMP       </td><td>BMP       </td><td>BMP       </td>
+  </tr>
+  <tr>
+    <td>teraterm\ttpmacro\ttsecure_green.ico  </td><td>green          </td><td>BMP      </td><td>BMP      </td><td>BMP        </td><td>BMP       </td><td>BMP       </td><td>BMP       </td>
+  </tr>
+</table>
+
+<strong>TeraTerm Menu</strong>
+<table border="1">
+  <tr>
+    <th>icon file           </th><th>icon name      </th><th>4bit 32px</th><th>4bit 16px</th><th>32bit 256px</th><th>32bit 48px</th><th>32bit 32px</th><th>32bit 16px</th>
+  </tr>
+  <tr>
+    <td>ttpmenu\teraterm.ico</td><td>-              </td><td>BMP      </td><td>BMP      </td><td>-          </td><td>BMP       </td><td>BMP       </td><td>BMP       </td>
+  </tr>
+</table>
+
+<strong>Cygterm+</strong>
+<table border="1">
+  <tr>
+    <th>icon file                 </th><th>icon name      </th><th>4bit 32px</th><th>4bit 16px</th><th>32bit 256px</th><th>32bit 48px</th><th>32bit 32px</th><th>32bit 16px</th>
+  </tr>
+  <tr>
+    <td>cygwin\cygterm\cygterm.ico</td><td>CYGTERM        </td><td>BMP      </td><td>BMP      </td><td>-          </td><td>BMP       </td><td>BMP       </td><td>BMP       </td>
+  </tr>
+</table>
+
+<p>
+The store order of image files in icon file is "bit depth ASC", "pixel size DESC."<br />
+Otherwise, when a program load an icon image without specifying pixel size for get maximum size image, API returns first image.
+</p>
+
+<p>
+Icon file include 4-bit images.<br />
+Windows NT 4.0 supports only 4-bit icon. And notification area icon on Windows 2000 supports only 4-bit icon.<br />
+4-bit color palette is followings:
+</p>
+
+<table border="1">
+  <tr>
+    <td style="background-color:#000000;">&nbsp;&nbsp;</td><td>#000000</td><td>(0,0,0)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#800000;">&nbsp;&nbsp;</td><td>#800000</td><td>(128,0,0)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#ff0000;">&nbsp;&nbsp;</td><td>#ff0000</td><td>(255,0,0)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#ff00ff;">&nbsp;&nbsp;</td><td>#ff00ff</td><td>(255,0,255)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#008080;">&nbsp;&nbsp;</td><td>#008080</td><td>(0,128,128)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#008000;">&nbsp;&nbsp;</td><td>#008000</td><td>(0,128,0)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#00ff00;">&nbsp;&nbsp;</td><td>#00ff00</td><td>(0,255,0)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#00ffff;">&nbsp;&nbsp;</td><td>#00ffff</td><td>(0,255,255)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#000080;">&nbsp;&nbsp;</td><td>#000080</td><td>(0,0,128)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#800080;">&nbsp;&nbsp;</td><td>#800080</td><td>(128,0,128)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#0000ff;">&nbsp;&nbsp;</td><td>#0000ff</td><td>(0,0,255)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#c0c0c0;">&nbsp;&nbsp;</td><td>#c0c0c0</td><td>(192,192,192)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#808080;">&nbsp;&nbsp;</td><td>#808080</td><td>(128,128,128)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#808000;">&nbsp;&nbsp;</td><td>#808000</td><td>(128,128,0)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#ffff00;">&nbsp;&nbsp;</td><td>#ffff00</td><td>(255,255,0)</td>
+  </tr>
+  <tr>
+    <td style="background-color:#ffffff;">&nbsp;&nbsp;</td><td>#ffffff</td><td>255,255,255</td>
+  </tr>
+</table>
+
+<p>
+Source file of each icon images are followings:
+</p>
+
+<table border="1" style="margin-bottom:1ex;">
+  <tr>
+    <th>source file</th>
+    <th>bit</th>
+    <th>T</th>
+    <th>VT</th>
+    <th>Macro</th>
+    <th>SSH</th>
+    <th>Cygwin</th>
+  </tr>
+  <tr>
+    <td rowspan="2">teraterm\common\flat_icon_16.psd</td>
+    <td>4bit</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+  </tr>
+  <tr>
+    <td>32bit</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+  </tr>
+  <tr>
+    <td rowspan="2">teraterm\common\flat_icon_32.psd</td>
+    <td>4bit</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+  </tr>
+  <tr>
+    <td>32bit</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+  <tr>
+    <td>teraterm\common\flat_icon_48.psd</td>
+    <td>32bit</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+  </tr>
+  <tr>
+    <td>teraterm\common\flat_icon_256.psd</td>
+    <td>32bit</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+    <td>v</td>
+    <td>-</td>
+  </tr>
+</table>
+<table border="1" style="margin-bottom:1ex;">
+  <tr>
+    <th>source file</th>
+    <th>bit</th>
+    <th>Keycode</th>
+  </tr>
+  <tr>
+    <td rowspan="2">teraterm\common\keycode_48.psd</td>
+    <td>4bit</td>
+    <td>v</td>
+  </tr>
+</table>
+
+
+<h3 id="editor">Edit language files</h3>
+<p>
+Use the text editor supporting multi languages(vim, EmEditor, Notepad++, etc) to edit the language files(installer\release\lang\*.lng).
+</p>
+
+
+<h2 id="release">How to release Tera Term installation package</h2>
+
+<p>
+To release Tera Term installation package is shown in the following step:
+</p>
+
+<h3 id="start-rc">From start release until create RC</h3>
+
+<ol>
+  <li>Confirm ticket and branches.
+    <ul>
+      <li>Confirm in project team.
+        <ul>
+          <li>Organize / decide whether to include bug fix / feature in this release or defer.</li>
+        </ul>
+      </li>
+      <li>Merge branches
+        <ul>
+          <li>Verify trunk / 4-stable and working branches.</li>
+        </ul>
+      </li>
+      <li>Close tickets.
+        <ul>
+<!--
+          <li>·ÅÉC³ÏÝAÏÝÌàÌÍN[Y·é<br />
+              [XÉÍAÎÛÌ}CXg[Ì`PbgÍ·×ÄN[Y³êÄ¢éóÔÉÈé</li>
+          <li>Ì[XÖñ·àÌÍ}CXg[ðÏX·é<br />
+              Ì[Xp}CXg[ðì¬·é</li>
+-->
+        </ul>
+      </li>
+<!--
+      <li>±Ì_ÅV½ÉoÄ­é`PbgÌÎð¢·é</li>
+-->
+    </ul>
+  </li>
+  <li>Confirm tools, libraries, import sources.
+    <ul>
+      <li>Visual Studio (<a href="https://visualstudio.microsoft.com/" target="_blank">https://visualstudio.microsoft.com/</a>)</li>
+      <li>Inno Setup (<a href="https://jrsoftware.org/isdl.php" target="_blank">https://jrsoftware.org/isdl.php</a>)</li>
+      <li>Oniguruma (<a href="https://github.com/kkos/oniguruma/" target="_blank">https://github.com/kkos/oniguruma/</a>)</li>
+      <li>SFMT (<a href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/SFMT/index-jp.html" target="_blank">http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/SFMT/index-jp.html</a>)</li>
+      <li>OpenSSL (<a href="https://www.openssl.org/" target="_blank">https://www.openssl.org/</a>)</li>
+      <li>zlib (<a href="https://www.zlib.net/" target="_blank">http://www.zlib.net/</a>)</li>
+      <li>PuTTY (<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/" target="_blank">http://www.chiark.greenend.org.uk/~sgtatham/putty/</a>)</li>
+      <li>The reference C implementation of Argon2 (<a href="https://github.com/P-H-C/phc-winner-argon2/" target="_blank">https://github.com/P-H-C/phc-winner-argon2/</a>)</li>
+    </ul>
+<!--
+    <p>[XÉg¤o[WÍ±Ì_Å¨¨ÞËè·éB</p>
+-->
+  </li>
+<!--
+  <!--li>¡ñÌ[XÉüê½¢àÌª¿­</li>
+-->
+</ol>
+
+<h3 id="rc-release">From create RC until release</h3>
+
+<ol>
+  <li>Confirm documents.
+    <ul>
+<!--
+      <li>_CAOãÌÝèÚEUIÌÈ¢ÁÊIvVER}hCp[^EVK}NR}hÈÇAÎ·éhLgÉRêªÈ¢©mF·éB</li>
+      <li>ÏXððmFµA«Yêª êÎÇL·éB</li>
+      <li>ÏXðÌÔðÏX·éB¾¢½¢ÌwjÆµÄÍA^[~iG~[VÖWEAvP[VÆµÄÌÏXE}NÌB</li>
+      <li>hLg·ªª|ó³êÄ¢é±ÆðmFµA|óYêª êÎ|ó·éB</li>
+-->
+    </ul>
+  </li>
+  <li>Increment the version while RC release process.
+    <p>The binary is released for test in this timing. Prevent that old and new binary have same version number.</p>
+    <ul>
+      <li>teraterm\common\tt-version.h</li>
+      <li>ttssh2\ttxssh\ttxssh-version.h</li>
+      <li>Onttpmenu\ttpmenu.rc // only modifying</li>
+      <li>TTProxy\TTProxy.rc // only modifying</li>
+      <li>TTXKanjiMenu\ttxkanjimenu.rc // only modifying</li>
+    </ul>
+    <p>
+      By way of exception, CygTerm+ always upgrades not regarding Tera Term release process when the patch is committed.<br />
+      The release date is the day committed by a developer. <!--»Ì½ßAC³Eo[WÌCNgEÏXðð¯ÉR~bg·éB--><br />
+      Because user can get gcc compiler for free.
+    </p>
+  </li>
+  <li>Increment the year of last publication of copyright notice if it is first release in this year.
+    <ul>
+      <li>teraterm\keycode\keycode-version.rc // VERSIONINFO</li>
+      <li>teraterm\teraterm\tt-version.rc // VERSIONINFO</li>
+      <li>teraterm\ttpcmn\ttpcmn-version.rc // VERSIONINFO</li>
+      <li>teraterm\ttpdlg\ttpdlg.rc // dialog</li>
+      <li>teraterm\ttpfile\ttpfile-version.rc // VERSIONINFO</li>
+      <li>teraterm\ttpmacro\ttm-version.rc // VERSIONINFO</li>
+      <li>teraterm\ttpset\ttpset-version.rc // VERSIONINFO</li>
+      <li>teraterm\ttptek\ttptek-version.rc // VERSIONINFO</li>
+      <li>ttssh2\ttxssh\ttxssh.rc // dialog</li>
+      <li>ttssh2\ttxssh\ttxssh-version.rc // VERSIONINFO</li>
+      <li>ttpmenu\ttpmenu.rc // dialog, VERSIONINFO</li>
+      <li>TTProxy\TTProxy.rc // dialog, VERSIONINFO(en), VERSIONINFO(ja)</li>
+      <li>TTXKanjiMenu\ttxkanjimenu.rc // VERSIONINFO</li>
+      <li>installer\teraterm.iss</li>
+      <li>installer\release\license.txt // Tera Term, TTSSH, Cygterm+, TTProxy, TeraTerm Menu, TTX KanjiMenu</li>
+      <li>doc\en\html\index.html</li>
+      <li>doc\en\html\about\copyright.html // Tera Term, TTSSH, Cygterm+, TTProxy, TeraTerm Menu, TTX KanjiMenu</li>
+      <li>doc\en\html\macro\index.html</li>
+      <li>doc\ja\html\index.html</li>
+      <li>doc\ja\html\about\copyright.html // Tera Term, TTSSH, Cygterm+, TTProxy, TeraTerm Menu, TTX KanjiMenu</li>
+      <li>doc\ja\html\macro\index.html</li>
+    </ul>
+  </li>
+  <li>Replace 64bit Cygwin binary
+    <p>
+<!--
+      OñÌ[X©ç CygTerm+ ÉÏXª éêÍA64bit CygwinÅrhµ½ cygterm\cygterm+-x86_64\cygterm.exe ðR~bg·éB<br />
+      \[XC³ðR~bg·éÆ«ÉA¯ÉoCiªR~bg³êÄ¢êÎA[XÉ±ÌHöðs¤KvÍÈ¢B
+-->
+    </p>
+  </li>
+  <li>Create installer.
+    <ul>
+      <li>Version up AppVer and add "RC" in teraterm.iss.
+        <pre>
+- #define AppVer "4.105"
++ #define AppVer "4.106-RC1"
+        </pre>
+      </li>
+      <li>Comment out snapshot in teraterm.iss.
+        <pre>
+- #define snapshot GetDateTimeString('yyyymmdd_hhnnss', '', '');
++ ;#define snapshot GetDateTimeString('yyyymmdd_hhnnss', '', '');
+        </pre>
+      </li>
+      <li>Change calling batch file to enable rebuild and create archive.
+        <pre>
+  [_ISToolPreCompile]
+  Name: makechm.bat
+- Name: build.bat
+- ;Name: build.bat; Parameters: rebuild
++ ;Name: build.bat
++ Name: build.bat; Parameters: rebuild
+  
+  [_ISToolPostCompile]
+- ;Name: makearchive.bat; Parameters: release
++ Name: makearchive.bat; Parameters: release
+        </pre>
+      </li>
+      <li id="RC_commit">Commit this state.</li>
+      <li>Open teraterm\installer\teraterm.iss with ISTool, and create installer by "Project"-"Compile Setup."</li>
+      <li>Compress portable version with zip.</li>
+    </ul>
+  </li>
+  <li>Test run installer, run and connect in all supported OS.</li>
+  <li>Add to OSDN Release
+    <ul>
+      <li>Add new release (e.g. "4.106 RC") to "Tera Term RC" Package.</li>
+      <li>Add installer and portable zip file to new release.</li>
+    </ul>
+  </li>
+  <li>Announce RC release.
+    <ul>
+      <li><a href="https://lists.osdn.me/mailman/listinfo/ttssh2-users" target="_blank">ttssh2-users</a> mailing list</li>
+      <li>Twitter (<a href="https://twitter.com/Tera_Term" target="_blank">https://twitter.com/Tera_Term</a>)</li>
+    </ul>
+  </li>
+  <li>Get feedbacks.
+    <p>If changed source code, redo "Confirm documents" and "Test run and connect in all supported OS."</p>
+  </li>
+</ol>
+
+<h3 id="release-operation">Release</h3>
+
+<ol>
+  <li>Confirm documents. (same as above)</li>
+  <li>Modify release date.
+    <ul>
+      <li>html/about/hisotry.html</li>
+    </ul>
+  </li>
+  <li>Create installer.
+    <ul>
+      <li>Change AppVer in teraterm.iss.
+        <pre>
+- #define AppVer "4.106-RC1"
++ #define AppVer "4.106"
+        </pre>
+      </li>
+      <li>Open teraterm\installer\teraterm.iss with ISTool, and create installer by "Project"-"Compile Setup."</li>
+    </ul>
+  </li>
+  <li>Commit this state.</li>
+  <li>Create SVN tag.<br />
+    The naming rule is `teraterm-version' (e.g. teraterm-4_106).
+    <pre>
+svn copy -m "Release 4.106" \
+    svn+ssh://svn.osdn.net/svnroot/ttssh2/branches/4-stable \
+    svn+ssh://svn.osdn.net/svnroot/ttssh2/tags/teraterm-4_106
+    </pre>
+  </li>
+  <li>Re-checkout from svn tag.<br />
+    <p>All source code is same as development branch. Only SVN revision is different.</p>
+  </li>
+  <li>Create installer.
+    <ul>
+      <li>Open teraterm\installer\teraterm.iss with ISTool, and create installer by "Project"-"Compile Setup."</li>
+      <li>Compress portable version with zip.</li>
+    </ul>
+  </li>
+  <li>Update OSDN project site.
+    <ul>
+      <li>add new release (e.g. "4.106") to "Tera Term" Package.</li>
+      <li>Add installer and portable zip file to new release.</li>
+<!--
+      <li>hLgÌÏXð©çA[XÌuÏXðvÉiWikitH[}bgÅj]L·éiú{êEpêÆàj</li>
+-->
+      <li>Submit news.</li>
+    </ul>
+  </li>
+  <li>Update OSDN project home page (<a href="https://ttssh2.osdn.jp" target="_blank">https://ttssh2.osdn.jp</a>).
+    <p><a href="https://osdn.net/projects/ttssh2/wiki/%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E6%9B%B4%E6%96%B0%E6%89%8B%E9%A0%86" target="_blank">How to update project home page (in Japanese).</a></p>
+  </li>
+  <li>Announce release.
+    <ul>
+      <li><a href="https://lists.osdn.me/mailman/listinfo/ttssh2-users" target="_blank">ttssh2-users</a> mailing list</li>
+      <li>Twitter (<a href="https://twitter.com/Tera_Term" target="_blank">https://twitter.com/Tera_Term</a>)
+        <ul>
+          <li>Pin announce tweet.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li id="revert_teraterm_iss">Revert teraterm.iss in development branch.
+    <pre>
+- ;#define snapshot GetDateTimeString('yyyymmdd_hhnnss', '', '');
++ #define snapshot GetDateTimeString('yyyymmdd_hhnnss', '', '');
+
+  [_ISToolPreCompile]
+  Name: makechm.bat
+- ;Name: build.bat
+- Name: build.bat; Parameters: rebuild
++ Name: build.bat
++ ;Name: build.bat; Parameters: rebuild
+  
+  [_ISToolPostCompile]
+- Name: makearchive.bat; Parameters: release
++ ;Name: makearchive.bat; Parameters: release
+    </pre>
+  </li>
+  <li>Update Chocolatey.</li>
+</ol>
+
+<h3 id="code-freeze">About code freeze</h3>
+
+<p>
+After code freeze, only critical bug fix is able to committed.<br />
+Code freeze start with <a href="#RC_commit">RC commit in development branch</a>, and end with <a href="#revert_teraterm_iss">revert teraterm.iss commit in development branch</a>.
+</p>
+
+</body>
+</html>

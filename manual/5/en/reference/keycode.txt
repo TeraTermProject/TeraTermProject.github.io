@@ -1,0 +1,21 @@
+	KEYCODE.EXE for Tera Term
+	T. Teranishi
+	
+	Copyright (C) 1994-1998 T. Teranishi
+	(C) 2004- TeraTerm Project
+	All Rights Reserved.
+
+KEYCODE.EXE is a utility which displays key codes used in the
+Tera Term's keyboard setup file. This text describes the usage of
+KEYCODE.EXE and the format of keyboard setup file.
+
+Please read this text and Tera Term help for changing the keyboard
+configuration. Please do not ask the author questions about the
+keyboard configuration.
+
+USAGE
+
+When you run KEYCODE.EXE, the message "Push any key" will be displayed
+in the window.	When you press a key or a combination of keys (such as
+Ctrl+key), the message "Key code is XXXX." will be displayed. XXXX is a
+decimal number.

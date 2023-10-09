@@ -1,0 +1,58 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>VT100 Wrap process</TITLE>
+<link rel="stylesheet" href="../../style.css" type="text/css">
+<META http-equiv="Content-Style-Type" content="text/css">
+</HEAD>
+<BODY>
+
+<h1>VT100 Wrap process</h1>
+
+<p>
+Normally, when outputting a single character,
+following processes are performed:
+
+<pre>
+1. Output a character at current cursor position.
+2. Move cursor position to next cell.
+</pre>
+
+When cursor is at the end of a line, If this behavior is applied,
+result is as follows (When autowrap mode is enabled):
+
+<pre>
+1. Output a character at current cursor position.
+2. If current cursor position is at the bottom (no next line), scroll one line to make blank line.
+3. Moves cursor to the beginning of next line.
+</pre>
+
+<p>
+Some terminals actually behave this way.
+This behavior makes it difficult to output character at the lower right corner of the screen.
+
+<p>
+Therefore, when the cursor is at the end of a line, VT100 has the following character output behavior:
+
+<pre>
+1. Output characters at current cursor position (end of line).
+2. Cursor position is unchanged at the end of the line.
+</pre>
+
+<p>
+Output one character in this state:
+
+<pre>
+3. If current cursor position is at the bottom (no next line), scroll one line to make blank line.
+4. Moves cursor to the beginning of next line.
+5. Output a character at current cursor position.
+6. Move cursor position to next cell.
+</pre>
+
+<p>
+Delay automatic line break when outputting character following character at the end of the line.
+
+</BODY>
+</HTML>

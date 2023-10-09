@@ -1,0 +1,87 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Unicode設定</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+</HEAD>
+<BODY>
+
+<h1>Unicode設定</h1>
+
+<p>
+UTF-8化を行うには、Tera Termの「Setup[設定]」メニューから「General[全般]」
+を選び、「Language[言語]」を "UTF-8", "Japanese" および "Korean"
+のいずれかへ変更します。
+</p>
+
+<p>
+Language 設定が UTF-8 の時は Japanese に比べて以下の機能を使わなく(使えなく)なります。
+</p>
+<ul>
+  <li>JIS, EUC, SJIS 等の UTF-8 以外の文字コード</li>
+  <li>ISO/IEC 2022での日本語文字セットの指示</li>
+  <li>TTXKanjiMenu プラグイン</li>
+</ul>
+
+<p>
+Languageに "Japanese" と "Korean" のいずれかを選んだ場合、次に「Setup[全般]」
+メニューから「Terminal[端末]」を選択すると出る "Terminal setup[端末の設定]"
+ダイアログの「Kanji(receive)[漢字-受信]」および「Kanji(transmit)[漢字-送信]」
+にて、"UTF-8" を選んでください。Tera Termの再起動は必要ありません。<br>
+
+コマンドラインの「/KT」および「/KR」オプションにおいて、"UTF8" を指定すると、
+送信および受信コードに UTF-8 を設定することができます。
+</p>
+
+<h1>内部構造</h1>
+
+<p>
+  Tera Term 5 以前の内部バッファの文字コードはMBCS(Multibyte Character Set)でした。
+  例えば「Language[言語]」を"Japanese"としたとき内部バッファの文字コードはShift_JISでした。
+</p>
+
+<p>
+  Tera Term 5 の内部バッファの文字コードは Unicodeです。
+</p>
+
+<p>
+  大まかなデータの流れは次のようになっています。
+</p>
+
+<pre>
+                                                                              +--------------+
+                              +------------------------+ Code:Unicode         |              |
+                              |                        +--------------------->+  Window      |
+                              |  buffer@buffer.c       |                      |   Display    |
+                              |   Code:Unicode         | Code:                |   Print      |
+                              |                        |  Input to Unicode    |              |
+                              |                        +<------------------+  +--------------+
+                              +------------------------+                   |
+                                                                           |
+                              +------------------------+   CommRead1Byte() |
+                              |                        +-------------------+
+                              |  Input buffer@ttpcmn   |
++-----------+                 |   Code:Input           | Code:
+|           |                 |                        |  Unicode to Input    +--------------+
+|  Socket   +---------------->+                        +<---------------------+              |
+|  Serial   |  CommReceive()  +------------------------+  CommTextEchoW()     |  Talker      |
+|  Pipe     |                                             CommBinaryEcho()    |   Keyboard   |
+|  Plugin   |                 +------------------------+                      |   SendMem    |
+|           +<----------------+                        | Code:                |    File      |
++-----------+  CommSend()     |  Output buffer@ttpcmn  |  Unicode to Output   |    Clipboard |
+                              |   Code:Output          +<---------------------+              |
+                              |                        |  CommTextOutW()      +--------------+
+                              |                        |  CommBinaryOut()
+                              +------------------------+  CommRawOut()
+</pre>
+
+<p>
+  Windows 95/98/Meのとき、キー入力は Unicode に変換してから処理を行います。
+  描画は UnicodeをMBCSに変換して描画します。
+</p>
+
+</BODY>
+</HTML>

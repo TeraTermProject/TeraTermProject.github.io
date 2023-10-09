@@ -1,0 +1,61 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>XMODEM Receive ([File] Transfer menu)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  </head>
+
+  <body>
+    <h1>XMODEM Receive ([File] Transfer menu)</h1>
+    <p>
+      Receives a file from the host with the XMODEM protocol. Activate
+      the send command of the host's XMODEM before executing this command.
+    </p>
+
+    <h2>"XMODEM Receive" dialog box</h2>
+
+    <h3>File Name</h3>
+    <p>
+      Enter the file name to be received.
+    </p>
+
+    <h3>Option</h3>
+    <dl>
+      <dt>Checksum/CRC</dt>
+      <dd>
+	Selects type of error detection(Checksum/CRC). <br />
+	Packet size(1K) can be only specified at sender side.
+      </dd>
+
+      <dt>Binary</dt>
+      <dd>
+        <ul>
+          <li>
+            Checkd: Received data is treated as binary and saved in a file without modification.<br>
+            The last received packet is packed with padding(EOF,$1A).
+            For this reason, the end of file cannot be known when the end of the sent file is $1A.
+          </li>
+          <li>Unchecked: Received data is treated as text and saved in a file.<br>
+            following processes are performed:
+            <ul>
+              <li>
+                Newline code conversion<br>
+                A single CR($0D) or LF($0A) is converted to CR+LF($0D+$0A).
+              </li>
+              <li>
+                Remove padding(EOF,$0A) of each reciving packet<br>
+                EOF($1A) does not appear in the text. So $1A at the end of the file will be removed.
+              </li>
+            </ul>
+        </ul>
+      </dd>
+    </dl>
+
+    <p>
+      <a href="../usage/tips/xmodem.html">Tips on XMODEM</a>
+    </p>
+  </body>
+</html>

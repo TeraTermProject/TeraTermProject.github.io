@@ -1,0 +1,113 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>Change look and feel</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+</HEAD>
+<BODY>
+
+<h1>Change look and feel</h1>
+
+<p>
+You can change the look and feel of Tera Term by using transparent window and theme. Transparent window and theme can be used at the same time.
+</p>
+
+<ul>
+  <li><a href="#transparent">(1) Transparent window</a></li>
+  <li><a href="#theme">(2) Theme</a></li>
+  <ul>
+    <li><a href="#theme/bg">(2)-1 Theme/BG</a></li>
+    <ul>
+      <li><a href="#theme/bg/desktop">Use desktop image</a></li>
+      <li><a href="#theme/bg/image">Use background image</a></li>
+      <li><a href="#theme/bg/image+desktop">Use background image and desktop image</a></li>
+    </ul>
+    <li><a href="#theme/color">(2)-2 Theme/Color</a></li>
+  </ul>
+</ul>
+
+<h2 id="transparent">(1) Transparent window</h2>
+
+<p>
+Tera Term window can make transparent. The transparent window is available on Windows 2000 or later.<br>
+Settings can change on <a href="../menu/setup-additional-visual.html#AlphaBlendActive">Visual tab of [Setup] - [Additional settings]</a>.<br>
+
+Transparency can be specified as a value from 0 to 255.
+Smaller values are transparent, and opacity is 255. The default value is 255.
+Transparency can be specified for the active and inactive windows.
+</p>
+
+<p>
+Rotate the wheel on the taskbar to change the transparency temporarily.
+</p>
+
+<img src="image/transparent-api.png" width=598 height=488></img>
+
+<h2 id="theme">(2) theme</h2>
+
+<p>
+Theme can change the background image and text color at once.
+</p>
+
+<p>
+Theme settings are made on <a href="../menu/setup-additional-visual.html#theme">Visual tab in [Setup] Additional settings</a>.
+</p>
+
+<h3 id="theme/bg">(2)-1 Theme/BG (backgroup)</h3>
+
+<p>
+Tera Term can display a desktop image (Windows background image) or a specified image as the background.
+The desktop image and the specified image can be blended.
+</p>
+
+<p>
+Theme/BG(background) is a replacement of Eterm lookfeel in Tera Term 4.
+Eterm(<a href="https://github.com/mej/Eterm" target="_blank">GitHub</a>) is a vt102 terminal emulator intended to replace xterm.
+</p>
+
+<h4 id="theme/bg/desktop">Use desktop image</h4>
+<p>
+  Displays a desktop image in the background of Tera Term.
+</p>
+
+<img src="image/theme-bg-desktop.png" />
+
+
+<h4 id="theme/bg/image">Use background image</h4>
+
+<p>
+  Display specified image in the background of Tera Term.
+  Images with alpha channel can also be used.
+</p>
+
+<img src="image/theme-bg-bg.png" />
+
+
+<h4 id="theme/bg/image+desktop">Use background and desktop images</h4>
+
+<p>
+  Displays a blended image of the desktop image and the specified image on background of Tera Term.
+</p>
+
+<img src="image/theme-bg-desktop+bg.png" />
+
+
+<h3 id="theme/color">(2)-2 Theme/Color (character and background)</h3>
+
+<p>
+  Color theme can change character and background color at once.
+</p>
+
+<h4>Images</h4>
+
+<ul>
+  <li>Windows 11 desktop image</li>
+  <li><a href="https://www.artic.edu/artworks/24645/under-the-wave-off-kanagawa-kanagawa-oki-nami-ura-also-known-as-the-great-wave-from-the-series-thirty-six-views-of-mount-fuji-fugaku-sanjurokkei" target="_blank">Fugaku sanjurokkei</a></li>
+  <li><a href="https://github.com/mej/Eterm/blob/master/bg/README.backgrounds" target="_blank">Circut</a></li>
+</ul>
+
+</BODY>
+</HTML>

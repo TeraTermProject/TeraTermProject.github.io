@@ -1,0 +1,208 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Differences from 2.3</title>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+</head>
+
+<body>
+
+<h1>Differences from 2.3</h1>
+
+<p>
+Overview of difference between Teraterm 2.3 (original version) by Takashi Teranishi and Tera Term (version 4).
+</p>
+
+<h2>Feature Differences</h2>
+
+<table align="center" bgcolor="#f0f0f0" border="1" cellpadding="1" cellspacing="1" width="100%">
+<tr>
+	<th>Content</th>
+	<th>Tera Term Pro 2.3</th>
+	<th>Tera Term</th>
+</tr>
+
+<tr>
+	<td>Source code</td>
+	<td>Opened</td>
+	<td>Opened</td>
+</tr>
+
+<tr>
+	<td>License</td>
+	<td>Proprietary<a id="fn_link_1" href="#fn_1">*1</a></td>
+	<td>Modified BSD license<a id="fn_link_2" href="#fn_2">*2</a></td>
+</tr>
+
+<tr>
+	<td>Development tool</td>
+	<td>Visual C++ 5.0 / Watcom C/C++ 11.0</td>
+	<td>Visual Studio 2005</td>
+</tr>
+
+<tr>
+	<td>Icon</td>
+	<td><img src="../image/icon-teraterm_classic.png" alt="Tera Term" width="32" height="32"><a id="fn_link_3" href="#fn_3">*3</a></td>
+	<td><img src="../image/icon-teraterm.png" alt="Tera Term" width="32" height="32"><a href="#fn_3">*3</a></td>
+</tr>
+
+<tr>
+	<td>Maximum COM port</td>
+	<td>16</td>
+	<td>4096</td>
+</tr>
+
+<tr>
+	<td>Serial speed</td>
+	<td>from 110 to 115200</td>
+	<td>from 110 to 921600, and editable</td>
+</tr>
+
+<tr>
+	<td>Japanese character code</td>
+	<td>EUC-JP/Shift_JIS/JIS</td>
+	<td>EUC-JP/Shift_JIS/JIS/UTF-8/UTF-8 MAC</td>
+</tr>
+
+<tr>
+	<td>Unicode support</td>
+	<td>Not supported</td>
+	<td>Support single language<a id="fn_link_4" href="#fn_4">*4</a></td>
+</tr>
+
+<tr>
+	<td>IPv6 support</td>
+	<td>No</td>
+	<td>Yes</td>
+</tr>
+
+<tr>
+	<td>i18n support</td>
+	<td>No</td>
+	<td>Yes<a id="fn_link_5" href="#fn_5">*5</a></td>
+</tr>
+
+<tr>
+	<td>Linked library</td>
+	<td>
+	</td>
+	<td>
+		<ul>
+			<li>Oniguruma
+				<ul>
+					<li>used as the regular expressions library</li>
+				</ul>
+			</li>
+			<li>SFMT
+				<ul>
+					<li>used as the random number generator</li>
+				</ul>
+			</li>
+		</ul>
+		<a id="fn_link_6" href="#fn_6">*6</a>
+	</td>
+</tr>
+
+<tr>
+	<td colspan="3">&nbsp;</td>
+</tr>
+
+<tr>
+	<td>TTSSH icon</td>
+	<td><img src="../image/icon-ttsecure_classic.png" alt="TTSSH" width="32" height="32"></td>
+	<td><img src="../image/icon-ttsecure.png" alt="TTSSH" width="32" height="32"><a href="#fn_3">*3</a></td>
+</tr>
+
+<tr>
+	<td>supported SSH version</td>
+	<td>SSH 1.5</td>
+	<td>SSH 1.5 and 2</td>
+</tr>
+
+<tr>
+	<td>supported SSH feature</td>
+	<td>shell, port-forwarding, X11 forwarding</td>
+	<td>shell, port-forwarding, X11 forwarding, SCP</td>
+</tr>
+
+<tr>
+	<td>Pageant<a id="fn_link_7" href="#fn_7">*7</a> collaboration</td>
+	<td>No</td>
+	<td>Yes</td>
+</tr>
+
+<tr>
+	<td>Linked library</td>
+	<td>
+		<ul>
+			<li>SSLeay
+				<ul>
+					<li>used as the cryptographic library (libeay32.lib)</li>
+					<li>not used as SSL library (not ssleay32.lib)</li>
+				</ul>
+			</li>
+			<li>zlib
+				<ul>
+					<li>used as the compression library</li>
+				</ul>
+			</li>
+		<ul>
+	</td>
+	<td>
+		<ul>
+			<li>OpenSSL
+				<ul>
+					<li>used as the cryptographic library</li>
+					<li>not used as TLS library</li>
+				</ul>
+			</li>
+			<li>zlib
+				<ul>
+					<li>used as the compression library</li>
+				</ul>
+			</li>
+			<li>argon2
+				<ul>
+					<li>used for decrypt PuTTY private key file </li>
+				</ul>
+			</li>
+			<li>PuTTY
+				<ul>
+			    	<li>used for display tooltip</li>
+			    	<li>used for cooperation with Pageant</li>
+			    	<li>not used for communication and terminal emulation</li>
+			    </ul>
+			</li>
+		</ul>
+		<a href="#fn_6">*6</a>
+	</td>
+</tr>
+
+<tr>
+	<td colspan="3">&nbsp;</td>
+</tr>
+
+<tr>
+	<td>Proxy</td>
+	<td>No</td>
+	<td>Yes<a id="fn_link_8" href="#fn_8">*8</a> (HTTP, TELNET, SOCKS4, SOCKS5)</td>
+</tr>
+
+</table>
+
+<ul>
+  <li id="fn_1">[<a href="#fn_link_1">*1</a>] Without written permission by the author (Takashi Teranishi), you may not distribute modified versions of this package, and may not distribute this package for profit.</li>
+  <li id="fn_2">[<a href="#fn_link_2">*2</a>] Tera Term is distributed under <a href="http://www.opensource.org/licenses/bsd-license.php" target="_blank">Modified BSD License</a>.</li>
+  <li id="fn_3">[<a href="#fn_link_3">*3</a>] Icon designer is Tatsuhiko Sakamoto.</li>
+  <li id="fn_4">[<a href="#fn_link_4">*4</a>] Tera Term can not simultaneously display multi languages because it has not completely implemented as Unicode API. Now Tera Term mutually converts between Unicode(UCS-2) and MBCS. Also, Chinese version Windows can display Chinese characters when you configure the locale for Unicode.</li>
+  <li id="fn_5">[<a href="#fn_link_5">*5</a>] You can switch the message language by using the language file(lang\*.lng). You need to re-startup Tera Term to active new message language.</li>
+  <li id="fn_6">[<a href="#fn_link_6">*6</a>] <a href="../reference/develop.html#library">Detail of libraries</a></li>
+  <li id="fn_7">[<a href="#fn_link_7">*7</a>] <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank">An SSH authentication agent</a> for PuTTY and WinSCP.</li>
+  <li id="fn_8">[<a href="#fn_link_8">*8</a>] Using <a href="http://yebisuya.dip.jp/Software/TTProxy/en/" target="_blank">TTProxy</a>.</li>
+</ul>
+
+</body>
+</html>

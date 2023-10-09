@@ -1,0 +1,74 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>透過ウィンドウ</TITLE>
+<META http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" href="../style.css" type="text/css">
+</HEAD>
+<BODY>
+
+<h1>透過ウィンドウ</h1>
+
+<p>
+Tera Term はウィンドウの半透明をサポートしています。現在、半透明ウィンドウは2種類のタイプがあり、ユーザは好きな方を選択することができます。
+</p>
+
+<h2>(1) 半透明ウィンドウ</h2>
+
+<p>
+この機能を使うと、Tera Term の VT ウィンドウ全体を半透明にすることができます。この機能は、Windows2000以降で有効です。<br>
+この設定は、<a href="../menu/setup-additional.html">[Setup] Additional settings</a> の Visual タブで行えます。<br>
+
+透明度は0〜255の範囲で指定することができ、値を小さくするほど透明度は強くなります。デフォルトは255（不透明）です。
+</p>
+
+<img src="image/transparent-api.png" />
+
+
+
+<h2>(2) Eterm風半透明ウィンドウ</h2>
+
+<p>
+この機能を使うと、Eterm風の半透明ウィンドウを使用することができます。Eterm風半透明ウィンドウ機能では、Tera Term の VT ウィンドウのクライアント領域（端末部分）の背景が変更されます。<br />
+この機能は、<a href="../menu/setup-additional.html">[Setup] Additional settings</a> の Visual タブで有効にするか、直接 teraterm.ini の"BGEnable=on"と変更してください。
+</p>
+
+<p>
+細かい設定パラメータについては「<a href="../setup/teraterm-win.html#eterm">Eterm風半透明ウィンドウ</a>」を参照してください。
+</p>
+
+
+<h3>(2)-1 テーマファイルと Windows 背景の混合</h3>
+
+<p>
+端末の背景に、テーマファイルで指定された画像ファイルが表示されます。<br />
+このとき Tera Term は指定された画像に Windows の背景画像（壁紙）を混合できるので、あたかも半透明であるかのように見えます。<br>
+</p>
+
+<img src="image/transparent-eterm-mix.png" />
+
+
+<h3>(2)-2 画像を使用する</h3>
+
+<p>
+任意の画像を指定することで、その画像を端末の背景にすることができます。<br />
+この場合は Windows の背景画像（壁紙）を混合しないので、半透明化されているようには見えません。<br />
+（このような指定をするテーマファイルが作成されます）
+</p>
+
+<img src="image/transparent-eterm-bg.png" />
+
+
+<h3>(2)-3 Windows 壁紙を使用する</h3>
+
+<p>
+テーマファイルを使用しないことで、端末の背景に Windows の背景画像（壁紙）が表示され、あたかも半透明であるかのように見えます。
+</p>
+
+<img src="image/transparent-eterm-trans.png" />
+
+
+</BODY>
+</HTML>

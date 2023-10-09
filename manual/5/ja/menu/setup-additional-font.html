@@ -1,0 +1,107 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Additional settings / "font" ([Setup] メニュー)</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  </head>
+
+  <body>
+    <h1>Additional settings / "Font" タブ ([Setup] メニュー)</h1>
+
+    <dl>
+      <dt>ターミナルフォント</dt>
+      <dd>
+        VTWinのフォントを指定します。
+        <dl>
+          <dt>Unicode API</dt>
+          <dd>
+            Unicodeを直接使用できる描画APIを使用します。<br>
+            通常はこちらを使用します。
+          </dd>
+
+          <dt>ANSI API</dt>
+          <dd>
+            ANSI(Unicodeではない)描画APIを使用します。<br>
+            UnicodeをANSIへ変換するためにコードページを指定する必要があります。
+            フォントによってはANSIで描画する必要かもしれません。<br>
+            通常は使用しません。
+          </dd>
+
+          <dt id="FontQuality">Font quality</dt>
+          <dd>
+	          フォントの品質を設定することができます。OSが対応している種類のみ有効に動作します。
+<pre>
+Default         = OSの設定(スクリーン フォントの縁を滑らかにする)に依存
+Non-Antialiased = アンチエイリアスを無効にする
+Antialiased     = アンチエイリアスを有効にする
+ClearType       = ClearTypeを利用する
+</pre>
+          </dd>
+
+          <dt id="ResizedFont">描画幅に合わせてリサイズしたフォントを描画(Drawing resized font to fit cell width)</dt>
+          <dd>
+            "&copy;"(U+00A9)など、表示しようとする幅は1cell,2cellのどちらの場合もあり、
+            フォントデザイン(フォントファイル)によって
+            フォントの幅も1cell,2cellのどちらの場合もあります。<br>
+            言語やフォントによってフォント幅は表示しようとする幅に合わない場合もあります。<br>
+            cell幅にあわせて文字が描画されると表示は自然になりますが、
+            描画速度が遅くなったり、デザインがフォント開発者の意図と異なってしまうという欠点があります。
+            <dl>
+              <dt>ON</dt>
+              <dd>
+                表示したい幅と描画するフォントの幅が異なっている時、
+                フォントをcell幅に合わせて文字を描画します。
+              </dd>
+
+              <dt>OFF</dt>
+              <dd>
+                フォントファイルのデザインのまま表示します。
+                <ul>
+                  <li>Tera Term が全角,2Cellとして表示、フォントデザインが半角,1Cellの場合、
+                    半角の後ろにスペースが入ってるように表示されます。
+                  <li>Tera Term が半角,1Cellとして表示、フォントデザインが全角,2Cellの場合、
+                    全角の左半分が表示されます。
+                </ul>
+              </dd>
+            </dl>
+          </dd>
+
+          <dt>文字間スペース</dt>
+          <dd>
+            工事中です。<br>
+            <a href="../setup/teraterm-win.html#space">文字(行)間にすきまをあける</a>を参照ください。
+          </dd>
+        </dl>
+      </dd>
+
+      <dt>ダイアログフォント</dt>
+      <dd>ダイアログで使用するフォントを指定します
+        <dl>
+          <dt>デフォルト ボタン</dt>
+          <dd>
+            デフォルトのダイアログフォントを使用します。<br>
+            SystemParametersInfo(SPI_GETNONCLIENTMETRICS) を使用してWindowsからフォントを取得しています。
+          </dd>
+        </dl>
+      </dd>
+
+      <dt id="ListHiddenFonts">List hidden fonts in font dialog</dt>
+      <dd>
+        Windows 7以降には各フォントをフォント一覧に
+        表示するか非表示にするかを設定する機能が追加されました。
+        Tera Term のこの設定を有効にすると、
+        OS側で非表示に設定されたフォントも選択できるようになります。
+      </dd>
+
+      <dt>プロポーショナルフォントもフォントダイアログの一覧に表示する</dt>
+      <dd>
+        工事中、検討中です。
+      </dd>
+
+    </dl>
+
+  </body>
+</html>

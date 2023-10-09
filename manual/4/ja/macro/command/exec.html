@@ -1,0 +1,154 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>exec</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+</head>
+
+<body>
+
+
+<h1>exec</h1>
+
+<p>
+アプリケーションを起動する。
+</p>
+
+<pre class="macro-syntax">
+exec &lt;command line&gt; [&lt;show&gt; [&lt;wait&gt; [&lt;current directory&gt;]]]
+</pre>
+
+
+<h2>解説</h2>
+
+<p>
+コマンドライン文字列 &lt;command line&gt; に従い、アプリケーションを起動する。
+</p>
+
+
+<h2>パラメータ</h2>
+<dl>
+	<dt class="macro">文字列 &lt;show&gt; (オプション デフォルト="show")</dt>
+	<dd>以下の文字列を指定することができる。
+		<ul>
+			<li>hide</li>
+			<li>minimize</li>
+			<li>maximize</li>
+			<li>show</li>
+		</ul>
+	</dd>
+
+	<dt class="macro">整数値 &lt;wait&gt; (オプション デフォルト=0) <em>(バージョン 4.63以降)</em></dt>
+	<dd>1 の場合は、起動したアプリケーションが終了するまで待つ。アプリケーションの終了コードが result システム変数に格納される。<br />
+	    1 以外の場合は、アプリケーションを起動してマクロに制御が返る。</dd>
+
+	<dt class="macro">文字列 &lt;current directory&gt; (オプション デフォルト="") <em>(バージョン 4.78以降)</em></dt>
+	<dd>カレントディレクトリを指定することができる。</dd>
+</dl>
+
+
+<h2>返り値</h2>
+
+<dl>
+	<dt class="macro">システム変数 &lt;result&gt;</dt>
+	<dd>
+		<dl>
+			<dt class="macro">バージョン 4.63 から 4.102</dt>
+			<dd>&lt;wait&gt; が 1 の場合のみ、アプリケーションの終了コードが格納される。</dd>
+			<dt class="macro">バージョン 4.103 以降<dt>
+			<dd>
+				&lt;wait&gt; が 1 の場合
+				<table border="2">
+				<tr>
+				  <th>値</th>
+				  <th>意味</th>
+				</tr>
+				<tr>
+				  <td>-1</td>
+				  <td>アプリケーションの実行に失敗した。</td>
+				</tr>
+				<tr>
+				  <td>-1 以外</td>
+				  <td>アプリケーションの終了コード</td>
+				</tr>
+				</table><br />
+				
+				&lt;wait&gt; が 1 以外の場合
+				<table border="2">
+				<tr>
+				  <th>値</th>
+				  <th>意味</th>
+				</tr>
+				<tr>
+				  <td>-1</td>
+				  <td>アプリケーションの実行に失敗した。</td>
+				</tr>
+				<tr>
+				  <td>0</td>
+				  <td>アプリケーションの実行に成功した。</td>
+				</tr>
+				</table>
+			</dd>
+		</dl>
+	</dd>
+</dl>
+
+
+<h2>例</h2>
+
+<pre class="macro-example">
+; 「メモ帳」を起動
+exec 'notepad readme.txt'
+
+; 「メモ帳」を最大化表示で起動
+exec 'notepad readme.txt' 'maximize'
+
+; 「メモ帳」をカレントディレクトリ指定で起動
+exec 'notepad readme.txt' 'show' 0 'c:\usr'
+</pre>
+
+<pre class="macro-example">
+; バッチファイルを起動する
+tmp='cmd /c c:\upload.bat '
+strconcat tmp username1 
+strconcat tmp ' '
+strconcat tmp userpass1 
+strconcat tmp ' '
+strconcat tmp address
+messagebox tmp 'exec'
+exec tmp
+</pre>
+
+<pre class="macro-example">
+; ディレクトリを作る
+getenv "USERPROFILE" userprof
+getdate logdir "log-%Y%m%d"
+sprintf2 cmd 'cmd /c mkdir "%s\My Documents\%s"' userprof logdir
+exec cmd "HIDE"
+</pre>
+
+<h2>注</h2>
+
+<p>
+64bit Windows 上でマクロを実行している場合、WOW64 に対応したアプリケーションを起動すると思わぬ動作をすることがある。<br />
+<br />
+ttpmacro.exe は 32bit なので、32bit のアプリケーションが起動する。アプリケーションによっては 64bit OS 上で 32bit のプロセスが起動されると、64bit のプロセスを起動し直すことがある。<br />
+このため &lt;wait&gt; を指定しても、マクロが起動した 32bit のアプリケーションはすぐに終了してしまうため、意図せず次のマクロコマンドに進んでしまうことがある。<br />
+<br />
+この現象を回避するには、以下のように sysnative エイリアスを用いてネイティブのシステムディレクトリのアプリケーションを起動する。
+</p>
+
+<pre class="macro-example">
+; 失敗する
+exec 'mstsc /v 192.0.2.0 /w 1024 /h 768 /admin' 'show' 1
+
+; 成功する
+exec 'C:\windows\sysnative\mstsc /v 192.0.2.0 /w 1024 /h 768 /admin' 'show' 1
+</pre>
+
+
+</body>
+</html>

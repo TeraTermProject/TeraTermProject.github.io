@@ -1,0 +1,156 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>exec</title>
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+</head>
+
+<body>
+
+
+<h1>exec</h1>
+
+<p>
+Runs an application.
+</p>
+
+<pre class="macro-syntax">
+exec &lt;command line&gt; [&lt;show&gt; [&lt;wait&gt; [&lt;current directory&gt;]]]
+</pre>
+
+
+<h2>Remarks</h2>
+
+<p>
+Runs an application specified by &lt;command line&gt;.
+</p>
+
+
+<h2>Parameters</h2>
+<dl>
+	<dt class="macro">string &lt;show&gt; (optional default="show")</dt>
+	<dd>The following are display style:
+		<ul>
+			<li>hide</li>
+			<li>minimize</li>
+			<li>maximize</li>
+			<li>show</li>
+		</ul>
+	</dd>
+
+	<dt class="macro">integer &lt;wait&gt; (optional default=0) <em>(version 4.63 or later)</em></dt>
+	<dd>If it is 1, macro waits to finish the launched application. The exit code of the application stores the `result' system variable.<br />
+	    If it is not 1, macro launches the application and control is returned to macro.</dd>
+
+	<dt class="macro">string &lt;current directory&gt; (optional default="") <em>(version 4.78 or later)</em></dt>
+	<dd>A current directory can be specified.</dd>
+</dl>
+
+
+<h2>Return Value</h2>
+
+<dl>
+	<dt class="macro">System variable &lt;result&gt;</dt>
+	<dd>
+		<dl>
+			<dt class="macro">version 4.63 to 4.102</dt>
+			<dd>If integer value &lt;wait&gt; is 1, the exit code of the application is stored.</dd>
+			<dt class="macro">version 4.103 or later<dt>
+			<dd>
+				If integer value &lt;wait&gt; is 1
+				<table border="2">
+				<tr>
+				  <th>Value</th>
+				  <th>Meaning</th>
+				</tr>
+				<tr>
+				  <td>-1</td>
+				  <td>Failed to execute the application.</td>
+				</tr>
+				<tr>
+				  <td>not -1</td>
+				  <td>The exit code of the application</td>
+				</tr>
+				</table><br />
+				
+				If integer value &lt;wait&gt; is not 1
+				<table border="2">
+				<tr>
+				  <th>Value</th>
+				  <th>Meaning</th>
+				</tr>
+				<tr>
+				  <td>-1</td>
+				  <td>Failed to execute the application.</td>
+				</tr>
+				<tr>
+				  <td>0</td>
+				  <td>Succeeded to execute the application.</td>
+				</tr>
+				</table>
+			</dd>
+		</dl>
+	</dd>
+</dl>
+
+
+<h2>Example</h2>
+
+<pre class="macro-example">
+; Run "Notepad".
+exec 'notepad readme.txt'
+
+; Run "Notepad" and maximize the application.
+exec 'notepad readme.txt' 'maximize'
+
+; Run "Notepad" with the current directory.
+exec 'notepad readme.txt' 'show' 0 'c:\usr'
+</pre>
+
+<pre class="macro-example">
+; Launch a batch file.
+tmp='cmd /c c:\upload.bat '
+strconcat tmp username1 
+strconcat tmp ' '
+strconcat tmp userpass1 
+strconcat tmp ' '
+strconcat tmp address
+messagebox tmp 'exec'
+exec tmp
+</pre>
+
+<pre class="macro-example">
+; Make a directory.
+getenv "USERPROFILE" userprof
+getdate logdir "log-%Y%m%d"
+sprintf2 cmd 'cmd /c mkdir "%s\My Documents\%s"' userprof logdir
+exec cmd "HIDE"
+</pre>
+
+<h2>Note</h2>
+
+<p>
+When the macro script is executed on the 64bit Windows, an WOW64's application will not work well.<br />
+<br />
+The 32bit application can launch because the ttpmacro.exe is the 32bit program. An application will launch 
+the 64bit program again when the 32bit program is executed on the 64bit operating system. <br />
+If the &lt;wait&gt; is specified, the exec macro will continue to next step because the 32bit program launched by the
+macro script terminates soon. <br />
+<br />
+Please use the sysnative alias and launches the native application in the system directory to resolve this problem.
+</p>
+
+<pre class="macro-example">
+; fail
+exec 'mstsc /v 192.0.2.0 /w 1024 /h 768 /admin' 'show' 1
+
+; succeed
+exec 'C:\windows\sysnative\mstsc /v 192.0.2.0 /w 1024 /h 768 /admin' 'show' 1
+</pre>
+
+
+</body>
+</html>

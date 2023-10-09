@@ -1,0 +1,252 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Theme Editor</title>
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+  </head>
+
+  <body>
+    <h1>Theme Editor</h1>
+
+    Theme is a framework that handles background image, text color, or both at once.<br>
+    Theme Editor is able to edit the theme.<br>
+    Multiple tabs are for settings.<br>
+    The change is reflected in the running Tera Term to push [OK] button,
+    and The change discarded to [Cancel] button.
+
+    <dl>
+      <dt><a href="#preview">preview/file tab</a></dt>
+      <dd>Temporary theme settings(preview), loading and saveing theme files.</dd>
+      <dt><a href="#bg">Background tab</a></dt>
+      <dd>BG(Backgroud) related settings.</dd>
+      <dt><a href="#bg_alpha">Background alpha tab</a></dt>
+      <dd>Transparency of the background image and text background color.</dd>
+      <dt><a href="#color">color tab</a></dt>
+      <dd>Settings related to the text color.</dd>
+    </dl>
+
+    <a href="../setup/theme.html">About theme file</a>
+
+    <hr>
+
+    <h2>TODO</h2>
+    <ul>
+      <li>Adding BGSPIPath (Specify Susie Plugin folder to load images) setting GUI.
+
+    </ul>
+
+    <hr>
+
+    <h2 id="preview">preview/file tab</h2>
+
+    preview<br>
+    Temporarily set (preview), undo a theme.
+
+    <dl>
+      <dt>[preview]</dt>
+      <dd>Temporarily set (preview) theme.</dd>
+      <dt>[undo]</dt>
+      <dd>Undo changed theme before opening the dialog</dd>
+    </dl>
+
+    file<br>
+    Load a theme from a theme file and save theme.
+
+    <dl>
+      <dt>[load]</dt>
+      <dd>Load theme file.</dd>
+      <dt>[save]</dt>
+      <dd>
+        Export theme to a file.<br>
+        Export a BG theme, a Color theme, or both.
+      </dd>
+    </dl>
+
+    <hr>
+
+    <h2 id="bg">Background tab(Background theme)</h2>
+
+    <h3>background</h3>
+
+    Background images are merged from the bottom up.<br>
+    See <a href="#bg_overview">Overview of background</a>.
+
+    <dl>
+      <dt>Simple color plane</dt>
+      <dd>
+        Alphablend with a single color.<br>
+        For example, if you want to slightly darker the blended image background image and desktop wallpaper, Alphablend black with half value(128).
+        <dl>
+          <dt>Color</dt>
+          <dd>Plane color</dd>
+
+          <dt>alpha</dt>
+          <dd>Alpha blend value</dd>
+        </dl>
+      </dd>
+
+      <dt>Background Image</dt>
+      <dd>
+        Background image.<br>
+        Some image files support per-pixel alpha values.
+        <dl>
+          <dt>Image file name</dt>
+          <dd>
+            bmp, png, gif, jpg etc<br>
+            32-bit bmp and transparent png has 8-bit alpha channel.<br>
+            Transparent gif file treat one color as transparent.
+          </dd>
+
+          <dt>Pattern</dt>
+          <dd>
+            How to draw background images.
+            <ul>
+              <li>stretch</li>
+              <li>tile</li>
+              <li>center</li>
+              <li>fit_withh</li>
+              <li>fit_height</li>
+              <li>autofit</li>
+              <li>autofill</li>
+            </ul>
+            TODO check details and write them.
+          </dd>
+
+          <dt>Color</dt>
+          <dd>
+            If there are areas where the background image is not drawn,
+            the area will be painted with this color.<br>
+            If there are transparent areas in the image and the Windows wallpaper image is not blended,
+            the area will be patinted with this color too.
+          </dd>
+
+          <dt>alpha</dt>
+          <dd>
+            Alpha blend value with desktop wallpaper image<br>
+            Setting values from transparent to opaque<br>
+          </dd>
+        </dl>
+      </dd>
+
+      <dt>desktop wallpaper image</dt>
+      <dd>
+        Windows Wallpaper Images
+      </dd>
+
+    </dl>
+
+    <hr>
+
+    <h2 id="bg_alpha">Transparency for background image and text background color</h3>
+
+    <dl>
+      <dt>Transparency of normal text background color</dt>
+      <dd>
+        Transparency of background image and normal text background color<br>
+        Setting values from transparent to opaque<br>
+        (1) in the image
+      </dd>
+      <dt>transparency of reverse text background color</dt>
+      <dd>
+        Transparency of background image and reverse text background color<br>
+        Setting values from transparent to opaque<br>
+        (2) in the image
+      </dd>
+      <dt>Transparency of other text background colors</dt>
+      <dd>
+        transparency of Background image and other text background colors<br>
+        Setting values from transparent to opaque<br>
+        (3) in the image
+      </dd>
+      <dt>
+    </dl>
+    <img src="setup-additional-visual-theme-alpha.png"><br>
+    When 1 and 3 are transparent, It will be the same as Tera Term 4.
+
+    <hr>
+
+    <h2 id="color">color tab(color theme)</h2>
+
+    <p>
+      The color theme sets colors overriding default colors.<br>
+      <a href="#default_color">Default colors</a> are set in TERATERM.INI.<br>
+      Colors not set in the color theme ini file will be the default colors.
+
+    <p>
+      On this tab, you can configure following settings<br>
+      <ul>
+        <li>Color settings
+        <li>Restore default colors
+      </ul>
+
+    <p>
+      Select a color in the list and right-clicking (or double-clicking) on it to change color.
+
+    <p>
+      commctrl color picker is used now.<br>
+      (TODO change color picker in Tera Term)
+
+    <p>
+      Example of displaying the set color
+      <pre>
+wget https://osdn.net/projects/ttssh2/scm/svn/blobs/head/trunk/tests/256colors2.pl?export=raw -O - | perl
+wget https://osdn.net/projects/ttssh2/scm/svn/blobs/head/trunk/tests/colortable16.sh?export=raw -O - | sh
+wget https://osdn.net/projects/ttssh2/scm/svn/blobs/head/trunk/tests/color-sgr-decscnm.pl?export=raw -O - | perl</pre>
+
+    <dl>
+      <dt>[default]</dt>
+      <dd>Set default color</dd>
+    </dl>
+
+    <hr>
+    <h2 id="bg_overview">Background Theme Overview</h2>
+
+    The background image is created as follows.<br>
+    <img src="setup-additional-visual-theme.png"><br>
+
+    <hr>
+
+<h2>Color setting Overview</h2>
+
+When Tera Term 5 alpha version
+
+<pre>
++------------+          +-----------------------------------+         +---------+        +----------+
+|TERATERM.INI| read     |Tera Term                          |         |Theme    |        |Theme File|
+|            | (Startup)| +---------+          +----------+ |(launch) |Editor   |  Save  | INI      |
+| Default    +------------>         | Startup  |          +----------->         +------->+          |
+|  Colors    |          | | Default +----------> Draw     | |         |         |        | Colors   |
+|            <------------+  Colors | Load     |  Colors  <-----------+         +<-------+          |
+|            |  Write   | |         | Default  |          | |   OK    |         |  Load  |          |
+|            |          | +---------+          +----------+ |         |         |        |          |
++------------+          +-----------------------------------+         +---------+        +----------+
+</pre>
+
+<ul>
+  <li>Tera Term default colors are read from TERATERM.INI<br>
+    Drawing colors will be the default color.<br>
+    If themefile is loaded at startup and it contains a color theme, Drawing colors will be colors in theme.
+  <li>Load or edit the color in the Theme Editor and press "ok" button to change drawinge colors.
+  <li>Saving to TERATERM.INI saves default colors.
+  <li>Cannot copy drawing color to default colors.
+</ul>
+
+    <h2 id="default_color">About default colors</h2>
+
+    Default colors and fonts can be set with the following keywords in TERATERM.INI
+<pre>
+| Attr \ ini    | font on/off       | color on/off           | color(R,G,B,R,G,B) |
+|---------------|-------------------|------------------------|--------------------|
+| Normal        | -                 | -                      | VTColor            |
+| Bold          | EnableBold        | EnableBoldAttrColor    | VTBoldColor        |
+| Blink         | -                 | EnableBlinkAttrColor   | VTBlinkColor       |
+| Reverse       | -                 | EnableReverseAttrColor | VTReverseColor     |
+| URL Underline | URLUnderline      | EnableURLColor         | URLColor           |
+| Underline     | UnderlineAttrFont | UnderlineAttrColor     | VTUnderlineColor   |
+</pre>
+
+  </body>
+</html>
