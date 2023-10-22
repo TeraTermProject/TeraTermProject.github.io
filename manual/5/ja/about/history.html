@@ -31,26 +31,7 @@
 
 <h2 id="teraterm">Tera Term</h2>
 
-<h3 id="teraterm_5.1">YYYY.MM.DD (Ver 5.1, not yet released)</h3>
-<ul class="history">
-  <!-- li>変更
-    <ul>
-    </ul>
-  </li -->
-
-  <li>バグ修正
-    <ul>
-      <li><a href="../macro/command/strjoin.html">strjoin</a> マクロコマンドで、連結文字列を誤った変数へセットしていた問題を修正した。</li>
-    </ul>
-  </li>
-
-  <!-- li>その他
-    <ul>
-    </ul>
-  </li -->
-</ul>
-
-<h3 id="teraterm_5.0">2023.10.15 (Ver 5.0)</h3>
+<h3 id="teraterm_5.0">2023.xx.xx (Ver 5.0 not released)</h3>
 <ul class="history">
   <li>変更
     <ul>
@@ -559,7 +540,6 @@
     <ul>
       <li><a href="#ttssh_2.81">TTSSH(2.81)</a>へ差し替えた。</li>
       <li>Oniguruma 6.2.0へ差し替えた。</li>
-      <li>インストーラに使用している Inno Setup の脆弱性が修正されたため、Inno Setup のバージョンを上げました。(<a href="https://ttssh2.osdn.jp/SA/JVN06770361.html" target="_blank">TeraTerm Project のアナウンス</a>, <a href="https://jrsoftware.org/files/is5.5-whatsnew.htm#5.5.9" target="_blank">Inno Setup Revision History</a>, <a href="https://jvn.jp/jp/JVN06770361/" target="_blank">JVN#06770361</a>, <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-2193" target="_blank">CVE-2017-2193</a>)</li>
       <li>インストーラは Windows 95, 98, Me, NT 4.0 をサポートしなくなりました。これらの OS では zip アーカイブ版を展開して使用できます。</li>
     </ul>
   </li>
@@ -3376,7 +3356,7 @@
 
 <h2 id="ttssh">TTSSH</h2>
 
-<h3 id="ttssh_3.0">2023.10.15 (Ver 3.0)</h3>
+<h3 id="ttssh_3.0">2023.xx.xx (Ver 3.0 not released)</h3>
 <ul class="history">
   <li>変更
     <ul>
@@ -3392,12 +3372,6 @@
   <li>バグ修正
     <ul>
       <li>SSH2ダイナミックポートフォワーディングを使用すると異常終了する問題を修正した。</li>
-      <li>ネットワークが高速な場合に、SCP の受信が終わるまでファイルへの書き込みが行われず、メモリ使用量が増加したり応答がなくなる問題を修正した。</li>
-      <li>SCP のチャネルで SSH_MSG_CHANNEL_EXTENDED_DATA を受信したとき、通常の SCP データとして処理され不具合を起こす可能性がある問題を修正した。
-        <ul>
-          <li>リモートからのメッセージ内容はバルーン通知で表示するようにした。</li>
-        </ul></li>
-      <li>鍵再交換の最中に発生した SSH_MSG_CHANNEL_DATA の送信を破棄せず、鍵交換完了後にまとめて送信するようにした。</li>
       <li><a href="../menu/setup-sshauth.html">Authentication Setup ダイアログ</a>を開いたときに、SSH 認証に使用するユーザ名設定が "Use default username" (DefaultUserType=1) なのに "Do not enter username" が選択される問題を修正した。</li>
     </ul>
   </li>
@@ -5236,7 +5210,7 @@
 
 <h2 id="ttmenu">TeraTerm Menu</h2>
 
-<h3 id="ttmenu_1.17">2023.10.15 (Ver 1.17)</h3>
+<h3 id="ttmenu_1.17">2023.xx.xx (Ver 1.17 not released)</h3>
 <ul class="history">
       <li>260 文字以上の引数を ttermpro.exe に渡せるようにした。</li>
 </ul>
@@ -5402,7 +5376,7 @@
 </ul>
 
 <h2 id="resizemenu">TTXResizeMenu</h2>
-<h3 id="resizemenu_1.07">2022.10.15 (Ver 1.07)</h3>
+<h3 id="resizemenu_1.07">2022.xx.xx (Ver 1.07)</h3>
 <ul class="history">
   <li>Tera Term 5.0に対応した。</li>
   <li>ホストに接続していない状態で正しく動作しない問題を修正した。</li>
@@ -5446,7 +5420,7 @@
 </ul>
 
 <h2 id="ttyrec">TTXttyrec</h2>
-<h3 id="ttyrec_1.05">2023.10.15 (Ver 1.05)</h3>
+<h3 id="ttyrec_1.05">2023.xx.xx (Ver 1.05)</h3>
 <ul class="history">
   <li>コマンドラインから再生したとき、[Replay again] が使えなかった問題を修正した。</li>
   <li>ttyファイルを再生中に、別のTera Termから同じttyファイルを再生できるようにした。</li>

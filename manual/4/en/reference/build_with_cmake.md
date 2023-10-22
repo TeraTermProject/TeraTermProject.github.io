@@ -18,8 +18,8 @@
 ## How to build library
 
 - You can prepare libraries used by Tera Term.
-- Refer to [`build_library_with_cmake.html`](<build_library_with_cmake.html>).
-- Refet to [`develop.html`](<develop.html>).
+- Refer to `lib/build_library_with_cmake.md`. 
+- Refet to `develop.txt`.
 
 ## How to build Tera Term
 
