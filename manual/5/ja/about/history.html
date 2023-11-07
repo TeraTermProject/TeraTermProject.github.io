@@ -25,6 +25,7 @@
  <li><a href="#ttyrec">TTXttyrec</a></li>
  <li><a href="#viewmode">TTXViewMode</a></li>
  <li><a href="#recurringcommand">TTXRecurringCommand</a></li>
+ <li><a href="#commandlineopt">TTXCommandLineOpt</a></li>
 </ul>
 
 <hr>
@@ -43,6 +44,11 @@
       <li><a href="../macro/command/strjoin.html">strjoin</a> マクロコマンドで、連結文字列を誤った変数へセットしていた問題を修正した。</li>
       <li>VT ウィンドウでF1キーを押したとき、設定したシーケンスが送信されず、ヘルプが開けないダイアログが出る問題を修正した。</li>
       <li>ログダイアログでデフォルト値がセットされていなかった問題を修正した。</li>
+      <li><a href="../macro/command/settitle.html">settitle</a> マクロコマンドで漢字等を使用するとクラッシュする問題を修正した。</li>
+      <ul>
+        <li><a href="../macro/command/settitle.html">settitle</a>, <a href="../macro/command/gettitle.html">gettitle</a>, <a href="../macro/command/loadkeymap.html">loadkeymap</a> が文字列をUnicodeとして扱うよう修正。
+        <li>現在、Tera Term 内部ではローカルタイトル文字列をANSI文字列で持っている。変換できない文字は "?" に置き換えられる。</li>
+      </ul>
     </ul>
   </li>
 
@@ -5550,6 +5556,13 @@
 <h3 id="recurringcommand_1.00">2009.6.30 (Ver 1.00)</h3>
 <ul class="history">
   <li>初版。</li>
+</ul>
+
+<h2 id="commandlineopt">TTXCommandLineOpt</h2>
+
+<h3 id="commandlineopt_20231030">2023.10.30</h3>
+<ul class="history">
+  <li>/FG=, /BG= オプションが効かなかったので修正</li>
 </ul>
 
 </body>
