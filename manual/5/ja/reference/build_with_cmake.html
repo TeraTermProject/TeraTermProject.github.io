@@ -1,0 +1,78 @@
+<h1>cmakeを使ったビルド</h1>
+
+<ul>
+<li><a href="https://cmake.org/">cmake</a>を使用して
+ビルドすることができます(実験的な位置づけです)</li>
+<li>Visual Studio, NMake, MinGW でビルドできます</li>
+</ul>
+
+<h2>cmakeのバージョン</h2>
+
+<ul>
+<li>3.11以上</li>
+<li>Visual Studio 2017,2019,2022 インストーラーで、オプションを選べば cmake をインストールできます</li>
+<li>Visual Studio 2005(Expressも含む)のIDEをサポートしている最後のバージョンは 3.11.4 です</li>
+</ul>
+
+<h2>ライブラリ</h2>
+
+<ul>
+<li>teraterm が使用するライブラリをビルドして準備しておきます
+<ul>
+<li>ビルドに使用するツールに合わせたライブラリが必要です</li>
+</ul></li>
+<li>ビルド方法は <a href="build_library_with_cmake.html"><code>build_library_with_cmake.html</code></a> を参照してください</li>
+<li>ライブラリについては <a href="develop.html"><code>develop.html</code></a> を参照してください</li>
+</ul>
+
+<h2>teratermのビルド</h2>
+
+<h3>Visual Studio</h3>
+
+<p>Visual Studio の IDE を使用する場合の例
+<code>
+mkdir build_vs2022
+cd build_vs2022
+cmake .. -G "Visual Stuido 17 2022" -A Win32
+cmake --build . --config Release -j
+</code>
+インストーラを作成する
+<code>
+cmake --build . --config Release --target Install
+cmake --build . --config Release --target inno_setup
+cmake --build . --config Release --target zip
+</code></p>
+
+<h3>NMake (Visual Studio, very experimental)</h3>
+
+<p>vcvars32.bat を実行しておくなどして
+nmakeが利用できる環境から次のように実行します。
+<code>
+mkdir build_nmake
+cd build_nmake
+cmake .. -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release
+cmake --build . -j
+</code></p>
+
+<h3>MinGW (very experimental)</h3>
+
+<ul>
+<li>MinGW を使用してバイナリを生成することができます</li>
+<li>実験的位置づけです</li>
+</ul>
+
+<p>msys2等をつかってMinGWが使える環境から次のように実行します。
+<code>
+mkdir build_mingw
+cd build_mingw
+cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+cmake --build . -j
+</code></p>
+
+<p>cygwin,linux等では次のように実行します。
+<code>
+mkdir build_mingw_cygwin
+cd build_mingw_cygwin
+cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=../mingw.toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+cmake --build . -j
+</code></p>

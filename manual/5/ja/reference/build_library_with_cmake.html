@@ -1,0 +1,110 @@
+<h1>libsフォルダ</h1>
+
+<ul>
+<li>Tera Term のビルドに利用する外部のライブラリを置いておくためのフォルダ</li>
+<li>各コンパイラ向けにソース/ライブラリ/実行ファイルを置いておく</li>
+<li>ライブラリはあらかじめ1度だけ生成しておく</li>
+</ul>
+
+<h1>準備</h1>
+
+<h2>Visual Studio</h2>
+
+<ul>
+<li>cmake
+<ul>
+<li>PATHが通してあればok</li>
+<li>cygwinのcmakeはつかえない(Visual Studioをサポートしていない)</li>
+<li>Visual Studio 2005 を使う場合は cmake 3.11.4 を使用する必要がある</li>
+</ul></li>
+<li>perl
+<ul>
+<li>ドキュメントファイルの文字コード・改行コード変換に必要</li>
+<li>OpenSSL のコンパイル (Tera Term 5は OpenSSL から LibReSSL に切り替えたため使用していない)</li>
+<li>ActivePerl 5.8 以上、または cygwin perl</li>
+<li>PATHが通っていなければ自動で探す</li>
+</ul></li>
+</ul>
+
+<h2>MinGW 共通 (experimental)</h2>
+
+<ul>
+<li>Cygwin,MSYS2,linux(wsl)上のMinGWでビルド可能</li>
+<li>各環境で動作するcmake,make,(MinGW)gcc,(clang)が必要</li>
+</ul>
+
+<h1>ビルド手順</h1>
+
+<p>必要なアーカイブを自動的にダウンロードするので、
+インターネットが利用できる環境でビルドする必要がある</p>
+
+<h2>Visual Studioの場合</h2>
+
+<h3>batファイルを使用する場合</h3>
+
+<p>libs/buildall_cmake.bat を実行して使用する Visual Studioを選ぶ</p>
+
+<pre><code>1. Visual Studio 17 2022
+2. Visual Studio 17 2022 x64
+3. Visual Studio 16 2019
+4. Visual Studio 16 2019 x64
+5. Visual Studio 15 2017
+6. Visual Studio 14 2015
+7. Visual Studio 12 2013
+8. Visual Studio 11 2012
+9. Visual Studio 10 2010
+a. Visual Studio 9 2008
+select no
+</code></pre>
+
+<h3>cmakeを使用する場合</h3>
+
+<p>Visual Studio 2022 x86 の場合</p>
+
+<pre><code>cmake -DCMAKE_GENERATOR="Visual Studio 17 2022" -DARCHITECTURE=32 -P buildall.cmake
+</code></pre>
+
+<p>Visual Studio 2022 x64 の場合</p>
+
+<pre><code>cmake -DCMAKE_GENERATOR="Visual Studio 17 2022" -DARCHITECTURE=64 -P buildall.cmake`
+</code></pre>
+
+<h2>MinGW 共通</h2>
+
+<p>各々の環境のcmakeを使用する</p>
+
+<pre><code>cmake -DCMAKE_GENERATOR="Unix Makefiles" -DARCHITECTURE=32 -P buildall.cmake
+</code></pre>
+
+<h1>各フォルダについて</h1>
+
+<h2>生成されるライブラリフォルダ</h2>
+
+<ul>
+<li>次のフォルダにライブラリの <code>*.h</code> , <code>*.lib</code> が生成される
+<ul>
+<li><code>cJSON</code></li>
+<li><code>oniguruma_{compiler}</code></li>
+<li><code>libressl_{compiler}</code></li>
+<li><code>putty</code></li>
+<li><code>SFMT_{compiler}</code></li>
+<li><code>zlib_{compiler}</code></li>
+</ul></li>
+</ul>
+
+<h2>download アーカイブダウンロードフォルダ</h2>
+
+<ul>
+<li>ダウンロードしたアーカイブファイルが置かれる</li>
+<li>自動でダウンロードされる</li>
+<li>ダウンロードされていると再利用する</li>
+<li>ビルド後、参照する必要がなければ削除できる</li>
+</ul>
+
+<h2>build ビルドフォルダ</h2>
+
+<ul>
+<li><code>build/oniguruma/{compiler}/</code> などの下でビルドされる</li>
+<li>再ビルドするときは、あらかじめ削除すること</li>
+<li>ビルド後、参照する必要がなければ削除できる</li>
+</ul>
