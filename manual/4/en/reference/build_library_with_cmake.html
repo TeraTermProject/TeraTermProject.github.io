@@ -1,0 +1,117 @@
+<h1>libs directory</h1>
+
+<ul>
+<li>This directory for storing external libraries to build Tera Term.</li>
+<li>Source, library and executable file are stored for each compiler.</li>
+<li>Library is generated only once in advance.</li>
+</ul>
+
+<h1>Preparing</h1>
+
+<h2>Visual Studio</h2>
+
+<ul>
+<li>cmake
+<ul>
+<li>It is OK if PATH is passed.</li>
+<li>Do not use Cygwin's cmake(Not supporting for Visual Studio).</li>
+<li>Use cmake 3.11.4 when Visual Studio 2005 is used.</li>
+</ul></li>
+<li>perl
+<ul>
+<li>It is necessary for compiling OpenSSL, and converting character code of document and code of carriage return.</li>
+<li>ActivePerl 5.8 or later, also cygwin perl.</li>
+<li>It will be searched automatically if PATH is not passed.</li>
+</ul></li>
+</ul>
+
+<h2>MinGW common (experimental)</h2>
+
+<ul>
+<li>Can be built with MinGW on Cygwin,MSYS2,linux(wsl).</li>
+<li>The cmake,make,(MinGW)gcc,(clang) and perl that work in each environment are required.</li>
+</ul>
+
+<h1>How to build</h1>
+
+<p>You need to use Internet service because some archives are automatically downloaded.</p>
+
+<h2>Case of Visual Studio</h2>
+
+<h3>By using batch file</h3>
+
+<p>Execute buildall_cmake.bat, and select Visual Studio.</p>
+
+<pre><code>1. Visual Studio 16 2019
+2. Visual Studio 15 2017
+3. Visual Studio 14 2015
+4. Visual Studio 12 2013
+5. Visual Studio 11 2012
+6. Visual Studio 10 2010
+7. Visual Studio 9 2008
+8. Visual Studio 8 2005
+select no
+</code></pre>
+
+<p>When VS2005 is selected, you can download cmake 3.11.4 and install into <code>libs\cmake-3.11.4-win32-x86</code>.</p>
+
+<h3>By using cmake</h3>
+
+<p>Case of Visual Studio 2019 x86</p>
+
+<pre><code>cmake -DCMAKE_GENERATOR="Visual Studio 16 2019" -DARCHITECTURE=Win32 -P buildall.cmake
+</code></pre>
+
+<p>Case of Visual Studio 2017 x86</p>
+
+<pre><code>cmake -DCMAKE_GENERATOR="Visual Studio 15 2017" -P buildall.cmake
+</code></pre>
+
+<p>Case of Visual Studio 2017 x64</p>
+
+<pre><code>cmake -DCMAKE_GENERATOR="Visual Studio 15 2017 Win64" -P buildall.cmake`
+</code></pre>
+
+<p>When Visual Studio 2005 is used, cmake 3.11.4 or earlier(if cmake is installed in libs\cmake-3.11.4-win32-x86). </p>
+
+<pre><code>libs\cmake-3.11.4-win32-x86\bin\cmake.exe" -DCMAKE_GENERATOR="Visual Studio 8 2005" -P buildall.cmake
+</code></pre>
+
+<h2>MinGW common</h2>
+
+<p>Using cmake in each environment.</p>
+
+<pre><code>cmake -DCMAKE_GENERATOR="Unix Makefiles" -P buildall.cmake
+</code></pre>
+
+<h1>Regarding each directory</h1>
+
+<h2>Library directory generated</h2>
+
+<ul>
+<li>Library <code>*.h</code> and <code>*.lib</code> are created in the following:
+<ul>
+<li><code>oniguruma_{compiler}</code></li>
+<li><code>openssl_{compiler}</code></li>
+<li><code>putty</code></li>
+<li><code>SFMT_{compiler}</code></li>
+<li><code>zlib_{compiler}</code></li>
+</ul></li>
+</ul>
+
+<h2>Downloaded archive directory</h2>
+
+<ul>
+<li>Downloaded archives are stored.</li>
+<li>Downloading automatically.</li>
+<li>Re-use these archives downloaded already.</li>
+<li>Can be removed if these archives do not need after building.</li>
+</ul>
+
+<h2>Build directory</h2>
+
+<ul>
+<li>Building under <code>build/oniguruma/{compiler}/</code>.</li>
+<li>Remove it in advance if rebuliding.</li>
+<li>Can be removed if this do not need after building.</li>
+</ul>
