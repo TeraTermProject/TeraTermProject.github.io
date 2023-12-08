@@ -4,8 +4,14 @@ img {
 }
 
 table {
+	border-collapse: collapse;
 	margin-right: auto;
 	margin-left: auto;
+}
+
+th {
+	color: #ffffff;
+	background-color: #333333;
 }
 
 /*
@@ -20,4 +26,31 @@ img.atmark {
 	margin: 0 1px;
 	border: none 0;
 	vertical-align: middle;
+}
+
+a{
+	color: #0000ff;
+}
+
+a:hover{
+	color: #000080;
+	text-decoration: underline;
+}
+
+p.menu {
+	width: 100%;
+	background-color: #333333;
+}
+
+p.menu a {
+	color: white;
+	background-color: #333333;
+}
+
+p.menu a:hover {
+	color: red;
+}
+
+table.header {
+	width: 100%;
 }
