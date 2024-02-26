@@ -36,38 +36,39 @@
 <ul class="history">
   <li>Changes
     <ul>
+      <li>Remove UTF8m in <a href="../commandline/teraterm.html#kr">/KR</a>, <a href="../commandline/teraterm.html#kt">/KT</a> command line options.</li>
+      <li>Delimiter characters<a href="../menu/setup-additional.html#DelimiterChar">(dialog</a>, <a href="../setup/teraterm-win.html#delimiter">TERATERM.INI)</a> can use Unicode.</li>
       <li>Modify TCP/IP setup dialog.</li>
       <ul>
         <li>Dialog can now be resized.</li>
         <li>Host list can be scrolled horizontally.</li>
         <li>Host list is wider.</li>
       </ul>
-      <li>MACRO: Dialog displayed using <a href="../macro/command/listbox.html">listbox</a> command can now be resized.</li>
-      <li>Remove UTF8m in <a href="../commandline/teraterm.html#kr">/KR</a>, <a href="../commandline/teraterm.html#kt">/KT</a> command line options.</li>
-      <li>Delimiter characters<a href="../menu/setup-additional.html#DelimiterChar">(dialog</a>, <a href="../setup/teraterm-win.html#delimiter">TERATERM.INI)</a> can use Unicode.</li>
       <li><a href="../setup/teraterm-win.html#autocopy">Auto text copying</a> can be enabled/disabled on <a href="../menu/setup-additional.html#AutoTextCopy">Copy and Paste tab of Additional settings dialog</a>.</li>
       <li>Add <a href="../menu/setup-additional-theme.html">Theme tab</a> to "Additional settings" dialog.</li>
+      <li>MACRO: Dialog displayed using <a href="../macro/command/listbox.html">listbox</a> command can now be resized.</li>
     </ul>
   </li>
 
   <li>Bug fixes
     <ul>
-      <li>Fixed Remove, Down buttons behavior on TCP/IP setup dialog.
+      <li>Fixed the words under mouse pointer were not selected when selecting words by drag after double click with left mouse button.</li>
+      <li>Fixed background transparency is not working in some case.</li>
+      <li>Fixed an application fault occurs when loading theme files.</li>
+      <li>Fixed TCP/IP setup dialog.
         <ul>
           <li>Last item in ListBox is not saved to file.</li>
           <li>Fixed Remove, Down buttons behavior.</li>
         </ul>
       </li>
-      <li>Fixed an application fault occurs when loading theme files.</li>
-      <li>Fixed background transparency is not working in some case.</li>
       <li>MACRO: fixed <a href="../macro/command/foldersearch.html">foldersearch</a> macro command set 0 to result system variable when folder does not exist.</li>
-      <li>Fixed the words under mouse pointer were not selected when selecting words by drag after double click with left mouse button.</li>
       <li>MACRO: fixed internal processing of <a href="../macro/command/xmodemsend.html">xmodemsend</a> and <a href="../macro/command/xmodemrecv.html">xmodemrecv</a> macro commands were swapped.</li>
     </ul>
   </li>
 
   <li>Misc
     <ul>
+      <li>Upgraded TTSSH to <a href="#ttssh_3.2">3.2</a>.</li>
       <li>Upgraded TeraTerm Menu to <a href="#ttmenu_1.19">1.19</a></li>
     </ul>
   </li>
@@ -77,6 +78,7 @@
 <ul class="history">
   <!-- li>Changes
     <ul>
+      <li></li>
     </ul>
   </li -->
 
@@ -3430,6 +3432,28 @@ SYNOPSIS:
 
 
 <h2 id="ttssh">TTSSH</h2>
+
+<h3 id="ttssh_3.2">YYYY.MM.DD (Ver 3.2)</h3>
+<ul class="history">
+  <!--li>Changes
+    <ul>
+      <li></li>
+    </ul>
+  </li-->
+
+  <!--li>Bug fixes
+    <ul>
+      <li></li>
+    </ul>
+  </li-->
+
+  <li>Misc
+    <ul>
+      <li>upgraded LibreSSL to 3.8.2.</li>
+      <li>upgraded zlib to 1.3.1.</li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="ttssh_3.1">2023.12.19 (Ver 3.1)</h3>
 <ul class="history">
