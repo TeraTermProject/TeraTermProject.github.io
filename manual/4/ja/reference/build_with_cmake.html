@@ -1,37 +1,37 @@
-<h1>cmake���g�����r���h</h1>
+﻿<h1>cmakeを使ったビルド</h1>
 
 <ul>
-<li><a href="https://cmake.org/">cmake</a>���g�p����
-�r���h���邱�Ƃ��ł��܂�(�����I�Ȉʒu�Â��ł�)</li>
+<li><a href="https://cmake.org/">cmake</a>を使用して
+ビルドすることができます(実験的な位置づけです)</li>
 </ul>
 
-<h2>cmake�̃o�[�W����</h2>
+<h2>cmakeのバージョン</h2>
 
 <ul>
-<li>Visual Studio 2005 ���T�|�[�g���Ă��� cmake �̍Ō�̃o�[�W������ 3.11.4 �ł�</li>
-<li>Visual Studio 2005 (Express���܂�)�ȊO���g�p����ꍇ�͓��ɐ����͂���܂���</li>
-<li>Visual Studio 2017,2019 �C���X�g�[���[�ŁA�I�v�V������I�ׂ� cmake ���C���X�g�[���ł��܂�</li>
-<li>cmake 3.14���� Visual Studio 2019 ���T�|�[�g���Ă��܂�</li>
+<li>Visual Studio 2005 をサポートしている cmake の最後のバージョンは 3.11.4 です</li>
+<li>Visual Studio 2005 (Expressも含む)以外を使用する場合は特に制限はありません</li>
+<li>Visual Studio 2017,2019 インストーラーで、オプションを選べば cmake をインストールできます</li>
+<li>cmake 3.14から Visual Studio 2019 をサポートしています</li>
 </ul>
 
 <h2>MinGW (very experimental)</h2>
 
 <ul>
-<li>MinGW ���g�p���ăo�C�i���𐶐����邱�Ƃ��ł��܂�</li>
-<li>�����I�ʒu�Â��ł�</li>
+<li>MinGW を使用してバイナリを生成することができます</li>
+<li>実験的位置づけです</li>
 </ul>
 
-<h2>���C�u�����̃r���h</h2>
+<h2>ライブラリのビルド</h2>
 
 <ul>
-<li>teraterm ���g�p���郉�C�u�������r���h���ď������Ă����܂�</li>
-<li>�r���h���@�� <a href="build_library_with_cmake.html"><code>build_library_with_cmake</code></a> ���Q�Ƃ��Ă�������</li>
-<li>���C�u�����ɂ��Ă� <a href="develop.txt"><code>develop.txt</code></a> ���Q�Ƃ��Ă�������</li>
+<li>teraterm が使用するライブラリをビルドして準備しておきます</li>
+<li>ビルド方法は <a href="build_library_with_cmake.html"><code>build_library_with_cmake</code></a> を参照してください</li>
+<li>ライブラリについては <a href="develop.txt"><code>develop.txt</code></a> を参照してください</li>
 </ul>
 
-<h2>teraterm�̃r���h</h2>
+<h2>teratermのビルド</h2>
 
-<p>�\�[�X�c���[�̃g�b�v����A���̂悤�ɃR�}���h�����s���܂��B</p>
+<p>ソースツリーのトップから、次のようにコマンドを実行します。</p>
 
 <pre><code>mkdir build_vs2005
 cd build_vs2005
@@ -40,21 +40,21 @@ cd build_vs2005
 </code></pre>
 
 <ul>
-<li><code>-G</code> �I�v�V�����̌��͎g�p���� Visual Studio �̃o�[�W�����ɍ��킹�Ē������܂�</li>
-<li>sln �t�@�C�������������̂� Visual Studio �ŊJ�����Ƃ��ł��܂�</li>
-<li>�p�X���ʂ��Ă���� cmake �̓t���p�X�ŏ����K�v�͂���܂���</li>
-<li>�������ꂽ sln �t�@�C������N������Visual Studio�Ńr���h�����
-CMakeLists.txt ��ύX�����o���ăv���W�F�N�g�t�@�C���̍Đ����������ōs���̂�
-sln �t�@�C���̐������蓮�ōs���͍̂ŏ���1�񂾂��ł�</li>
-<li><p>Visual Studio 2019 + cmake �̂Ƃ��A<code>-A</code> �I�v�V�������K�v�ł�</p>
+<li><code>-G</code> オプションの後ろは使用する Visual Studio のバージョンに合わせて調整します</li>
+<li>sln ファイルが生成されるので Visual Studio で開くことができます</li>
+<li>パスが通っていれば cmake はフルパスで書く必要はありません</li>
+<li>生成された sln ファイルから起動したVisual Studioでビルドすると
+CMakeLists.txt を変更を検出してプロジェクトファイルの再生成を自動で行うので
+sln ファイルの生成を手動で行うのは最初の1回だけです</li>
+<li><p>Visual Studio 2019 + cmake のとき、<code>-A</code> オプションが必要です</p>
 
 <p>cmake.exe .. -G "Visual Studio 16 2019" -A Win32</p></li>
 </ul>
 
-<h2>teraterm�̃r���h(MinGW)</h2>
+<h2>teratermのビルド(MinGW)</h2>
 
-<p>MinGW�̂Ŏg�p�ł���cmake���g���āA
-�\�[�X�c���[�̃g�b�v����A���̂悤�ɃR�}���h�����s���܂��B</p>
+<p>MinGWので使用できるcmakeを使って、
+ソースツリーのトップから、次のようにコマンドを実行します。</p>
 
 <pre><code>mkdir build_mingw_test
 cd build_mingw_test
