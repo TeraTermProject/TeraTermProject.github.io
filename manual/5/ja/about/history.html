@@ -43,7 +43,8 @@
       <li>iniファイルを上書きする際に自動バックアップを作成するかどうかを <a href="../setup/teraterm-misc.html#IniAutoBackup">IniAutoBackup</a> で設定できるようにした。</li>
       <li><a href="../setup/teraterm-win.html#space">VTFontSpace</a> で負の値を設定できるようにした。</li>
       <li>Override Emoji Characters widthで文字幅が変化しない絵文字があったので修正した。(参照する絵文字テーブルを変更した。)</li>
-      <li>COMポートの一覧に無効化したCOMポートは含めないようにした。</li>
+      <li>使用可能なCOMポートのみを一覧に表示するようにした。<br>
+        無効化、初期化に失敗したCOMポートは含まれないようにした。</li>
       <li>Broadcast commandダイアログの挙動を改善した。
         <ul>
           <li>リアルタイムモードでは、コマンド入力コントロールで マウス右クリック・中クリック あるいは Shift-INS によりペーストできるようにした。また、この時の改行の確認は各ウィンドウではなくダイアログで行われるようにした。</li>
@@ -56,7 +57,11 @@
       </li>
       <li>Default port 設定を Additional settings の <a href="../menu/setup-additional-general.html#Port">General タブ</a>へ移動した。</li>
       <li><a href="../menu/setup-general.html#UILanguageFile">LanguageUI</a>選択時にlngファイルの情報を表示するようにした。Language設定を削除した。</li>
-      <li>ブラケットペーストの動作を <a href="../setup/teraterm-misc.html#BracketedSupport">BracketedSupport</a> と <a href="../setup/teraterm-misc.html#BracketedControlOnly">BracketedControlOnly</a> で調整できるようにした。</li>
+      <li><a href="glossary.html#Bracketed">ブラケットペースト</a>の動作を <a href="../setup/teraterm-misc.html#BracketedSupport">BracketedSupport</a> と <a href="../setup/teraterm-misc.html#BracketedControlOnly">BracketedControlOnly</a> で調整できるようにした。
+        <ul>
+          <li>デフォルト設定で改行などを含まない文字列をクリップボードからペーストしたとき二重にログに出力されなくなった。</li>
+        </ul>
+      </li>
       <li>ダウンロードフォルダの設定を Additional settings の <a href="../menu/setup-additional-general.html#DownloadFolder">General タブ</a>へ移動した。</li>
       <li><a href="../setup/teraterm-ssh.html#AuthBanner">SSH認証バナーをVT ウィンドウ内に表示する</a>時、受信文字コードによらず表示できるよう変更した。</li>
       <li>キーボード設定ダイアログを Additional settings の Keyboard タブへ移動した。</li>
@@ -86,6 +91,7 @@
           <li>ローカルエコーがON時、正しくエコーされなかったので修正</li>
         </ul>
       </li>
+      <li>MACRO: <a href="../macro/command/basename.html">basename</a>, <a href="../macro/command/dirname.html">dirname</a>マクロコマンドのパスがUnicodeに対応していなかったので修正した。</li>
     </ul>
   </li>
 
