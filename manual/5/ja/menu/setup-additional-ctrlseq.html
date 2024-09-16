@@ -3,31 +3,14 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Additional settings ([Setup] メニュー)</title>
+    <title>Additional settings / "Control Sequence" Tab ([Setup] メニュー)</title>
     <META http-equiv="Content-Style-Type" content="text/css">
     <link rel="stylesheet" href="../style.css" type="text/css">
   </head>
 
   <body>
-    <h1>Additional settings ([Setup] メニュー)</h1>
+    <h1>Additional settings / "Control Sequence" Tab ([Setup] メニュー)</h1>
 
-    <h2>各タブ</h2>
-    <ul>
-      <li><a href="setup-additional-general.html">"General" タブ</a></li>
-      <li><a href="#TabControlSequence">"Control Sequence" タブ</a></li>
-      <li><a href="setup-additional-copy-and-paste.html">"Copy and Paste" タブ</a></li>
-      <li><a href="setup-additional-visual.html">"Visual" タブ</a></li>
-      <li><a href="setup-additional-log.html">"Log" タブ</a></li>
-      <li><a href="#TabCygwin">"Cygwin" タブ</a></li>
-      <li><a href="setup-additional-coding.html">"Coding" タブ</a></li>
-      <li><a href="setup-additional-font.html">"Font" タブ</a></li>
-      <li><a href="setup-additional-theme.html">"Theme" タブ</a></li>
-      <li><a href="setup-additional-keyboard.html">"Keyboard" タブ</a></li>
-      <li><a href="setup-additional-mouse.html">"Mouse" タブ</a></li>
-      <li><a href="setup-additional-tcpip.html">"TCP/IP" タブ</a></li>
-    </ul>
-
-    <h2 id="TabControlSequence">"Control Sequence" タブ</h2>
     <dl>
       <dt id="MouseEventTracking">Accept mouse event tracking</dt>
       <dd>
@@ -47,11 +30,11 @@
 	  <dt>off</dt>
 	  <dd>受け入れない</dd>
 	  <dt>overwrite</dt>
-	  <dd>受け入れ、リモートからのウィンドウタイトルのみを表示する</dd>
+	  <dd>受け入れ、リモートからのウインドウタイトルのみを表示する</dd>
 	  <dt>ahead</dt>
-	  <dd>受け入れ、リモートからのウィンドウタイトルを標準のタイトルの前に追加する</dd>
+	  <dd>受け入れ、リモートからのウインドウタイトルを標準のタイトルの前に追加する</dd>
 	  <dt>last</dt>
-	  <dd>受け入れ、リモートからのウィンドウタイトルを標準のタイトルの後ろに追加する</dd>
+	  <dd>受け入れ、リモートからのウインドウタイトルを標準のタイトルの後ろに追加する</dd>
 	</dl>
       </dd>
 
@@ -162,21 +145,5 @@ cvvis=\E[?12;25h
 
     </dl>
 
-
-    <h2 id="TabCygwin">"Cygwin" タブ</h2>
-    <dl>
-      <dt id="CygwinDirectory">Cygwin install path</dt>
-      <dd>
-	Cygwin のインストール先を指定します。
-      </dd>
-
-      <dt id="CygTerm">CygTerm</dt>
-      <dd>
-	CygTerm の設定をします。各項目の意味については、<a href="../setup/cygterm.html">CygTerm+ 設定ファイル</a> を参照してください。
-	<p>注: version 4.88以前のバージョンでは設定後に自動でcygterm.cfgを更新していましたが、version 4.89以降では自動での更新を行わないようになりました。<br>
-	  <em>cygterm.cfgを更新するためには Setup - Save Setup を行う必要があります。</em>
-	</p>
-      </dd>
-    </dl>
   </body>
 </html>
