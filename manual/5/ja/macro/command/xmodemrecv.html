@@ -29,6 +29,10 @@ XMODEM プロトコルでファイル &lt;filename&gt; を受信する。受信�
 </p>
 
 <p>
+&lt;filename&gt; が相対パスの時、<a href="../../setup/folder.html#FileDir">ファイル転送用ディレクトリ</a>相対として扱う。
+</p>
+
+<p>
 ファイルがバイナリファイルの場合は、&lt;binary flag&gt; は 0 以外でなければならない。<br>
 テキストファイルの場合は、&lt;binary flag&gt; は 0 でなければならない。
 </p>
@@ -72,6 +76,11 @@ XMODEM プロトコルでファイル &lt;filename&gt; を受信する。受信�
 ; XMODEM receive, text file, CRC
 xmodemrecv 'readme.txt' 0 2
 </pre>
+
+<h2>参照</h2>
+<ul>
+  <li><a href="changedir.html">changedir</a></li>
+</ul>
 
 </body>
 </html>

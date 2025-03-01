@@ -32,10 +32,17 @@
 
 <h2 id="teraterm">Tera Term</h2>
 
-<h3 id="teraterm_5.4">YYYY.MM.DD (Ver 5.4 not released yet)</h3>
+<h3 id="teraterm_5.4.0">YYYY.MM.DD (Ver 5.4.0 not released yet)</h3>
 <ul class="history">
   <li>Changes
     <ul>
+      <li>Improved serial reconnection.
+        <ul>
+          <li>Checking for notifications from devices is more detailed.</li>
+          <li>Added parameters for reconnecting to TERATERM.INI.</li>
+        </ul>
+      </li>
+      <li>Supports "COM%d" style serial ports of com0com (virtual serial port driver), which are not Ports class.</li>
       <li>Changed to use transmit character code when sending clipboard (OSC 52).<br>
         Before fix, when transmit character code is not UTF-8, it used ACP.</li>
       <li>The flash time when Beep is Visual Bell is now possible to configure.
@@ -43,34 +50,95 @@
           <li>Added the <a href="../setup/teraterm-term.html#BeepVBellWait">BeepVBellWait</a> entry in the teraterm.ini file.</li>
         </ul>
       </li>
-      <li>Setup - General dialog was integrated into <a href="../menu/setup-additional-general.html">General tab</a> of Additional settings dialog.</li>
-      <li>Renamed the Additional setting "Coding" to "Encoding" for better clarity.</li>
+      <li>Updated Unicode information to Unicode 16.0.<br>
+        Tera Term 5.0 to 5.3 are Unicode 15.1 compliant.</li>
+      <li>[Setup]-[Window] dialog was integrated into <a href="../menu/setup-additional-window.html">Window tab</a> of Additional settings dialog.</li>
+      <li>[Setup]-[Terminal] dialog was integrated into <a href="../menu/setup-additional-terminal.html">Terminal tab</a> of Additional settings dialog.</li>
+      <li>[Setup]-[Serial port] dialog was integrated into <a href="../menu/setup-additional-serialport.html">Serial port tab</a> of Additional settings dialog.
+        <ul>
+          <li>New connection from Serial port tab is now unavailable. Only settings are possible in this tab.<br>
+            New connections are made from <a href="../menu/file-new.html">New connection dialog</a>.</li>
+        </ul>
+      </li>
+      <li>[Setup]-[General] dialog was integrated into <a href="../menu/setup-additional-general.html">General tab</a> of Additional settings dialog.</li>
+      <li>Renamed the [Coding] tab to [<a href="../menu/setup-additional-coding.html">Encoding</a>] tab on [Additional settings].</li>
+      <li>"<a href="../menu/setup-additional-general.html#Port">Default port</a>" for new connection dialog, which is configured on [Additional settings]-[General] tab became "TCP/IP" or "Serial" selection.<br>
+        Select default Serial port number on <a href="../menu/setup-additional-serialport.html">Serial port tab</a>.
+      </li>
+      <li>Renamed "Reverse" button on [Additional settings]-[<a href="../menu/setup-additional-window.html#">Window</a>] tab to "Swap colors."</li>
+      <li>Made "List proportional fonts in font dialog" available on [Additional settings]-[<a href="../menu/setup-font.html#">Font</a>] tab.</li>
+      <li>Changed initial directory for file select dialog of Send file to <a href="../setup/folder.html#FileDir">File transfer folder</a>.</li>
+      <li>Send file dialog options are saved in TERATERM.INI.
+        <ul>
+          <li>Added the <a href="../setup/teraterm-ini.html#SendfileSequential">SendfileSequential</a>, <a href="../setup/teraterm-ini.html#SendfileDelayType">SendfileDelayType</a>, <a href="../setup/teraterm-ini.html#SendfileSize">SendfileSize</a> and <a href="../setup/teraterm-ini.html#SendfileDelayTick">SendfileDelayTick</a> entry in the teraterm.ini file.</li>
+        </ul>
+      </li>
+      <li>Added Skip <a href="../menu/file-sendfile.html#dialog">Send file dialog</a> setting when the <a href="../menu/file.html#Sendfile">[Send file]</a> on the [File] is called.
+        <ul>
+          <li>Added the <a href="../setup/teraterm-ini.html#SendfileSkipOptionDialog">SendfileSkipOptionDialog</a> entry in the teraterm.ini file.</li>
+        </ul>
+      </li>
+      <li>XMODEM send: flush receive buffer when start sending</li>
+      <li>ZMODEM send: CANFDX flag handling is implemented when receiving ZRINIT. While the receiver cannot receive data, the sender(Tera Term) can wait for the receiver.</li>
+      <li>All available character codes can be specified using command line options.</li>
       <li>Removed /LA command line options because language mode was removed.</li>
       <li>Changed method of creating backup files for TERATERM.INI.</li>
-      <li>Updated Unicode information to Unicode 16.0. Before update, Unicode 15.1 compliant since Tera Term 5.0.</li>
-      <li>All available character codes can be specified using command line options.</li>
-      <li>Supports "COM%d" style serial ports of com0com (virtual serial port driver), which are not Ports class.</li>
+      <li>Macro commands for sending and receiving files are from <a href="../setup/folder.html#FileDir">File transfer folder</a>.</li>
+      <li>MACRO: Enhanced the dialog display position option of the <a href="../macro/command/setdlgpos.html">setdlgpos</a> command.
+        <ul>
+          <li>The four corners and center of the display, as well as the four corners and center of the VT window, can now be specified as the reference for the dialog's display position.</li>
+          <li>The specification of a parameter to adjust the display position of the dialog is possible.</li>
+        </ul>
+      </li>
     </ul>
   </li>
 
   <li>Bug fixes
     <ul>
+      <li>Fixed a problem that a left click on backgrounded terminal window makes text selection 1 char sensitively.</li>
+      <li>Fixed an issue in Windows 11 (24H2) where windows were not displayed at the correct size when moved across displays with different DPI settings.</li>
+      <li>Fixed display characters containing surrogate pair character when "<a href="../menu/setup-additional-font.html#ResizedFont">Drawing resized font to fit cell width</a>"
+      <li>Fixed to handle U+20000 to U+3FFFF of UTF-8.</li>
+      <li>Unnecessary overwrite confirmation dialog is no longer displayed when selecting a existing file as a log file at file selecting dialog box.</li>
       <li>Fixed a problem that an error is displayed when a new connection is made after disconnecting during log output in the case of LogAutoStart=on.</li>
       <li>Fixed X button of "Log" dialog doesn't work.</li>
+      <li>Fixed "&lt;Edit History... &gt;" is entered in edit box when there is no connection history.
+      <li>Fixed an application fault occurs when saving more than 250 in the <a href="../menu/file-new.html#HostList">Host list</a>.</li>
+      <li>Fixed an application fault occurs when adding a command to the maximum size of broadcast history.<br>
+         Maximum size is <a href="../setup/teraterm-ini.html#MaxBroadcatHistory">MaxBroadcatHistory</a> in TERATERM.INI. Default is 99.
+       </li>
       <li>Fixed crash problem when Realtime mode is off and History is on, on <a href="../menu/control-broadcast.html">Broadcast command dialog</a>.
-      <li>Fixed a problem that a left click on backgrounded terminal window makes text selection 1 char sensitively.</li>
+      <li>Fixed local echo setting was not used:
+        <ul>
+          <li>Send file ([File]-[<a href="../menu/file.html#Sendfile">Send file</a>])</li>
+          <li>Send file (<a href="../usage/mouse.html#SendFile">Drop file to VT Window</a>)</li>
+          <li><a href="../macro/command/sendfile.html">sendfile</a> macro command</li>
+        </ul>
+      </li>
+      <li>Fixed B-plus send is not working</li>
+      <li>XMODEM Send: Fixed problem switching from XMODEM(CRC) to XMODEM(checksum).</li>
+      <li>ZMODEM send: When sending is aborted on Tera Term, cancel sequence is now sent.</li>
+      <li>Unicode support for jump list display.</li>
       <li>MACRO: Improved the issue where DPI scaling was not properly adjusted when the dialog spans across monitors with different scaling factors.</li>
-      <li>Unnecessary overwrite confirmation dialog is no longer displayed when selecting a existing file as a log file at file selecting dialog box.</li>
       <li>MACRO: Fixed TTL cannot be execute when it is UTF-8 without BOM.</li>
-      <li>Fixed to handle U+20000 to U+3FFFF of UTF-8.</li>
-      <li>Fixed display characters containing surrogate pair character when "<a href="../menu/setup-additional-font.html#ResizedFont">Drawing resized font to fit cell width</a>"
-      <li>MACRO: Fixed <a href="../macro/command/getenv.html">getenv</a>, <a href="../macro/command/expandenv.html">expandenv</a> and <a href="../macro/command/setenv.html">setenv</a> macro commands were not Unicode-compatible.</li>
+      <li>MACRO: Fixed <a href="../macro/command/getenv.html">getenv</a>, <a href="../macro/command/expandenv.html">expandenv</a> and <a href="../macro/command/setenv.html">setenv</a> macro commands were not Unicode compatible.</li>
+      <li>MACRO: Fixed <a href="../macro/command/setpassword.html">setpassword</a> and <a href="../macro/command/ispassword.html">ispassword</a> macro commands were not Unicode compatible.</li>
     </ul>
   </li>
 
   <li>Misc
     <ul>
+      <li>Changed version number format to x.y.z.</li>
+      <li>Upgraded TTSSH to <a href="#ttssh_3.4.0">3.4.0</a>.</li>
       <li>Upgraded TTX KanjiMenu Plug-in to <a href="#kanjimenu_0.1.10">0.1.10</a></li>
+      <li>Upgraded Oniguruma to 6.9.10.</li>
+      <li>Upgraded Inno Setup that is used for the installer to <a href="https://jrsoftware.org/files/is6-whatsnew.htm#6.4.1" target="_blank">6.4.1</a>.</li>
+      <li>Added /E option to command line, which is execute from TELNET protocol, that is associated by the installer.
+        <ul>
+          <li>Even if specified port number by URL is not 23, Telnet option negotiation is start.</li>
+          <li>Normally, Tera Term does not handle other than <a href="../usage/tips/not_port23.html">port 23</a> as TELNET.</li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
@@ -96,11 +164,12 @@
       <li>General setup dialog is now shown the information from <a href="../menu/setup-additional-general.html#UILanguageFile">Language file</a> which is selected.</a>
       <li>"Default port" settings is moved to <a href="../menu/setup-additional-general.html#Port">General tab</a> of Additional settings dialog from General setup dialog.</li>
       <li>Removed Language setting from General setup dialog.</li>
-      <li>Download folder setting is moved to <a href="../menu/setup-additional-general.html#DownloadFolder">General tab</a> of Additional settings dialog.</li>
+      <li>Download folder setting is moved to <a href="../menu/setup-additional-general.html#FileFolder">General tab</a> of Additional settings dialog.</li>
       <li>Added ViewlogEditor argument on <a href="../menu/setup-additional-log.html#ViewlogEditorArg">Log Tab</a> in Additional settings dialog.</li>
       <li>Setup - Font was integrated into <a href="../menu/setup-additional-font.html">Font tab</a> of Additional settings dialog.</li>
       <li>Keyboard setup dialog is moved to <a href="../menu/setup-additional-keyboard.html">Keyboard tab</a> of Additional settings dialog.</li>
       <li>TCP/IP setup dialog is moved to <a href="../menu/setup-additional-tcpip.html">TCP/IP tab</a> of Additional settings dialog.</li>
+      <li><a href="../menu/setup-additional-tcpip_edithistory.html">history edit dialog</a> is separated from the TCP/IP setup dialog. Connection history edit dialog can be used from <a href="../menu/file-new.html#Host">New connection dialog</a>.
       <li>Improved <a href="../menu/control-broadcast.html">Broadcast command dialog</a>:
         <ul>
           <li>Edit control now support paste by R/M mouse clicking and Shift-INS.</li>
@@ -147,7 +216,7 @@
       <li>Apply changes even if only No Frame is changed at Window setup dialog.</li>
       <li>Fixed the issue where specifying the <a href="../commandline/teraterm.html#v">/V option</a> with ttermpro.exe would cause a crash upon exit.</li>
       <li>Fixed window maximization works immediately after startup.</li>
-      <li>Added <a href="../setup/folder.html#DownloadDir">download folder</a> for log saving folder same as Tera Term 4.</li>
+      <li>Added <a href="../setup/folder.html#FileDir">download folder</a> for log saving folder same as Tera Term 4.</li>
       <li>MACRO: Fixed <a href="../macro/command/send.html">send</a> macro command could not send $00.</li>
       <li>MACRO: Fixed <a href="../macro/command/clipb2var.html">clipb2var</a> macro command is not working.</li>
       <li>MACRO: Fixed path of <a href="../macro/command/basename.html">basename</a> and <a href="../macro/command/dirname.html">dirname</a> macro commands were not Unicode-compatible.</li>
@@ -385,15 +454,15 @@
         <ul>
           <li>Added support for hardware flow control DSR/DTR with serial connection.
             <ul>
-              <li>The hardware is renamed to RTS/CTS, and DSR/DTR is newly added on the Flow control of <a href="../menu/setup-serialport.html">Serial port ([Setup] menu)</a>.</li>
+              <li>The hardware is renamed to RTS/CTS, and DSR/DTR is newly added on the Flow control of <a href="../menu/setup-additional-serialport.html">Serial port ([Setup] menu)</a>.</li>
               <li>MACRO: The DSR/DTR can be specified in <a href="../macro/command/setflowctrl.html">setflowctrl</a> command.</li>
             </ul></li>
-          <li>The <a href="../menu/setup-serialport.html">[Setup]-[Serial port]</a> dialog can be called even while TCP/IP connection.</li>
-          <li>The title of <a href="../menu/setup-serialport.html">[Setup]-[Serial port]</a> dialog is changed from "Serial port setup" to "Serial port setup and connection".</li>
-          <li>The detail information of COM port is added on the <a href="../menu/setup-serialport.html#Information">[Setup]-[Serial port]</a> dialog.</li>
-          <li>The tooltip of the speed setting is added on the <a href="../menu/setup-serialport.html#Information">[Setup]-[Serial port]</a> dialog.</li>
-          <li>The OK button notation in the <a href="../menu/setup-serialport.html#OK">[Setup]-[Serial port]</a> dialog is changed referring to the connection state. </li>
-          <li>The OK button can not be pressed in the <a href="../menu/setup-serialport.html#OK">[Setup]-[Serial port]</a> dialog when no COM ports are available.</li>
+          <li>The <a href="../menu/setup-additional-serialport.html">[Setup]-[Serial port]</a> dialog can be called even while TCP/IP connection.</li>
+          <li>The title of <a href="../menu/setup-additional-serialport.html">[Setup]-[Serial port]</a> dialog is changed from "Serial port setup" to "Serial port setup and connection".</li>
+          <li>The detail information of COM port is added on the <a href="../menu/setup-additional-serialport.html#Information">[Setup]-[Serial port]</a> dialog.</li>
+          <li>The tooltip of the speed setting is added on the <a href="../menu/setup-additional-serialport.html#Information">[Setup]-[Serial port]</a> dialog.</li>
+          <li>The OK button notation in the <a href="../menu/setup-additional-serialport.html">[Setup]-[Serial port]</a> dialog is changed referring to the connection state. </li>
+          <li>The OK button can not be pressed in the <a href="../menu/setup-additional-serialport.html">[Setup]-[Serial port]</a> dialog when no COM ports are available.</li>
           <li>Added <a href="../commandline/teraterm.html#cdatabit">/CDATABIT=</a>,  <a href="../commandline/teraterm.html#cparity">/CPARITY=</a>, <a href="../commandline/teraterm.html#cstopbit">/CSTOPBIT=</a>, <a href="../commandline/teraterm.html#cflowctrl">/CFLOWCTRL=</a>, <a href="../commandline/teraterm.html#cdelayperchar">/CDELAYPERCHAR=</a>, <a href="../commandline/teraterm.html#cdelayperline">/CDELAYPERLINE=</a> command line options.</li>
         </ul>
       </li>
@@ -1845,7 +1914,7 @@
   <li>Bug fixes
     <ul>
       <li>Security fix: A class of vulnerabilities affecting applications that load DLL's in an insecure manner.</li>
-      <li>The baud rate can not be properly selected on the <a href="../menu/setup-serialport.html">[Setup]-[Serial port]</a> dialog.</li>
+      <li>The baud rate can not be properly selected on the <a href="../menu/setup-additional-serialport.html">[Setup]-[Serial port]</a> dialog.</li>
       <li><a href="../setup/teraterm-term.html#beep">Beep setting</a> does not work.</li>
       <li>The scroll region can not be cleared by using the DECALN (DEC Screen Alignment Test) control sequence.</li>
       <li>An empty string can not reply by using the window title and icon label reporting request.</li>
@@ -1927,7 +1996,7 @@
         </ul></li>
       <li>added support for specifying any baud rate of the serial port connection.
         <ul>
-          <li>A user can specify any baud rate at the <a href="../menu/setup-serialport.html">[Setup]-[Serial port]</a> menu.</li>
+          <li>A user can specify any baud rate at the <a href="../menu/setup-additional-serialport.html">[Setup]-[Serial port]</a> menu.</li>
           <li>A user can specify any baud rate at the <a href="../commandline/teraterm.html#baud">/BAUD</a> option.</li>
           <li>A user can specify any baud rate at the "<a href="../macro/command/setbaud.html">setbaud</a>" macro command.</li>
         </ul></li>
@@ -3569,7 +3638,7 @@ SYNOPSIS:
 
 <h2 id="ttssh">TTSSH</h2>
 
-<h3 id="ttssh_3.4">YYYY.MM.DD (Ver 3.4 not released yet)</h3>
+<h3 id="ttssh_3.4.0">YYYY.MM.DD (Ver 3.4.0 not released yet)</h3>
 <ul class="history">
   <!--li>Changes
     <ul>
@@ -3577,14 +3646,16 @@ SYNOPSIS:
     </ul>
   </li-->
 
-  <!--li>Bug fixes
+  <li>Bug fixes
     <ul>
-      <li></li>
+      <li>Fixed heap corruption during character code conversion of SSH_MSG_USERAUTH_BANNER</li>
+      <li>Fixed password was changed even if the "New Password" and "Confirm New Password" did not match in the password change dialog of SSH_MSG_USERAUTH_PASSWD_CHANGEREQ.</li>
     </ul>
-  </li-->
+  </li>
 
   <li>Misc
     <ul>
+      <li>Changed version number format to x.y.z.</li>
       <li>Upgraded LibreSSL to 4.0.0.</li>
     </ul>
   </li>
@@ -5659,12 +5730,15 @@ SYNOPSIS:
 
 <h3 id="kanjimenu_0.1.10">YYYY.MM.DD (Ver 0.1.10)</h3>
 <ul class="history">
-  <li>Japanese mode and Korean mode can be changed at any time.</li>
+      <li>Added Setting dialog. Menu to be used can be configured.</li>
+      <li>Japanese mode and Korean mode can be select.</li>
+      <li>Added selecting changing Ambiguous Characters width in UTF-8.</li>
 </ul>
 
 <h3 id="kanjimenu_0.1.9">2024.9.6 (Ver 0.1.9)</h3>
 <ul class="history">
-  <li>Refactoring for menu creation.</li>
+      <li>Refactoring for menu creation.</li>
+      <li>Remove UTF-8m.</li>
 </ul>
 
 <h3 id="kanjimenu_0.1.8">2021.6.5 (Ver 0.1.8)</h3>
