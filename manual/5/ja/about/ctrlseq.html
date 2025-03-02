@@ -790,11 +790,11 @@ filter rectangle は常にワンショットモード扱いになる。一度フ
 <table border="1">
 <tr><th>番号</th>	<th>属性</th></tr>
 <tr><td> 0</td>		<td>全ての属性を解除する。</td></tr>
-<tr><td> 1</td>		<td>太字属性を設定する。</td></tr>
+<tr><td> 1</td>		<td>太字属性<a href="#Bold">*</a> を設定する。</td></tr>
 <tr><td> 4</td>		<td>下線属性を設定する。</td></tr>
 <tr><td> 5</td>		<td>点滅属性を設定する。</td></tr>
 <tr><td> 7</td>		<td>反転属性を設定する。</td></tr>
-<tr><td>22</td>		<td>太字属性を解除する。</td></tr>
+<tr><td>22</td>		<td>太字属性<a href="#Bold">*</a> を解除する。</td></tr>
 <tr><td>24</td>		<td>下線属性を解除する。</td></tr>
 <tr><td>25</td>		<td>点滅属性を解除する。</td></tr>
 <tr><td>27</td>		<td>反転属性を解除する。</td></tr>
@@ -933,12 +933,13 @@ OSC 4 ; <i>c</i> ; rgb:<i>rrrr</i>/<i>gggg</i>/<i>bbbb</i> ST
 <i>Pt</i> は <i>c</i> ; <i>spec</i> という書式で、<i>c</i> に対応する文字属性の色を <i>spec</i> に設定する。<br>
 <i>c</i> と文字属性の対応は以下の通り。<br>
 <pre>
-<i>c</i> = 0   高輝度
+<i>c</i> = 0   太字
   = 1   下線
   = 2   点滅
   = 3   反転
 </pre>
-<i>spec</i> の形式は、OSC 4 の <i>spec</i> と同じ。
+<i>spec</i> の形式は、OSC 4 の <i>spec</i> と同じ。<br>
+太字属性については<a href="#Bold">下記</a>を参照
 </td></tr>
 <tr><td> 10 </td>		<td>VTウィンドウの文字色を <i>Pt</i> に設定する。<i>Pt</i> の形式は、OSC 4 の <i>spec</i> と同じ。</td></tr>
 <tr><td> 11 </td>		<td>VTウィンドウの背景色を <i>Pt</i> に設定する。<i>Pt</i> の形式は、OSC 4 の <i>spec</i> と同じ。</td></tr>
@@ -990,14 +991,17 @@ OSC 4 ; <i>c</i> ; rgb:<i>rrrr</i>/<i>gggg</i>/<i>bbbb</i> ST
 <pre>APC <i>Pt</i> ST</pre>
 <p>対応しているAPCシーケンスはありません。すべて無視します。</p>
 
+<h2 id="Bold">太字属性について</h2>
+太字 (英: Bold) 属性は、規格によっては「太字又は高輝度」(英: bold or increased intensity) となっています。
+
 <h2 id="ref">参考文献</h2>
 <ul>
-  <li><a href="http://www.ecma-international.org/publications/standards/Ecma-048.htm" target="_blank">ECMA-48</a></li>
-  <li><a href="http://vt100.net/" target="_blank">VT100.net</a></li>
-  <li><a href="http://invisible-island.net/xterm/ctlseqs/ctlseqs.html" target="_blank">Xterm control sequences</a></li>
-  <li><a href="http://www.cs.utk.edu/~shuford/terminal/dec_vt_mouse.html" target="_blank">Locator input models for ANSI Terminals (sixth revision)</a></li>
-  <li><a href="http://bjh21.me.uk/all-escapes/all-escapes.txt" target="_blank">all-escapes.txt</a></li>
-  <li><a href="http://publib.boulder.ibm.com/infocenter/aix/v7r1/index.jsp?topic=/com.ibm.aix.cmds/doc/aixcmds1/aixterm.htm" target="_blank">aixterm</a></li>
+  <li><a href="https://ecma-international.org/publications-and-standards/standards/ecma-48/" target="_blank">ECMA-48</a></li>
+  <li><a href="https://vt100.net/" target="_blank">VT100.net</a></li>
+  <li><a href="https://invisible-island.net/xterm/ctlseqs/ctlseqs.html" target="_blank">Xterm control sequences</a></li>
+  <li><a href="https://shuford.invisible-island.net/dec_vt_mouse.html" target="_blank">Locator input models for ANSI Terminals (sixth revision)</a></li>
+  <li><a href="https://bjh21.me.uk/all-escapes/all-escapes.txt" target="_blank">all-escapes.txt</a></li>
+  <li><a href="https://www.ibm.com/docs/aix/7.3?topic=aixterm-command" target="_blank">aixterm</a></li>
 </ul>
 
 </body>
