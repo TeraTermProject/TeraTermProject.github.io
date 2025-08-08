@@ -76,6 +76,11 @@
         (<a href="https://github.com/TeraTermProject/teraterm/issues/623" target="_blank">issue #623</a>)
       </li>
       <li>
+        <a href="../setup/teraterm-trans.html#draganddrop">ドラッグ&ドロップによるファイル送信</a>を行った際、<a href="../menu/file-sendfile.html">ディレイ設定</a>が反映されるようにした。<br>
+        MACRO: <a href="../macro/command/sendfile.html">sendfile</a>コマンド実行時、<a href="../menu/file-sendfile.html">ディレイ設定</a>が反映されるようにした。
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/594" target="_blank">issue #594</a>)
+      </li>
+      <li>
         マニュアルに<a href="ctrlseq_device_attributes.html">Device Attribute一覧</a>を追加した。
         (<a href="https://github.com/TeraTermProject/teraterm/issues/689" target="_blank">issue #689</a>)
       </li>
@@ -95,6 +100,10 @@
       <li>
         VT320, VT520, VT525 の Device Attribute を修正した。
         (<a href="https://github.com/TeraTermProject/teraterm/issues/689" target="_blank">issue #689</a>)
+      </li>
+      <li>
+        <a href="../menu/control-broadcast.html">Broadcast command</a>ダイアログのウィンドウリストで右クリック後、Bring selected window to foreground を選択した際、一部のウィンドウがフォアグラウンドで表示されない不具合を修正した。
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/736" target="_blank">issue #736</a>)
       </li>
     </ul>
   </li>
@@ -3833,6 +3842,12 @@
       <li>
         SSH2 の curve25519-sha256, curve25519-sha256@libssh.org 鍵交換方式に対応した。
         (<a href="https://github.com/TeraTermProject/teraterm/issues/89" target="_blank">issue #89</a>)
+      </li>
+      <li>
+        SSH チャネル数の上限をなくした。<br>
+        teraterm.iniに SSH チャネル数の上限を設定する <a href="../setup/teraterm-ini.html#MaxChannel">MaxChannel</a> エントリを追加した。<br>
+        <a href="../setup/teraterm-ini.html#MaxChannel">MaxChannel</a> のデフォルト値は1000、0を指定した場合は無制限となる。
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/694" target="_blank">issue #694</a>)
       </li>
     </ul>
   </li>
