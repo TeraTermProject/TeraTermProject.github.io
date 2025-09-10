@@ -50,12 +50,16 @@
         (<a href="https://github.com/TeraTermProject/teraterm/issues/623" target="_blank">issue #623</a>)
       </li>
       <li>
-        The <a href="../menu/file-sendfile.html">delay settings</a> have been implemented to ensure they are applied when <a href="../setup/teraterm-trans.html#draganddrop">sending files via drag & drop</a>.
-        (<a href="https://github.com/TeraTermProject/teraterm/issues/594" target="_blank">issue #594</a>)
+        Updated Unicode information to Unicode 17.0.
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/844" target="_blank">issue #844</a>)
       </li>
       <li>
         Add available <a href="../usage/character_encoding.html">character encodings</a>.
         (<a href="https://github.com/TeraTermProject/teraterm/issues/510" target="_blank">issue #510</a>)
+      </li>
+      <li>
+        The <a href="../menu/file-sendfile.html">delay settings</a> have been implemented to ensure they are applied when <a href="../setup/teraterm-trans.html#draganddrop">sending files via drag & drop</a>.
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/594" target="_blank">issue #594</a>)
       </li>
       <li>
         Added "Hide dialog" button on <a href="../menu/file-log.html#Logging">"Log" dialog box (displayed while logging)</a>.
@@ -91,10 +95,6 @@
         Added macro commands <a href="../macro/command/setserialdelaychar.html">setserialdelaychar</a> and <a href="../macro/command/setserialdelayline.html">setserialdelayline</a> to set transmission delays for the serial port.
         (<a href="https://github.com/TeraTermProject/teraterm/issues/437" target="_blank">issue #437</a>)
       </li>
-      <li>
-        Added <a href="ctrlseq_device_attributes.html">device attributes list</a> to the manual.
-        (<a href="https://github.com/TeraTermProject/teraterm/issues/689" target="_blank">issue #689</a>)
-      </li>
     </ul>
   </li>
 
@@ -119,6 +119,10 @@
       <li>
         <a href="../menu/control-broadcast.html">Broadcast command</a> dialog is not Unicode compatible.
         (<a href="https://github.com/TeraTermProject/teraterm/issues/500" target="_blank">issue #500</a>)
+      </li>
+      <li>
+        Fixed printing from TEK Window is not working. This bug was introduced in 5.0.
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/842">issue #842</a>)
       </li>
       <li>
         Fixed the issue where the <a href="../macro/command/sendbroadcast.html">send(ln)broadcast</a>, <a href="../macro/command/sendmulticast.html">send(ln)multicast</a> and <a href="../macro/command/sendkcode.html">sendkcode</a> macro commands could lose sent data.
@@ -160,6 +164,10 @@
       <li>
         Added <a href="#changefontsize_1.00">TTXChangeFontSize</a>.
         (<a href="https://github.com/TeraTermProject/teraterm/issues/599" target="_blank">issue #599</a>)
+      </li>
+      <li>
+        Added <a href="ctrlseq_device_attributes.html">device attributes list</a> to the manual.
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/689" target="_blank">issue #689</a>)
       </li>
     </ul>
   </li>
@@ -3871,10 +3879,12 @@ SYNOPSIS:
         (<a href="https://github.com/TeraTermProject/teraterm/issues/89" target="_blank">issue #89</a>)
       </li>
       <li>
-        Removed the upper limit on the number of SSH channels.<br>
-        Added the <a href="../setup/teraterm-ini.html#MaxChannel">MaxChannel</a> entry in the teraterm.ini file to set the limit on the number of SSH channels.<br>
-        The default value for <a href="../setup/teraterm-ini.html#MaxChannel">MaxChannel</a> is 1000, and specifying 0 will set it to unlimited.
+        Removed the upper limit on the number of SSH channels.
         (<a href="https://github.com/TeraTermProject/teraterm/issues/694" target="_blank">issue #694</a>)
+        <ul>
+          <li>Added the <a href="../setup/teraterm-ini.html#MaxChannel">MaxChannel</a> entry in the teraterm.ini file to set the limit on the number of SSH channels.</li>
+          <li>The default value for <a href="../setup/teraterm-ini.html#MaxChannel">MaxChannel</a> is 1000, and specifying 0 will set it to unlimited.</li>
+        </ul>
       </li>
     </ul>
   </li>
