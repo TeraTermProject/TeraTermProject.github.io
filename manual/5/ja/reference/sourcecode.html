@@ -426,7 +426,7 @@ Visual Studio 2005になってから、Windows 95のサポートが打ち切ら�
 <h2 id="debug">デバッグ手法</h2>
 <h3>debug printf</h3>
 　Windowsアプリケーションでは printf() が使えません。標準出力がどこにも割り当てられていないからです。AllocConsole()とfreopen()を使えば、Windowsアプリケーションにおいても printf() を利用することができます。<br>
-　OutputDebugString()というAPIがあります。これは Visual Studio のデバッグコンソールにメッセージ出力することができる関数です。当該APIは、"Debug build"および"Release build"に関係なく、デバッガが存在すれば、メッセージを送信します。ゆえに、 Visual Studioがなくとも、<a href="http://www.vector.co.jp/soft/win95/prog/se046776.html" target="_blank">DBCon</a>のようなツールを使えば、アプリケーションの単体起動においても、OutputDebugString()によるメッセージを拾うことができます。<br>
+　OutputDebugString()というAPIがあります。これは Visual Studio のデバッグコンソールにメッセージ出力することができる関数です。当該APIは、"Debug build"および"Release build"に関係なく、デバッガが存在すれば、メッセージを送信します。ゆえに、 Visual Studioがなくとも、<a href="https://www.vector.co.jp/soft/win95/prog/se046776.html" target="_blank">DBCon</a>のようなツールを使えば、アプリケーションの単体起動においても、OutputDebugString()によるメッセージを拾うことができます。<br>
 　Tera Termでは、可変長引数を扱えるようにラッパー関数を用意しています。
 　
 <pre class=code>
@@ -768,9 +768,9 @@ void TelStartKeepAliveThread() {
 
 <h2 id="ttssh">TTSSHによるSSHの設計と実装</h2>
   <h3>概要</h3>
-　オリジナルのTTSSHは<a href="http://www.cs.cmu.edu/People/roc/" target="_blank">Robert O'Callahan</a>氏（現在は<a href="http://robert.ocallahan.org/" target="_blank">元Mozilla hacker</a>として活躍）により開発されたプラグインです。SSH1へ対応しており、ポートフォワーディングやzlibによるパケット圧縮もサポートしていました。TTSSHは、Tera Termをセキュア通信に対応させるためのプラグインであったために、SCPやSFTP等には未対応でした。オリジナルTera Termが1998年に開発凍結後も、2001年ごろまでメンテナンスが続けられていました。<br>
+　オリジナルのTTSSHは<a href="https://www.csd.cmu.edu/academics/doctoral/degrees-conferred/robert-ocallahan" target="_blank">Robert O'Callahan</a>氏（現在は<a href="https://robert.ocallahan.org/" target="_blank">元Mozilla hacker</a>として活躍）により開発されたプラグインです。SSH1へ対応しており、ポートフォワーディングやzlibによるパケット圧縮もサポートしていました。TTSSHは、Tera Termをセキュア通信に対応させるためのプラグインであったために、SCPやSFTP等には未対応でした。オリジナルTera Termが1998年に開発凍結後も、2001年ごろまでメンテナンスが続けられていました。<br>
 　TTSSHのSSH2対応を実現するために、TeraTerm Projectにより2004年から設計と実装が始められました。3年の歳月をかけて、ほぼSSH2プロトコルのフルサポートを実現しました。現在ではSCPへも対応しています。将来的にはSFTPへも対応されるかもしれません。<br>
-　原則、TTSSHの実装は<a href="http://www.openssh.com/" target="_blank">OpenSSH</a>を参考にしています。一部、コードをそのまま流用しているところもあります。ただし、OpenSSHはUNIXのコマンドライン向けに設計されているため、Tera TermのようなWindowsアプリケーションにはそのまま適合しない箇所も多く、フレームワークとしてはOpenSSHと大きく異なったものとなっています。<br>
+　原則、TTSSHの実装は<a href="https://www.openssh.com/" target="_blank">OpenSSH</a>を参考にしています。一部、コードをそのまま流用しているところもあります。ただし、OpenSSHはUNIXのコマンドライン向けに設計されているため、Tera TermのようなWindowsアプリケーションにはそのまま適合しない箇所も多く、フレームワークとしてはOpenSSHと大きく異なったものとなっています。<br>
 
 
   <h3>SSHプロトコル</h3>
@@ -779,21 +779,21 @@ void TelStartKeepAliveThread() {
 　
 <p>
 <ul>
-  <li><a href="http://www.ietf.org/rfc/rfc4250.txt" target="_blank">RFC4250: The Secure Shell (SSH) Protocol Assigned Numbers</a></li>
-  <li><a href="http://www.ietf.org/rfc/rfc4251.txt" target="_blank">RFC4251: The Secure Shell (SSH) Protocol Architecture</a></li>
-  <li><a href="http://www.ietf.org/rfc/rfc4252.txt" target="_blank">RFC4252: The Secure Shell (SSH) Authentication Protocol</a></li>
-  <li><a href="http://www.ietf.org/rfc/rfc4253.txt" target="_blank">RFC4253: The Secure Shell (SSH) Transport Layer Protocol</a></li>
-  <li><a href="http://www.ietf.org/rfc/rfc4254.txt" target="_blank">RFC4254: The Secure Shell (SSH) Connection Protocol</a></li>
-  <li><a href="http://www.ietf.org/rfc/rfc4255.txt" target="_blank">RFC4255: Using DNS to Securely Publish Secure Shell (SSH) Key Fingerprints</a></li>
-  <li><a href="http://www.ietf.org/rfc/rfc4256.txt" target="_blank">RFC4256: Generic Message Exchange Authentication for the Secure Shell Protocol (SSH)</a></li>
-  <li><a href="http://www.ietf.org/rfc/rfc4344.txt" target="_blank">RFC4344: The Secure Shell (SSH) Transport Layer Encryption Modes</a></li>
-  <li><a href="http://www.ietf.org/rfc/rfc4419.txt" target="_blank">RFC4419: Diffie-Hellman Group Exchange for the Secure Shell (SSH) Transport Layer Protocol</a></li>
-  <!--li><a href="http://www.ietf.org/rfc/rfc5647.txt" target="_blank">RFC5647: AES Galois Counter Mode for the Secure Shell Transport Layer Protocol</a></li-->
-  <li><a href="http://www.ietf.org/rfc/rfc5656.txt" target="_blank">RFC5656: Elliptic Curve Algorithm Integration in the Secure Shell Transport Layer</a></li>
-  <li><a href="http://www.ietf.org/rfc/rfc6668.txt" target="_blank">RFC6668: SHA-2 Data Integrity Verification for the Secure Shell (SSH) Transport Layer Protocol</a></li>
-  <li><a href="http://www.ietf.org/rfc/rfc8268.txt" target="_blank">RFC8268: More Modular Exponentiation (MODP) Diffie-Hellman (DH) Key Exchange (KEX) Groups for Secure Shell (SSH)</a></li>
-  <li><a href="http://www.ietf.org/rfc/rfc8332.txt" target="_blank">RFC8332: Use of RSA Keys with SHA-256 and SHA-512 in the Secure Shell (SSH) Protocol</a></li>
-  <li><a href="http://www.ietf.org/rfc/rfc8709.txt" target="_blank">RFC8709: Ed25519 and Ed448 Public Key Algorithms for the Secure Shell (SSH) Protocol</a></li>
+  <li><a href="https://www.ietf.org/rfc/rfc4250.txt" target="_blank">RFC4250: The Secure Shell (SSH) Protocol Assigned Numbers</a></li>
+  <li><a href="https://www.ietf.org/rfc/rfc4251.txt" target="_blank">RFC4251: The Secure Shell (SSH) Protocol Architecture</a></li>
+  <li><a href="https://www.ietf.org/rfc/rfc4252.txt" target="_blank">RFC4252: The Secure Shell (SSH) Authentication Protocol</a></li>
+  <li><a href="https://www.ietf.org/rfc/rfc4253.txt" target="_blank">RFC4253: The Secure Shell (SSH) Transport Layer Protocol</a></li>
+  <li><a href="https://www.ietf.org/rfc/rfc4254.txt" target="_blank">RFC4254: The Secure Shell (SSH) Connection Protocol</a></li>
+  <li><a href="https://www.ietf.org/rfc/rfc4255.txt" target="_blank">RFC4255: Using DNS to Securely Publish Secure Shell (SSH) Key Fingerprints</a></li>
+  <li><a href="https://www.ietf.org/rfc/rfc4256.txt" target="_blank">RFC4256: Generic Message Exchange Authentication for the Secure Shell Protocol (SSH)</a></li>
+  <li><a href="https://www.ietf.org/rfc/rfc4344.txt" target="_blank">RFC4344: The Secure Shell (SSH) Transport Layer Encryption Modes</a></li>
+  <li><a href="https://www.ietf.org/rfc/rfc4419.txt" target="_blank">RFC4419: Diffie-Hellman Group Exchange for the Secure Shell (SSH) Transport Layer Protocol</a></li>
+  <!--li><a href="https://www.ietf.org/rfc/rfc5647.txt" target="_blank">RFC5647: AES Galois Counter Mode for the Secure Shell Transport Layer Protocol</a></li-->
+  <li><a href="https://www.ietf.org/rfc/rfc5656.txt" target="_blank">RFC5656: Elliptic Curve Algorithm Integration in the Secure Shell Transport Layer</a></li>
+  <li><a href="https://www.ietf.org/rfc/rfc6668.txt" target="_blank">RFC6668: SHA-2 Data Integrity Verification for the Secure Shell (SSH) Transport Layer Protocol</a></li>
+  <li><a href="https://www.ietf.org/rfc/rfc8268.txt" target="_blank">RFC8268: More Modular Exponentiation (MODP) Diffie-Hellman (DH) Key Exchange (KEX) Groups for Secure Shell (SSH)</a></li>
+  <li><a href="https://www.ietf.org/rfc/rfc8332.txt" target="_blank">RFC8332: Use of RSA Keys with SHA-256 and SHA-512 in the Secure Shell (SSH) Protocol</a></li>
+  <li><a href="https://www.ietf.org/rfc/rfc8709.txt" target="_blank">RFC8709: Ed25519 and Ed448 Public Key Algorithms for the Secure Shell (SSH) Protocol</a></li>
 </ul>
 </p>
 
@@ -1475,7 +1475,7 @@ ZMODEMのエントリポイントについて、以下に示します。
 </table>
 
   <h3>テスト手法</h3>
-　バイナリ転送プロトコルはシリアル回線で利用されることが多いのですが、最近のPCは、シリアルポートが搭載されていないため、シリアル接続でのテストを行うことが難しくなっています。そこで、<a href="http://com0com.sourceforge.net/" target="_blank">com0comというNull-modem emulator</a>を利用すると、1つのPC内で仮想的に2つのCOMポートを生成し、Tera Term同士、Tera Termと別ターミナルソフト同士で、シリアル通信を行うことができます。
+　バイナリ転送プロトコルはシリアル回線で利用されることが多いのですが、最近のPCは、シリアルポートが搭載されていないため、シリアル接続でのテストを行うことが難しくなっています。そこで、<a href="https://com0com.sourceforge.net/" target="_blank">com0comというNull-modem emulator</a>を利用すると、1つのPC内で仮想的に2つのCOMポートを生成し、Tera Term同士、Tera Termと別ターミナルソフト同士で、シリアル通信を行うことができます。
 　
 
 <div align="center">
@@ -1506,7 +1506,7 @@ XMODEMは、ファイルのデータを一定のサイズ（128バイトおよ�
 　XMODEMのプロトコルについては、下記サイトが参考になります。
 
 <ul>
-　<li><a href="http://ja.wikipedia.org/wiki/XMODEM" target="_blank">XMODEM - Wikipedia</a></li>
+　<li><a href="https://ja.wikipedia.org/wiki/XMODEM" target="_blank">XMODEM - Wikipedia</a></li>
 </ul>
 <br>
 
@@ -1639,7 +1639,7 @@ XmodemLog=on
 　YMODEMのプロトコルについては、下記サイトが参考になります。
 
 <ul>
-　<li><a href="http://ja.wikipedia.org/wiki/YMODEM" target="_blank">YMODEM - Wikipedia</a></li>
+　<li><a href="https://ja.wikipedia.org/wiki/YMODEM" target="_blank">YMODEM - Wikipedia</a></li>
 </ul>
 <br>
 
@@ -1901,7 +1901,7 @@ TBD
 　KERMIT（カーミット：セサミストリートに登場するカエルのマペット）は、1981年にコロンビア大学で開発されたファイル転送プロトコルであり、現在はカーミットプロジェクトによりメンテナンスされています。下記のサイトから仕様書が入手できます。<br>
 　
 <ul>
-  <li><a href="http://www.kermitproject.org/" target="_blank">The Kermit Project</a></li>
+  <li><a href="https://www.kermitproject.org/" target="_blank">The Kermit Project</a></li>
 </ul>
 <br>
 
