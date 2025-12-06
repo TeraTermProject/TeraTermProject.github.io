@@ -19,12 +19,6 @@ th {
 	background-color: #333333;
 }
 
-/*
-p {
-	text-indent: 1em;
-}
-*/
-
 a{
 	color: #0000ff;
 }
@@ -41,6 +35,8 @@ p.menu {
 	margin: 0;
 	padding: 0.3em 0;
 	box-sizing: border-box;
+	line-height: 1;
+	font-size: 1em;
 }
 
 p.menu a {
