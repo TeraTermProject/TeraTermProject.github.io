@@ -220,9 +220,10 @@ ttermpro.exe にコマンドライン引数でパスワードを指定すると�
     <pre>ttermpro.exe server3:22 /ssh /2 /auth=password /user=guest /passwd=guest</pre>
     このように起動した場合は、そのプロセスのコマンドライン引数は見えることになります。
   </dd>
-  <dt>File &gt; Duplicate session</dt>
+  <dt>"File &gt; Duplicate session" (Tera Term 5.6.0 に含まれる TTSSH 3.6.0 より前)</dt>
   <dd>
-    Tera Term が内部でコマンドライン引数を生成して ttermpro.exe を起動しています。そのため、そのプロセスのコマンドライン引数は見えることになります。
+    Tera Term が内部でコマンドライン引数を生成して ttermpro.exe を起動しています。そのため、そのプロセスのコマンドライン引数は見えることになります。<br>
+    TTSSH 3.6.0 以降は、コマンドライン引数でパスワードを渡さなくなりました。
   </dd>
   <dt>New Connection ダイアログの "Host" に指定して接続する</dt>
   <dd>
@@ -243,10 +244,11 @@ connect '/DS'
 connect 'server3:22 /ssh /2 /auth=password /user=guest /passwd=guest'
     </pre>
   </dd>
-  <dt>TeraTerm Menu から起動する</dt>
+  <dt>TeraTerm Menu から起動する (Tera Term 5.6.0 に含まれる TeraTerm Menu 1.21 より前)</dt>
   <dd>
     TeraTerm Menu は入力した内容をコマンドライン引数にして新たな ttermpro.exe を起動するため、そのプロセスのコマンドライン引数は見えることになります。<br>
-    上記のようなマクロを記述し、SSH 接続設定の代わりにマクロファイルを使う指定をすることで回避できます。
+    上記のようなマクロを記述し、SSH 接続設定の代わりにマクロファイルを使う指定をすることで回避できます。<br>
+    TeraTerm Menu 1.21 から、コマンドライン引数でパスワードを渡さなくなりました。
   </dd>
 </dl>
 
