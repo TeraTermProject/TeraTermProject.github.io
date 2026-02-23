@@ -50,36 +50,6 @@ XMODEM vgRðx[XÉµÄéæ¤Å·ªA
     </p>
   </dd>
 
-<dt>TEK4010</dt>
-<dd>Name of Tektronix terminal. This can display diagrams and graphemes, and was used widely in scientific and technical fields.</dd>
-<!--
-»ÝÍAX Window Â«ÈÇÉæÁÄÖíçêÂÂ èÜ·ªATEK G~[^[ðgpµÄ¢élÍÜ¾Ü¾¢Ü·(ìÒàÜßÄ)B<br>
-åªÌ[U[Í Tera Term Ì TEK G~[V@\ðg¤±ÆÍÈ¢Åµå¤B</dd>
--->
-
-<dt>TEK window</dt>
-<dd>The window that emulates TEK terminal.
-"TEK" is displayed to right of window title string.
-This window is not displayed when Tera Term is started.
-[Control]-[Open TEK] command opens TEK window.
-</dd>
-
-<dt>VT100</dt>
-<dd>Name of DEC(Digital Equipment Corporation)'s terminal.
-The terminal was used widely for Unix, VAX/VMS, and other computers.
-<!--
-»ÝÍA VT100 »ÌàÌÍÙÆñÇgp³êÄ¢Ü¹ñªA»ÌdlªÀãÌWÆÈÁÄ¢é½ßAPC â [NXe[VÅ®­ VT100 G~[^[ª½­ìçêÄ¢Ü·B
--->
-<br>
-VT220 and VT382 are names of upwardly compatible terminals of VT100.
-</dd>
-
-<dt>VT window</dt>
-<dd>The main window of Tera Term.
-This window is displayed when Tera Term start.
-"VT" is displayed to right of window title string.<br>
-Window for VT terminal emulation.</dd>
-
 <dt>XMODEM</dt>
 <dd>File transfer protocol developed by Ward Christensen in 1977.</dd>
 <!--
@@ -98,9 +68,9 @@ Window for VT terminal emulation.</dd>
 
 </dl>
 
-<h2>Control Sequence</h2>
+<h2>Terminal/Control Sequence</h2>
 
-About Control Sequence.
+About Terminal/Control Sequence.
 
 <dl>
 <dt id="Bracketed">Bracketed Paste Mode</dt>
@@ -120,6 +90,40 @@ On the other hand, when pasted characters is overwritten again to remove the hig
       
   </ul>
 </dd>
+
+<dt id="dumb">dumb terminal</dt>
+<dd>This terminal can only use line feed (0x0d (\r, ^J), 0x0a (\n, ^M)) and bell (0x07 (^G)).</dd>
+
+<dt>TEK4010</dt>
+<dd>Name of Tektronix terminal. This can display diagrams and graphemes, and was used widely in scientific and technical fields.</dd>
+<!--
+»ÝÍAX Window Â«ÈÇÉæÁÄÖíçêÂÂ èÜ·ªATEK G~[^[ðgpµÄ¢élÍÜ¾Ü¾¢Ü·(ìÒàÜßÄ)B<br>
+åªÌ[U[Í Tera Term Ì TEK G~[V@\ðg¤±ÆÍÈ¢Åµå¤B</dd>
+-->
+
+<dt>TEK window</dt>
+<dd>The window that emulates TEK terminal.
+"TEK" is displayed to right of window title string.
+This window is not displayed when Tera Term is started.
+[Control]-[Open TEK] command opens TEK window.
+</dd>
+
+<dt id="VT100">VT100</dt>
+<dd>Name of DEC(Digital Equipment Corporation)'s terminal.
+The terminal was used widely for Unix, VAX/VMS, and other computers.
+<!--
+»ÝÍA VT100 »ÌàÌÍÙÆñÇgp³êÄ¢Ü¹ñªA»ÌdlªÀãÌWÆÈÁÄ¢é½ßAPC â [NXe[VÅ®­ VT100 G~[^[ª½­ìçêÄ¢Ü·B
+-->
+<br>
+VT220 and VT382 are names of upwardly compatible terminals of VT100.
+</dd>
+
+<dt>VT window</dt>
+<dd>The main window of Tera Term.
+This window is displayed when Tera Term start.
+"VT" is displayed to right of window title string.<br>
+Window for VT terminal emulation.</dd>
+
 </dl>
 
 <h2>Character code</h2>
