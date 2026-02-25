@@ -303,6 +303,7 @@ On になっていると、TEK4010 というグラフィック端末のコント
   <span class="qanda">Q.</span> ログファイルの内容が VTWindow に表示された内容と異なる。表示できない文字が出力されている。<br>
   <span class="qanda">A.</span> VTWindow に表示されるのは、受信したデータに含まれる制御シーケンスを解析した結果です。一方 Tera Term のログファイルは受信したデータを記録したものです。<br>
   そのため、ログファイルの出力と VTWindow に表示される結果は同じにはなりません。Word 文書を「Word で開いた場合」と「テキストエディタで開いた場合」のように異なるものです。
+</p>
 
 <div>
 例:
@@ -337,7 +338,15 @@ l<img src="./image/icon-BS.png" style="width:0.8em; height:1em;">ls<img src="./i
 <img src="./image/icon-ESC.png" style="width:0.8em; height:1em;">[0m<img src="./image/icon-ESC.png" style="width:0.8em; height:1em;">[27m<img src="./image/icon-ESC.png" style="width:0.8em; height:1em;">[24m<img src="./image/icon-ESC.png" style="width:0.8em; height:1em;">[J% <img src="./image/icon-ESC.png" style="width:0.8em; height:1em;">[K<img src="./image/icon-ESC.png" style="width:0.8em; height:1em;">[?2004h
 </div>
 
+<p>
+bash を利用している場合には、次のように行編集を無効にすることで再描画を少なくし、ログの崩れを少なくできるかもしれません。<br>
+そのかわり、キーカーソル操作が使えなくなります。
 </p>
+
+<div style="border: 1px solid #666666; color:#000000; background-color:#ffffff; padding:0.2ex;">
+set +o emacs<br>
+set +o vi
+</div>
 
 <p id="selected_highlight">
 <span class="qanda">Q.</span> 範囲選択したが、色が変わらないので判別できない。<br>
