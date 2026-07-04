@@ -81,6 +81,10 @@
         Previously, since short filename,SFN (DOS filename, 8.3 format) is used,
         "ttxtest.dll-" was treated as "TTXTEST.DLL" and loaded.
       </li>
+      <li>
+        Changed DPI awareness setting to process-wide instead of GUI thread only.
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/1314" target="_blank">issue #1314</a>)
+      </li>
     </ul>
   </li>
 
@@ -113,6 +117,17 @@
         Fixed an issue where file reception via zmodem failed during high-speed serial communication using USB CDC-ACM.
         This bug was introduced in 5.5.1.
         (<a href="https://github.com/TeraTermProject/teraterm/issues/1299" target="_blank">issue #1299</a>)
+      </li>
+      <li>
+        Fixed an issue where ttermpro.exe crashed when macro reloaded the setup file after launching with the /V option.
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/1347" target="_blank">issue #1347</a>)
+      </li>
+      <li>
+        Fixed an issue where an empty setting items was deleted from TERATERM.INI when using "Setup &gt; Save setup...".
+        Fixed an issue where Tera Term would crash when removing RussKeyb from the
+        Tera Term section of TERATERM.INI, then launching Tera Term and selecting
+        "Setup &gt; Save setup..".
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/1335" target="_blank">issue #1335</a>)
       </li>
     </ul>
   </li>
