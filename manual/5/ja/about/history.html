@@ -128,6 +128,10 @@
         起動したのち "Setup &gt; Save setup.." するとクラッシュする問題を修正した。
         (<a href="https://github.com/TeraTermProject/teraterm/issues/1335" target="_blank">issue #1335</a>)
       </li>
+      <li>
+        XMODEMを使用したファイル送信中にCancelボタンを押下しても、受信側のXMODEMが停止しない不具合を修正した。
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/1408" target="_blank">issue #1408</a>)
+      </li>
     </ul>
   </li>
 
@@ -4257,6 +4261,16 @@
 
 <h3 id="ttssh_3.7.0">YYYY.MM.DD (Ver 3.7.0 not released yet)</h3>
 <ul class="history">
+  <li>セキュリティ修正
+    <ul>
+      <li>
+        受信した SSH2 パケットの長さを正しくチェックせずに処理する脆弱性を修正した。
+        TTSSH2 1.00 alpha1 (UTF-8 TeraTerm Pro 2.05) からの不具合。
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/1417" target="_blank">issue #1417</a>, <a href="https://teratermproject.github.io/SA/JVN65294474.html" target="_blank">TTSSH2 のメモリ境界外アクセスの脆弱性</a>)
+      </li>
+    </ul>
+  </li>
+
   <!--li>変更
     <ul>
       <li>
@@ -4269,6 +4283,10 @@
       <li>
         SSH_MSG_USERAUTH_INFO_REQUEST のプロンプトが複数あった場合に正しく処理されない問題を修正した。
         (<a href="https://github.com/TeraTermProject/teraterm/issues/1390" target="_blank">issue #1390</a>)
+      </li>
+      <li>
+        PuTTY の ed25519 秘密鍵ファイルの読み取りを修正した。
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/1418" target="_blank">issue #1418</a>)
       </li>
     </ul>
   </li>
@@ -6831,6 +6849,28 @@
   <li>
     ttyファイルでないファイルを再生した後、ttyファイルを再生すると表示が崩れる問題を修正した。
     (<a href="https://github.com/TeraTermProject/teraterm/issues/1323" target="_blank">issue #1323</a>)
+  </li>
+  <li>
+    切断後も録画状態のとき "TTY Record" メニューが無効にならないようにし、録画を停止できるようにした。
+    (<a href="https://github.com/TeraTermProject/teraterm/issues/1284" target="_blank">issue #1284</a>)
+  </li>
+  <li>
+    "TTY Replay" メニューのファイル選択ダイアログの初期ディレクトリを指定するように修正した。
+    (<a href="https://github.com/TeraTermProject/teraterm/issues/1382" target="_blank">issue #1382</a>)<br>
+    直前に再生したファイルがあればそのフォルダ、なければ <a href="../setup/folder.html#TermLogDir">端末ログフォルダ</a> になる。
+  </li>
+  <li>
+    "TTY Record" メニューのファイル選択ダイアログの初期ディレクトリを <a href="../setup/folder.html#TermLogDir">端末ログフォルダ</a> に変更した。
+    (<a href="https://github.com/TeraTermProject/teraterm/issues/1384" target="_blank">issue #1384</a>)
+  </li>
+  <li>
+    再生中に停止できるようにした。
+    (<a href="https://github.com/TeraTermProject/teraterm/issues/1388" target="_blank">issue #1388</a>)
+  </li>
+  <li>
+    再生中のタイトルバーにファイルパスを短縮して表示する機能を追加した。
+    (<a href="https://github.com/TeraTermProject/teraterm/issues/1386" target="_blank">issue #1386</a>)<br>
+    ファイルパスの表示オプションとして、ファイル名のみ、および親ディレクトリ付きファイル名を選択できる。
   </li>
 </ul>
 

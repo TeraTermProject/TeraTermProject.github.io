@@ -8,3 +8,10 @@ img.atmark {
 	margin: 0 1px;
 	border: none 0;
 }
+
+svg.atmark {
+	width: 1em;
+	height: 1em;
+	vertical-align: -0.15em;
+}
+

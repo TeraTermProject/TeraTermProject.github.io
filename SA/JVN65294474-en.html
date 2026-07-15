@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <!-- meta http-equiv="Content-Type" content="text/html; charset=UTF-8" -->
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" type="text/css" href="sa.css">
+  <title>TTSSH2 has out-of-bounds access vulnerability</title>
+</head>
+
+<body>
+  <h1>TTSSH2 has out-of-bounds access vulnerability</h1>
+  <p>
+    Release date: July 15, 2026
+  </p>
+
+  <h2>Overview</h2>
+  <p>
+    Tera Term bundles the TTSSH2 plugin, which enables SSH connections.<br>
+    TTSSH2 3.6.1 or earlier has a vulnerability that can cause out-of-bounds access due to packets from a malicious server or a man-in-the-middle attacker.
+  </p>
+
+  <h2>Affected version</h2>
+  <p>
+    From TTSSH2 1.00 alpha1 through 3.6.1.<br>
+    Tera Term versions bundling TTSSH2: From UTF-8 TeraTerm Pro 2.05 (bundling TTSSH2 1.00 alpha2) through Tera Term 5.6.1 (bundling TTSSH2 3.6.1).
+  </p>
+
+  <h2>Impact</h2>
+  <p>
+    An out-of-bounds read may cause adjacent memory to be interpreted as part of the received packet.<br>
+    An out-of-bounds write may cause adjacent memory to be overwritten. The written values are not attacker-controlled; they are limited to a temporary '\0' and restoration of the original value.<br>
+    As a result, adjacent memory contents may be sent to the server, and Tera Term may behave unexpectedly or terminate abnormally.
+  </p>
+
+  <h2>Solution</h2>
+  <p>
+    Please use the latest release of the software 5.x series.<br>
+    There are no plans to provide a fix for the software 4.x series.
+  </p>
+
+  <!--h2>References</h2>
+  <ul>
+  </ul-->
+
+  <h2>Acknowledgment</h2>
+  <p>
+    Thank you for Yukihiro Nakamura, IPA and JPCERT/CC relationship.
+  </p>
+
+  <h2>History</h2>
+  <ul>
+    <li>July 15, 2026 First release</li>
+  </ul>
+
+  <h2>Contact</h2>
+  <p>Email: TeraTerm-<span class="nospam">nospam-</span>contact<svg class="atmark" viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+    <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M14 15c2 2 5 1 5-3" fill="none" stroke="currentColor" stroke-width="2"/>
+  </svg>groups.io</p>
+</body>
+</html>
