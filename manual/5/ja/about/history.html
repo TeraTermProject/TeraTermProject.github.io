@@ -4344,12 +4344,14 @@
     </ul>
   </li>
 
-  <!--li>その他
+  <li>その他
     <ul>
       <li>
+        LibreSSL 4.3.2 へ差し替えた。
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/9999" target="_blank">issue #9999</a>)
       </li>
     </ul>
-  </li-->
+  </li>
 </ul>
 
 <h3 id="ttssh_3.6.1">2026.04.28 (Ver 3.6.1)</h3>
@@ -6928,6 +6930,15 @@
     再生中のタイトルバーにファイルパスを短縮して表示する機能を追加した。
     (<a href="https://github.com/TeraTermProject/teraterm/issues/1386" target="_blank">issue #1386</a>)<br>
     ファイルパスの表示オプションとして、ファイル名のみ、および親ディレクトリ付きファイル名を選択できる。
+  </li>
+  <li>
+    自動録画機能を追加した。接続開始で録画を開始し、接続切断で録画を停止する。
+    (<a href="https://github.com/TeraTermProject/teraterm/issues/1405" target="_blank">issue #1405</a>)
+    <ul>
+      <li>teraterm.ini に RecordAutoStart エントリを追加した。自動録画有無を設定。デフォルトはoff。</li>
+      <li>teraterm.ini に RecordDefaultPath エントリを追加した。録画ファイル保存先を設定可能。</li>
+      <li>teraterm.ini に RecordDefaultName エントリを追加した。録画ファイル名を設定可能。</li>
+    </ul>
   </li>
 </ul>
 

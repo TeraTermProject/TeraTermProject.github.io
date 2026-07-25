@@ -4337,12 +4337,14 @@ SYNOPSIS:
     </ul>
   </li>
 
-  <!--li>Misc
+  <li>Misc
     <ul>
       <li>
+        Upgraded LibreSSL to 4.3.2.
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/9999" target="_blank">issue #9999</a>)
       </li>
     </ul>
-  </li-->
+  </li>
 </ul>
 
 <h3 id="ttssh_3.6.1">2026.04.28 (Ver 3.6.1)</h3>
@@ -6918,6 +6920,15 @@ SYNOPSIS:
     Added support for displaying short length of the file path in the title bar during playback.
     (<a href="https://github.com/TeraTermProject/teraterm/issues/1386" target="_blank">issue #1386</a>)<br>
     The file path options as added the filename or the filename include the parent directory.
+  </li>
+  <li>
+    Added support for automatic recording. Recording starts on connection and stops on disconnection.
+    (<a href="https://github.com/TeraTermProject/teraterm/issues/1405" target="_blank">issue #1405</a>)
+    <ul>
+      <li>Added RecordAutoStart entry(Start auto recording) to teraterm.ini. Default is off.</li>
+      <li>Added RecordDefaultPath entry(default recording directory) to teraterm.ini.</li>
+      <li>Added RecordDefaultName entry(default recording filename) to teraterm.ini.</li>
+    </ul>
   </li>
 </ul>
 
