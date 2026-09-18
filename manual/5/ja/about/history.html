@@ -38,9 +38,28 @@
   <li>変更
     <ul>
       <li>
+        国際化ドメイン名(IDN,Internationalized Domain Name)に一部対応した。
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/1493" target="_blank">issue #1493</a>)<br>
+        ホスト名に使える文字はシステムの ANSI コードページ(日本語 Windows では CP932)で表現できる範囲に限られる。
+      </li>
+      <li>
         ログのタイムスタンプの経過時間(ログ開始から,接続開始から)を64bitに変更した。
         (<a href="https://github.com/TeraTermProject/teraterm/issues/1339" target="_blank">issue #1339</a>)<br>
         以前は32bitで、最大約49.7日だった。
+      </li>
+      <li>
+        <a href="../menu/setup-additional-window.html#Title">ローカルタイトル</a>
+        (<a href="../commandline/teraterm.html#w">/W=</a> コマンドラインオプション,
+        <a href="../macro/command/settitle.html">settitle</a> マクロコマンド)を
+        Unicode で扱うようにした。
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/1546" target="_blank">issue #1546</a>)<br>
+        以前は ANSI 文字列で持っていたため、変換できない文字は "?" に置き換えられていた。
+      </li>
+      <li>
+        プラグインから Tera Term の関数を呼び出せるようにした。<br>
+        TTXExports に TTXInit2() を追加、Tera Term の関数のポインタを持つ TTXImports を
+        プラグインから取得できるようにした。
+        (<a href="https://github.com/TeraTermProject/teraterm/issues/1546" target="_blank">issue #1546</a>)<br>
       </li>
     </ul>
   </li>
@@ -6977,6 +6996,14 @@
 </ul>
 
 <h2 id="ttyrec">TTXttyrec</h2>
+<h3 id="ttyrec_1.08">YYYY.MM.DD (Ver 1.08 not released yet)</h3>
+<ul class="history">
+  <li>
+    タイトルバーの表示を Unicode で扱うようにした。
+    (<a href="https://github.com/TeraTermProject/teraterm/issues/1546" target="_blank">issue #1546</a>)
+  </li>
+</ul>
+
 <h3 id="ttyrec_1.07">2026.09.04 (Ver 1.07)</h3>
 <ul class="history">
   <li>
